@@ -1,0 +1,299 @@
+{
+	"info": {
+		"_postman_id": "dc81cc30-85b2-47bf-b9f2-f0311c0b3db4",
+		"name": "QuizApplication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ValidateLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admJoshua\",\n    \"password\": \"HelloWorld\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/admin/validateLogin",
+					"protocol": "https",
+					"host": [
+						"3tkxmc5luk",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"admin",
+						"validateLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetQuizDetails",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/QUIZ756c7182d99c4f4183ad6a6a32a71411/getQuizDetails",
+					"protocol": "https",
+					"host": [
+						"3tkxmc5luk",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"admin",
+						"admJoshua",
+						"QUIZ756c7182d99c4f4183ad6a6a32a71411",
+						"getQuizDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetQuizRespondents",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/QUIZ756c7182d99c4f4183ad6a6a32a71411/getQuizRespondents",
+					"protocol": "https",
+					"host": [
+						"3tkxmc5luk",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"admin",
+						"admJoshua",
+						"QUIZ756c7182d99c4f4183ad6a6a32a71411",
+						"getQuizRespondents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetQuizzes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/getQuizzes?isPublished=True",
+					"protocol": "https",
+					"host": [
+						"3tkxmc5luk",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"admin",
+						"admJoshua",
+						"getQuizzes"
+					],
+					"query": [
+						{
+							"key": "isPublished",
+							"value": "True"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateQuiz",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Bago na Exam\",\n    \"description\": \"Patay\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/createQuiz",
+					"protocol": "https",
+					"host": [
+						"3tkxmc5luk",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"admin",
+						"admJoshua",
+						"createQuiz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateQuiz",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Pastilan\",\n    \"description\": \"Can somebody, can somebody, break your heart\",\n    \"content\": [\n        {\n            \"question\": \"What is 1+1?\",\n            \"type\": \"Single-choice\",\n            \"options\": [\n                {\n                    \"value\": \"2\",\n                    \"isCorrect\": true\n                },\n                {\n                    \"value\": \"3\",\n                    \"isCorrect\": false\n                }\n            ]\n        },\n        {\n            \"question\": \"What are the factors of 4?\",\n            \"type\": \"Multi-choice\",\n            \"options\": [\n                {\n                    \"value\": \"1\",\n                    \"isCorrect\": true\n                },\n                {\n                    \"value\": \"2\",\n                    \"isCorrect\": true\n                },\n                {\n                    \"value\": \"4\",\n                    \"isCorrect\": true\n                },\n                {\n                    \"value\": \"5\",\n                    \"isCorrect\": false\n                }\n            ]\n        }\n    ]       \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/QUIZ5c4e8a1632a840eda058f8f79d35d302/updateQuiz",
+					"protocol": "https",
+					"host": [
+						"3tkxmc5luk",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"admin",
+						"admJoshua",
+						"QUIZ5c4e8a1632a840eda058f8f79d35d302",
+						"updateQuiz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PublishQuiz",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/QUIZ5c4e8a1632a840eda058f8f79d35d302/publishQuiz",
+					"protocol": "https",
+					"host": [
+						"3tkxmc5luk",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"admin",
+						"admJoshua",
+						"QUIZ5c4e8a1632a840eda058f8f79d35d302",
+						"publishQuiz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SubmitQuizAttempt",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Hello\",\n    \"lastName\": \"World\",\n    \"age\": 18,\n    \"gender\": \"Male\",\n    \"quizID\": \"QUIZ756c7182d99c4f4183ad6a6a32a71411\",\n    \"attemptData\": [\n        {\n            \"question\": \"What is 1+1?\",\n            \"answers\": [\n                {\n                    \"value\": \"2\"\n                }\n            ]\n        },\n        {\n            \"question\": \"What are the factors of 4?\",\n            \"answers\": [\n                {\n                    \"value\": \"1\"\n                },\n                {\n                    \"value\": \"5\"\n                },\n                {\n                    \"value\": \"4\"\n                }\n            ]\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/participant/submitQuizAttempt",
+					"protocol": "https",
+					"host": [
+						"3tkxmc5luk",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"participant",
+						"submitQuizAttempt"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
