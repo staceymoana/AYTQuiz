@@ -1,0 +1,44 @@
+"Quiz": {
+	"QuizID": "1",
+	"Title": "MathFinals",		
+	"Description": "This is the final exam",
+	"Status": "Published",
+	"Questions": {
+		"Question": {
+			"Message": "What is 1+1?",
+			"MediaLocation": "",
+			"Options": {
+				"Option": {
+					"Value": "2",
+					"IsCorrect": true
+				},
+				"Option": {
+					"Value": "3",
+					"IsCorrect": false
+				}
+			}
+		},
+		"Question": {
+			"Message": "What are factors of 4?",
+			"MediaLocation": "",
+			"Options": {
+				"Option": {
+					"Value": "1",
+					"IsCorrect": true
+				},
+				"Option": {
+					"Value": "2",
+					"IsCorrect": true
+				},
+				"Option": {
+					"Value": "4",
+					"IsCorrect": true
+				},
+				"Option": {
+					"Value": "5",
+					"IsCorrect": false
+				}
+			}
+		}
+	}
+}
