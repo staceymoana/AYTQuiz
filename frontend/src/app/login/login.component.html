@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5 shadow">
+                <div class="card-body">
+                    <img class="img-fluid mx-auto d-block" src="../assets/logo.svg">
+                    <h2 class="card-title text-left">Login </h2>
+                    <form #userForm="ngForm" (ngSubmit)="userForm.form.valid && onSubmit(userForm)">
+
+
+                        <div class="form-group">
+
+                            <input type="text" class="form-control" name="username" [(ngModel)]="new_username" #username="ngModel" [ngClass]="{ 'is-invalid': userForm.submitted && username.invalid }" username required autofocus placeholder="Username">
+                            <div *ngIf="userForm.submitted && username.invalid" class="invalid-feedback">
+                                <div *ngIf="username.errors.required">Username is required</div>
+                                <div *ngIf="username.errors.empty">Username is required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="new_password" #password="ngModel" [ngClass]="{ 'is-invalid': userForm.submitted && password.invalid }" minlength="1" required>
+                            <div *ngIf="userForm.submitted && password.invalid" class="invalid-feedback">
+                                <div *ngIf="password.errors.required">Password is required</div>
+                                <div *ngIf="password.errors.minlength">Password should be at least 8 characters long</div>
+                            </div>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Remember password</label>
+                            <div class="alert alert-danger mt-3" role="alert" *ngIf="userForm.submitted">
+                                This is a danger alert—check it out! {{authendicated}}
+                            </div>
+                        </div>
+
+
+                        <button type="submit" (click)="loginvalidation(new_username, new_password)" class=" btn btn-lg btn-primary btn-block text-uppercase ">Sign in</button>
+                        <!--createPerson(new_username, new_password)-->
+                    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div> <br><br><br>
+    </div>

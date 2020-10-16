@@ -1,0 +1,267 @@
+<div ng-controller="checkController" class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+            <div class="card card-signin my-5 shadow">
+                <div class="card-body qdesc" id="qinfo">
+                    <img class="img-fluid mx-auto d-block" src="../assets/logo.svg">
+                    <h4 class="card-title text-center mt-3">Quiz Title </h4>
+
+                    <form #CreateQuiz1="ngForm" (ngSubmit)="CreateQuiz1.form.valid && onSubmit(CreateQuiz1)" #f="ngForm">
+                        <div class="form-group">
+
+                            <input type="text" name="Title" placeholder="Name" class="form-control" [(ngModel)]="model.Title" #Title="ngModel" [ngClass]="{ 'is-invalid': CreateQuiz1.submitted && Title.invalid }" required>
+                            <div class="invalid-feedback" *ngIf="CreateQuiz1.submitted && Title.invalid">
+                                <p *ngIf="Title.errors.required">Quiz Name is required</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h4 class="card-title text-center mt-3">Quiz Description </h4>
+                            <textarea name="description" placeholder="Description" rows="3" class="form-control" [(ngModel)]="model.description" #description="ngModel" [ngClass]="{ 'is-invalid': CreateQuiz1.submitted && description.invalid }" required>
+                            </textarea>
+                            <div class="invalid-feedback" *ngIf="CreateQuiz1.submitted && description.invalid">
+                                <p *ngIf="description.errors.required">Description is required</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+                            <button class="btn btn-lg btn-primary text-uppercase btn-block" (click)="addQuiz()" [disabled]="!f.form.valid">Add Quiz </button>
+
+                        </div>
+
+
+
+                    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <div *ngFor="let obj of dataarray; let i=index">
+                <div class="card card-signin my-5 shadow">
+                    <div class="card-body qdesc">
+
+                        <form>
+                            <div class="card-body q1" id="Quection {{i+1}} ">
+                                <img class="img-fluid mx-auto d-block" src="../assets/logo.svg">
+                                <h4 class="card-title text-center mt-3">Quection {{i+1}} </h4>
+                                <div class="form-group">
+
+
+                                    <input type="text" name="Message{{i}}" placeholder="Quection" class="form-control" [(ngModel)]="obj.Message">
+
+
+
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+
+                                    <div class="text-center">
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="qtypem{{i}}" id="qtype" value="Multiple" [(ngModel)]="obj.quectiontype">
+                                            <label class="form-check-label" for="inlineRadio2">Multiple</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="qtypem{{i}}" id="qtype" value="Likert Scale" [(ngModel)]="obj.quectiontype">
+                                            <label class="form-check-label" for="inlineRadio3">Likert Scale</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="Multiple" style="display: none;">
+
+
+
+                                    <div class="form-row">
+
+                                        <div class="col-8">
+                                            <h4 class="card-title mt-3">Answer</h4>
+                                        </div>
+                                        <div class="col">
+                                            <h4 class="card-title mt-3">Correct</h4>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-row">
+
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" placeholder="Answer">
+                                        </div>
+                                        <div class="col">
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" placeholder="Answer">
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form-row">
+
+                                    <div class="col-8">
+                                        <h4 class="card-title mt-3">Answer</h4>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="card-title mt-3">Correct</h4>
+
+                                    </div>
+
+                                </div>
+                                <form #formRef="ngForm">
+                                    <div *ngFor="let word2 of words2; let in=index">
+                                        <div class="form-row">
+                                            <div class="col-8">
+
+                                                <input type="text" [(ngModel)]="words2[in].value" name="Value{{in}}" class="form-control" #name="ngModel" required placeholder="Answer" />sssss {{in}}
+                                                <!--    <input type="text" [(ngModel)]="obj.multipleAnswer" name="Value{{in}}" class="form-control" #name="ngModel" required placeholder="Answer" />
+-->
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" [(ngModel)]="words2[in].IsCorrect" type="checkbox" name="box{{in}}" value="option1" ng-init="checked=false">
+                                                    <button *ngIf="in!=0" class="plusbtn" (click)="removeFAnwer(in)"><i class="fa fa-minus text-lg-center text-primary plusfont"></i></button>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <br />
+                                    </div>
+                                    <div class="d-flex justify-content-center mt-3">
+                                        <button class="plusbtn" [disabled]="!formRef.form.valid" (click)="add()"><i class="fa fa-plus text-lg-center text-primary plusfont"></i></button>
+
+
+
+
+
+                                    </div>
+
+                                </form>
+
+                                <br />
+                                <!--     {{home | json}} {{words2 | json}}
+                          -->
+
+                                <br />
+                                <div class="d-flex justify-content-center mt-3">
+                                    <button class="btn btn-primary btn-block" (click)="Addquection()">Add Quection </button>
+                                    <button *ngIf="i!=0" class="plusbtn" (click)="removeForm(i)"><i class="fa fa-minus text-lg-center text-primary plusfont"></i> </button>
+                                </div>
+
+
+
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card card-signin my-5 shadow">
+                <div class="card-body qdesc">
+
+                    <h4 class="card-title text-center mt-3">Quections</h4>
+
+                    <table class="table table-bordered" style=" border: 1px solid #f36f2d;">
+                        <thead class="bg-primary text-light">
+                            <tr>
+                                <th scope="col">Quection</th>
+                                <th scope="col ">Type</th>
+                                <th scope="col ">Edit</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of dataarray">
+
+                                <td>{{item.Message}}</td>
+                                <td>{{item.quectiontype}}</td>
+                                <td>
+                                    <a class="btn btn-primary btn-block" href="NewQuiz/#Quection 1">Edit</a></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <!--
+
+                    <form [formGroup]="form ">
+                        <formly-form [model]="models " [fields]="fields "></formly-form>
+
+                    </form>
+-->
+                    <div class="form-group text-md-center">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">Ask For Demograghic?</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2">Generic Link</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                            <label class="form-check-label" for="inlineCheckbox3">Unique Link</label>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <button class="btn btn-block btn-primary">Save </button>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+
+
+                            <button class="btn btn-block btn-primary" (click)="PublishData()">Publish </button>{{result}}
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>

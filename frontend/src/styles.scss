@@ -1,0 +1,62 @@
+                    /* You can add global styles to this file, and also import other style files */
+                    
+                    //$body-color: #f36f2d;
+                    $headings-color: #f36f2d;
+                    $navbar-default-link-color: red;
+                    $navbar-default-link-hover-color: #333;
+                    $link-color: #f36f2d;
+                    $brand-primary: #f36f2d; // #337ab7
+                    $brand-success: #5cb85c !default;
+                    $brand-info: #5bc0de !default;
+                    $brand-warning: #f0ad4e !default;
+                    $brand-danger: #d9534f !default;
+                    $theme-colors: ( "primary": #f36f2d, "danger": #ff4136);
+                    .scroll {
+                        max-height: 300px;
+                        overflow-y: auto;
+                    }
+                    
+                    $navbar-light-color: #f36f2d;
+                    .plusbtn {
+                        background-color: transparent;
+                        border-color: transparent;
+                    }
+                    
+                    .plusfont {
+                        font-size: 1.5em;
+                    }
+                    /*
+.table table-bordered {
+    border: 1px solid #f36f2d;
+}*/
+                    
+                    .table-bordered {
+                        border: 1px solid #f36f2d;
+                        >thead,
+                        >tbody,
+                        >tfoot {
+                            >tr {
+                                >th,
+                                >td {
+                                    border: 1px solid #f36f2d;
+                                }
+                            }
+                        }
+                    }
+                    
+                    @import "node_modules/bootstrap/scss/bootstrap";
+                    // Custom.scss
+                    // Option B: Include parts of Bootstrap
+                    // Required
+                    @import "node_modules/bootstrap/scss/functions";
+                    @import "node_modules/bootstrap/scss/variables";
+                    @import "node_modules/bootstrap/scss/mixins";
+                    // Optional
+                    @import "node_modules/bootstrap/scss/reboot";
+                    @import "node_modules/bootstrap/scss/type";
+                    @import "node_modules/bootstrap/scss/images";
+                    @import "node_modules/bootstrap/scss/code";
+                    @import "node_modules/bootstrap/scss/grid";
+                    /* Importing Bootstrap SCSS file. */
+                    
+                    @import '~bootstrap/scss/bootstrap';

@@ -1,0 +1,210 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5 shadow">
+                <div class="card-body">
+                    <img class="img-fluid mx-auto d-block" src="../assets/logo.svg">
+                    <h2 class="card-title text-left">Enter Details</h2>
+
+                    <form #CreateQuiz1="ngForm" (ngSubmit)="CreateQuiz1.form.valid && onSubmit(CreateQuiz1)">
+                        <div class="form-group">
+
+                            <input type="text" name="name" placeholder="Name" class="form-control" [(ngModel)]="model.name" #name="ngModel" [ngClass]="{ 'is-invalid': CreateQuiz1.submitted && name.invalid }" required>
+                            <div class="invalid-feedback" *ngIf="CreateQuiz1.submitted && name.invalid">
+                                <p *ngIf="name.errors.required">Name is required</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <input type="number" name="age" placeholder="Age" min="10" class="form-control" [(ngModel)]="model.age" #age="ngModel" [ngClass]="{ 'is-invalid': CreateQuiz1.submitted && age.invalid }" required>
+                            <div class="invalid-feedback" *ngIf="CreateQuiz1.submitted && age.invalid">
+                                <p *ngIf="age.errors.required">Age is required</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <select class="form-control" id="power" required (ngModelChange)="getSelectedValue($event)" [ngModel]="selectedValue" [ngModelOptions]="{standalone: true}"> 
+                                  <option *ngFor=" let option of options " [value]="option.value">{{option.label}}</option>
+                                </select>
+                        </div>
+
+
+
+                        <button (click)="btnClick()" class="btn btn-lg btn-primary btn-block text-uppercase ">Continue</button>
+
+                    </form>
+
+
+
+
+
+
+
+
+                    <!--  <div *ngFor="let item of items"></div>
+-->
+                    <div>{{result}}</div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <br><br><br>
+    </div>
+
+
+
+
+    <div class="card card-signin my-5 shadow">
+        <div class="card-body qdesc">
+
+
+            <img class="img-fluid mx-auto d-block" src="../assets/logo.svg">
+            <div>
+                <h4 class="card-title text-center mt-3"></h4>
+                <p class="text-center"></p>
+
+            </div>
+
+            <table class="table text-center">
+                <thead class="text-center">
+                    <tr class="text-center" *ngFor="let Quiz of quections">
+                        <h4 class="card-title text-center mt-3">{{Quiz.Title}}</h4>
+                        <p class="text-center">{{Quiz.Description}} ID:{{Quiz.QuizID}}</p>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!--|paginate:{id:'listing_pagination', itemsPerPage:10,currentPage:page,totalItems:totalRecords}-->
+                    <!--        <tr *ngFor="let item of data |paginate:{id:'listing_pagination', itemsPerPage:1,currentPage:page,totalItems:totalRecords}">
+-->
+                    <tr *ngFor="let item of data |paginate:{id:'listing_pagination', itemsPerPage:5,currentPage:page,totalItems:totalRecords}">
+
+                        <h5>{{item.Questions.Question}}</h5>
+                        <h5>{{item.Question.Message}}</h5>
+                        <h5>{{item.Question.Message}}</h5>
+                        <h5>{{item.Options.Option}}</h5>
+                        <h5>{{item.Quiz.Description}}</h5>
+                        <h5>{{item}}</h5>
+                    </tr>
+
+
+
+
+                </tbody>
+            </table>
+
+            <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+        </div>
+
+        <br>
+        <div class="container">
+            <h2>Display the contents of the database</h2>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Comments</th>
+                        <th>Preference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let quection of quections">
+                        <td class="vert-align">{{quection.lastName}}</td>
+                        <td class="vert-align">{{quection.firstName}}</td>
+                        <td class="vert-align">{{quection.email}}</td>
+                        <td class="vert-align">{{quection.comments}}</td>
+                        <td class="vert-align">{{quection.options}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--
+
+
+
+    <div class="card card-signin my-5 shadow">
+        <div class="card-body qdesc">
+
+
+            <img class="img-fluid mx-auto d-block" src="../assets/logo.svg">
+            <div *ngFor="let quection of quections">
+                <h4 class="card-title text-center mt-3">{{quection.Title}}</h4>
+                <p class="text-center">{{quection.Description}}</p>
+
+            </div>
+
+            <table class="table table-bordered" style=" border: 1px solid #f36f2d;">
+                <thead class="bg-primary text-light">
+                    <tr>
+                        <th scope="col">Quection</th>
+                        <th scope="col ">Quection Type</th>
+                        <th scope="col ">Quection answers</th>
+                        <th scope="col ">Edit</th>
+
+                    </tr>
+                </thead>
+                <tbody *ngFor="let quection of quections">
+                    <tr *ngFor="let que of quection.Question">
+
+                        <td>{{que.Message}}</td>
+                        <td>{{que.quectiontype}}</td>
+                        <td>
+
+                            <table>
+                                <tr>
+                                    <th scope="col">Quection</th>
+                                    <th scope="col ">Quection Answer</th>
+                                </tr>
+                                <tbody *ngFor="let quection of quections">
+                                    <tr *ngFor="let que of quection.Option">
+
+                                        <td>{{que.IsCorrect}}</td>
+                                        <td>{{que.value}}</td>
+                                </tbody>
+                            </table>
+
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-block" href="NewQuiz/#Quection 1">Edit</a></td>
+                        </tr>
+
+                </tbody>
+            </table>
+
+
+
+
+
+        </div>
+
+
+
+    </div>-->
