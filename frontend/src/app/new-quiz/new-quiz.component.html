@@ -1,3 +1,5 @@
+<app-header>
+</app-header>
 <div ng-controller="checkController" class="container">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
@@ -5,6 +7,7 @@
                 <div class="card-body qdesc" id="qinfo">
                     <img class="img-fluid mx-auto d-block" src="../assets/logo.svg">
                     <h4 class="card-title text-center mt-3">Quiz Title </h4>
+                    <p class="text-muted">{{qid}} </p>
 
                     <form #CreateQuiz1="ngForm" (ngSubmit)="CreateQuiz1.form.valid && onSubmit(CreateQuiz1)" #f="ngForm">
                         <div class="form-group">
@@ -25,7 +28,7 @@
                         </div>
 
                         <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
-                            <button class="btn btn-lg btn-primary text-uppercase btn-block" (click)="addQuiz()" [disabled]="!f.form.valid">Add Quiz </button>
+                            <button class="btn btn-lg btn-primary text-uppercase btn-block" (click)="CreateQuiz(model.Title,model.description)" [disabled]="!f.form.valid">Add Quiz </button>
 
                         </div>
 

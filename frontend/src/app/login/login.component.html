@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="row vh-100">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto my-auto ">
             <div class="card card-signin my-5 shadow">
                 <div class="card-body">
                     <img class="img-fluid mx-auto d-block" src="../assets/logo.svg">
@@ -28,11 +28,11 @@
                         <div class="custom-control custom-checkbox mb-3">
                             <input type="checkbox" class="custom-control-input" id="customCheck1">
                             <label class="custom-control-label" for="customCheck1">Remember password</label>
-                            <div class="alert alert-danger mt-3" role="alert" *ngIf="userForm.submitted">
-                                This is a danger alert—check it out! {{authendicated}}
-                            </div>
-                        </div>
 
+                        </div>
+                        <div class="alert alert-danger mt-3" role="alert" *ngIf="userForm.submitted && displayError">
+                            Invalid Username/Password
+                        </div>
 
                         <button type="submit" (click)="loginvalidation(new_username, new_password)" class=" btn btn-lg btn-primary btn-block text-uppercase ">Sign in</button>
                         <!--createPerson(new_username, new_password)-->
@@ -53,5 +53,5 @@
 
                 </div>
             </div>
-        </div> <br><br><br>
+        </div>
     </div>

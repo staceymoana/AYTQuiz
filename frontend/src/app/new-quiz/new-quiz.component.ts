@@ -9,7 +9,8 @@ import { jsonpFactory } from '@angular/http/src/http_module';
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormGroup } from '@angular/forms';
-import { AuthService } from '../login/auth.service';
+import {Http, Response, RequestOptions, Headers} from '@angular/http';
+import { DatabaseService } from '../services/db.service';
 declare const myFun:any;
 declare const  addquection:any;
 declare const  q1plus:any;
@@ -17,10 +18,10 @@ declare const  q1plus:any;
   selector: 'app-new-quiz',
   templateUrl: './new-quiz.component.html',
   styleUrls: ['./new-quiz.component.css'],
-  providers:[AuthService]
+  providers:[DatabaseService]
 })
 export class NewQuizComponent implements OnInit {
-  constructor(private _auth:AuthService) {}
+  constructor(private  http: Http,_auth:DatabaseService) {}
 
 result:string;
 home=new home();
@@ -32,26 +33,8 @@ answerArray=[];
 words2 = [];
 quizarr=[];
 items=[];
+qid;
 
-
-
-
-CreateQuiz(Title,Description) {
-  //debugger;
-    let title = { title: Title };
-    let description  = { description: Description };
-    this._auth.CreateQuiz(title, Title).subscribe(
-      data => {
-        return true;
-  
-      },
-      error => {
-        console.error("Error validating");
-      //  return Observable.throw(error);
-
-      }
-    );
-  }
 
 
 
@@ -70,11 +53,12 @@ CreateQuiz(Title,Description) {
           this.words2.push({value: '',IsCorrect:'true'});
 
        
-         // console.log("Quiz Name: "+form.value.Title)
-         // console.log("Quiz Description: "+form.value.description)
-        this.CreateQuiz('Title','Description') ;
+        //  console.log("Quiz Name: "+this.model.Title)
+      //   console.log("Quiz Description: "+this.model.description)
+         debugger
+        //this.CreateQuiz(this.model.Title,this.model.description) ;
        //  this.CreateQuiz('Title','description');
-         console.log("Quiz sdsdsdsd: ")
+     //    console.log("Quiz sdsdsdsd: ")
 
           }
 
@@ -97,7 +81,45 @@ console.log(this.words2);
    this.Qanswer=new Qanswer();
    this.NewQuiz=new NewQuiz();
    this.model.id=1;
+
   }
+
+  private AddQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/createQuiz';
+
+
+  CreateQuiz(Title,Description) {
+    //console.log({ title: Title, description: Description},"ssss");
+   // console.log("Quiz Name: "+Title)
+   // console.log("Quiz Description: "+Description)
+     let headers = new Headers({'Content-Type' : 'application/json'});
+     let options = new RequestOptions({ headers: headers});
+     this.http.post(this.AddQuiz_URL, { title: Title, description: Description},options).map((res: Response) => res.json())
+  
+  .subscribe(
+   data => {
+  
+     this.qid =  data.quizID;
+    this.Addquection();
+    // console.log('success', data)
+     //console.log('success body', data.quizID)
+   },
+   error => {
+     
+     console.log('oops', error)
+  
+  }
+  );
+  
+  
+  
+  
+  
+  
+    }
+
+
+
+
   onSubmit(form) {
 
 

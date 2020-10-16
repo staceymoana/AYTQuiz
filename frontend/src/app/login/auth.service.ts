@@ -22,14 +22,7 @@ export class AuthService {
      
     }
  
-    CreateQuiz(title, description) {debugger
-        let headers = new Headers({'Content-Type' : 'application/json'});
-        let options = new RequestOptions({ headers: headers});
-        let INFO =  Object.assign(title, description);
-        let body = JSON.stringify(INFO);
-        return this.http.post(this.API_URL, body, options).map((res: Response) => res.json());
-       
-      }
+ 
 
 
 
