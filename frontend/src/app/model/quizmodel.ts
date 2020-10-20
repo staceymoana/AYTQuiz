@@ -1,7 +1,7 @@
 export class home
 {
 id:any;
-Message:any;
+question:any;
 multipleAnswer:[];
 }
 

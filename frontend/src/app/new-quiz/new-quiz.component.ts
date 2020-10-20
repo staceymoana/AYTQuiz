@@ -14,6 +14,14 @@ import { DatabaseService } from '../services/db.service';
 declare const myFun:any;
 declare const  addquection:any;
 declare const  q1plus:any;
+
+interface Alert {
+  type: string;
+  message: string;
+}
+   
+
+const ALERTS: Alert[] = [];
 @Component({
   selector: 'app-new-quiz',
   templateUrl: './new-quiz.component.html',
@@ -22,7 +30,7 @@ declare const  q1plus:any;
 })
 export class NewQuizComponent implements OnInit {
   constructor(private  http: Http,_auth:DatabaseService) {}
-
+  alerts: Alert[];
 result:string;
 home=new home();
 
@@ -35,14 +43,13 @@ quizarr=[];
 items=[];
 qid;
 
+close(alert: Alert) {
+  this.alerts.splice(this.alerts.indexOf(alert), 1);
+}
 
-
-
-
-
-
-
-
+reset() {
+  this.alerts = Array.from(ALERTS);
+}
 
             addQuiz()
           {
@@ -50,12 +57,12 @@ qid;
           this.quizarr.push(this.NewQuiz);
           this.dataarray.push(this.home);
           this.answerArray.push(this.Qanswer);   
-          this.words2.push({value: '',IsCorrect:'true'});
-
+  
        
+
         //  console.log("Quiz Name: "+this.model.Title)
       //   console.log("Quiz Description: "+this.model.description)
-         debugger
+       //  debugger
         //this.CreateQuiz(this.model.Title,this.model.description) ;
        //  this.CreateQuiz('Title','description');
      //    console.log("Quiz sdsdsdsd: ")
@@ -82,10 +89,11 @@ console.log(this.words2);
    this.NewQuiz=new NewQuiz();
    this.model.id=1;
 
+this.alerts = Array.from(ALERTS);
   }
 
   private AddQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/createQuiz';
-
+  private SaveQuiz;
 
   CreateQuiz(Title,Description) {
     //console.log({ title: Title, description: Description},"ssss");
@@ -99,6 +107,7 @@ console.log(this.words2);
    data => {
   
      this.qid =  data.quizID;
+     
     this.Addquection();
     // console.log('success', data)
      //console.log('success body', data.quizID)
@@ -156,7 +165,7 @@ console.log("remove index: "+index);
   }
 
   PublishData(){
- /*   
+  /* 
 let url='http://httpbin.org/post';
 
 this.http.post(url,
@@ -175,5 +184,109 @@ this.http.post(url,
  
   })
 */
+
+  }
+
+
+  SaveQuection(){
+     this.SaveQuiz = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/updateQuiz';
+
+    let headers = new Headers({'Content-Type' : 'application/json'});
+    let options = new RequestOptions({ headers: headers});
+    let Ans={ "options": [
+      {
+          "value": "2",
+          "isCorrect": true
+      },
+      {
+          "value": "3",
+          "isCorrect": false
+      }
+  ]};
+    this.result=JSON.stringify({'content':this.dataarray});
+
+
+    console.log('reera',this.result);
+    //debugger;
+    this.http.post(this.SaveQuiz, { 
+      title: this.model.Title,
+      "description": this.model.description,
+      "content": [
+          {
+              "question": "What is 1+1?",
+              "type": "Single-choice",
+              "options": [
+                  {
+                      "value": "2",
+                      "isCorrect": true
+                  },
+                  {
+                      "value": "3",
+                      "isCorrect": false
+                  }
+              ]
+          }
+      
+      ]       
+    },options)
+    
+    .subscribe(
+    data => {
+    
+    
+    
+    console.log('success', data.status)
+    const ALERTS: Alert[] = [{
+      type: 'success',
+      message: 'The Quiz Saved Succesfuly',
+    }
+    ];
+    this.alerts = Array.from(ALERTS);
+    
+    //this.displayError=false;
+    //this.routers.navigate(['/dashboard'])},
+    error => {
+    if (error.status==401) {
+    //  this.displayError=true;
+    const ALERTS: Alert[] = [{
+ 
+      type: 'danger',
+      message: 'There is an error',
+    }
+    ];
+    this.alerts = Array.from(ALERTS);
+    
+    //console.log('success', error.status)
+    }
+    else{}
+     console.log('oops', )
+     const ALERTS: Alert[] = [{
+ 
+      type: 'danger',
+      message: 'There is an error',
+    }
+    ];
+    this.alerts = Array.from(ALERTS);
+    
+    }},
+    error => {
+      const ALERTS: Alert[] = [{
+ 
+        type: 'danger',
+        message: 'Please Enter Quiz Details',
+      }
+      ];
+      this.alerts = Array.from(ALERTS);
+      
+    console.log("Options",this.words2);
+  
+  }
+
+    
+    );
+    
+    
+
+
   }
 }

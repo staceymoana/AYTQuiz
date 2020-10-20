@@ -31,16 +31,21 @@ export class LoginComponent implements OnInit {
     //debugger;
     this.http.post(this.API_URL, { username: UserName, password: Password},options)
 
-
 .subscribe(
   data => {
-    //console.log('success', data)
+    
+    
+    
+  //  console.log('success', data.status)
   this.displayError=false;
   this.routers.navigate(['/dashboard'])},
   error => {
-    
-    //console.log('oops', error)
-  this.displayError=true;
+    if (error.status==401) {
+      this.displayError=true;
+    }
+    else{}
+   // console.log('oops', )
+
 }
 );
 
