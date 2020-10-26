@@ -14,7 +14,6 @@ import { DatabaseService } from '../services/db.service';
 declare const myFun:any;
 declare const  addquection:any;
 declare const  q1plus:any;
-
 interface Alert {
   type: string;
   message: string;
@@ -51,30 +50,42 @@ reset() {
   this.alerts = Array.from(ALERTS);
 }
 
+
+
+
+
+
+
+
             addQuiz()
           {
           //  addquection();
           this.quizarr.push(this.NewQuiz);
           this.dataarray.push(this.home);
-          this.answerArray.push(this.Qanswer);   
-  
-       
+          this.answerArray.push(this.Qanswer);
+          this.words2.push({value: '',IsCorrect:'true'});
+
 
         //  console.log("Quiz Name: "+this.model.Title)
       //   console.log("Quiz Description: "+this.model.description)
-       //  debugger
+         debugger
         //this.CreateQuiz(this.model.Title,this.model.description) ;
        //  this.CreateQuiz('Title','description');
      //    console.log("Quiz sdsdsdsd: ")
 
           }
-
+answer:any[]=[]
           Addquection(){
+            let i=0
 this.home=new home();
 this.dataarray.push(this.home);
 
 console.log(this.dataarray);
-console.log(this.words2);   
+console.log(this.words2);
+this.words2.map((a,i)=>{
+  a.value=this.answer[i]
+  i++
+})
             //q1plus();
           }
 
@@ -89,7 +100,6 @@ console.log(this.words2);
    this.NewQuiz=new NewQuiz();
    this.model.id=1;
 
-this.alerts = Array.from(ALERTS);
   }
 
   private AddQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/createQuiz';
@@ -102,28 +112,27 @@ this.alerts = Array.from(ALERTS);
      let headers = new Headers({'Content-Type' : 'application/json'});
      let options = new RequestOptions({ headers: headers});
      this.http.post(this.AddQuiz_URL, { title: Title, description: Description},options).map((res: Response) => res.json())
-  
+
   .subscribe(
    data => {
-  
+
      this.qid =  data.quizID;
-     
-    this.Addquection();
+    this.Addquection();  this.words2.push({value: '',IsCorrect:'true'});
     // console.log('success', data)
      //console.log('success body', data.quizID)
    },
    error => {
-     
+
      console.log('oops', error)
-  
+
   }
   );
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
     }
 
 
@@ -134,9 +143,9 @@ this.alerts = Array.from(ALERTS);
 
 
 
-   // console.log(this.dataarray);
-  //  console.log(this.answerArray);
-   
+   console.log('data array',this.dataarray);
+  console.log('Answer array',this.answerArray);
+
   }
 removeForm(index){
 this.dataarray.splice(index,1);
@@ -153,7 +162,7 @@ console.log("remove index: "+index);
     this.words2.splice(index,1);
     //console.log("remove answer index: "+index);
     //console.log(this.dataarray);
-   // console.log(this.words2);    
+   // console.log(this.words2);
   }
   add() {
   //  this.home=new home();
@@ -165,7 +174,7 @@ console.log("remove index: "+index);
   }
 
   PublishData(){
-  /* 
+ /*
 let url='http://httpbin.org/post';
 
 this.http.post(url,
@@ -181,112 +190,105 @@ this.http.post(url,
   this.result=JSON.stringify(data.json);
   //this.items.push(data);
   this.dataarray.push(this.words2)
- 
+
   })
 */
-
   }
-
-
   SaveQuection(){
-     this.SaveQuiz = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/updateQuiz';
+    this.SaveQuiz = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/updateQuiz';
 
-    let headers = new Headers({'Content-Type' : 'application/json'});
-    let options = new RequestOptions({ headers: headers});
-    let Ans={ "options": [
-      {
-          "value": "2",
-          "isCorrect": true
-      },
-      {
-          "value": "3",
-          "isCorrect": false
-      }
-  ]};
-    this.result=JSON.stringify({'content':this.dataarray});
+   let headers = new Headers({'Content-Type' : 'application/json'});
+   let options = new RequestOptions({ headers: headers});
+   let Ans={ "options": [
+     {
+         "value": "2",
+         "isCorrect": true
+     },
+     {
+         "value": "3",
+         "isCorrect": false
+     }
+ ]};
+   this.result=JSON.stringify({'content':this.dataarray});
 
 
-    console.log('reera',this.result);
-    //debugger;
-    this.http.post(this.SaveQuiz, { 
-      title: this.model.Title,
-      "description": this.model.description,
-      "content": [
-          {
-              "question": "What is 1+1?",
-              "type": "Single-choice",
-              "options": [
-                  {
-                      "value": "2",
-                      "isCorrect": true
-                  },
-                  {
-                      "value": "3",
-                      "isCorrect": false
-                  }
-              ]
-          }
-      
-      ]       
-    },options)
-    
-    .subscribe(
-    data => {
-    
-    
-    
-    console.log('success', data.status)
+   console.log('reera',this.result);
+   //debugger;
+   this.http.post(this.SaveQuiz, { 
+     title: this.model.Title,
+     "description": this.model.description,
+     "content": [
+         {
+             "question": "What is 1+1?",
+             "type": "Single-choice",
+             "options": [
+                 {
+                     "value": "2",
+                     "isCorrect": true
+                 },
+                 {
+                     "value": "3",
+                     "isCorrect": false
+                 }
+             ]
+         }
+     
+     ]       
+   },options)
+   
+   .subscribe(
+   data => {
+   
+   
+   
+   console.log('success', data.status)
+   const ALERTS: Alert[] = [{
+     type: 'success',
+     message: 'The Quiz Saved Succesfuly',
+   }
+   ];
+   this.alerts = Array.from(ALERTS);
+   
+   //this.displayError=false;
+   //this.routers.navigate(['/dashboard'])},
+   error => {
+   if (error.status==401) {
+   //  this.displayError=true;
+   const ALERTS: Alert[] = [{
+
+     type: 'danger',
+     message: 'There is an error',
+   }
+   ];
+   this.alerts = Array.from(ALERTS);
+   
+   //console.log('success', error.status)
+   }
+   else{}
+    console.log('oops', )
     const ALERTS: Alert[] = [{
-      type: 'success',
-      message: 'The Quiz Saved Succesfuly',
-    }
-    ];
-    this.alerts = Array.from(ALERTS);
-    
-    //this.displayError=false;
-    //this.routers.navigate(['/dashboard'])},
-    error => {
-    if (error.status==401) {
-    //  this.displayError=true;
-    const ALERTS: Alert[] = [{
- 
-      type: 'danger',
-      message: 'There is an error',
-    }
-    ];
-    this.alerts = Array.from(ALERTS);
-    
-    //console.log('success', error.status)
-    }
-    else{}
-     console.log('oops', )
+
+     type: 'danger',
+     message: 'There is an error',
+   }
+   ];
+   this.alerts = Array.from(ALERTS);
+   
+   }},
+   error => {
      const ALERTS: Alert[] = [{
+
+       type: 'danger',
+       message: 'Please Enter Quiz Details',
+     }
+     ];
+     this.alerts = Array.from(ALERTS);
+     
+   console.log("Options",this.words2);
  
-      type: 'danger',
-      message: 'There is an error',
-    }
-    ];
-    this.alerts = Array.from(ALERTS);
-    
-    }},
-    error => {
-      const ALERTS: Alert[] = [{
- 
-        type: 'danger',
-        message: 'Please Enter Quiz Details',
-      }
-      ];
-      this.alerts = Array.from(ALERTS);
-      
-    console.log("Options",this.words2);
-  
-  }
+ }
 
-    
-    );
-    
-    
-
-
-  }
+   
+   );
+}
 }

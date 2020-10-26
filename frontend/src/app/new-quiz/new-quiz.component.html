@@ -68,7 +68,7 @@
                                 <div class="form-group">
 
 
-                                    <input type="text" name="Message{{i}}" placeholder="Quection" class="form-control" [(ngModel)]="obj.question">
+                                    <input type="text" name="Message{{i}}" placeholder="Quection" class="form-control" [(ngModel)]="obj.Message">
 
 
 
@@ -79,11 +79,11 @@
                                     <div class="text-center">
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="qtypem{{i}}" id="qtype" value="Multiple" [(ngModel)]="obj.type">
+                                            <input class="form-check-input" type="radio" name="qtypem{{i}}" id="qtype" value="Multiple" [(ngModel)]="obj.quectiontype">
                                             <label class="form-check-label" for="inlineRadio2">Multiple</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="qtypem{{i}}" id="qtype" value="Likert Scale" [(ngModel)]="obj.type">
+                                            <input class="form-check-input" type="radio" name="qtypem{{i}}" id="qtype" value="Likert Scale" [(ngModel)]="obj.quectiontype">
                                             <label class="form-check-label" for="inlineRadio3">Likert Scale</label>
                                         </div>
                                     </div>
@@ -152,7 +152,7 @@
                                         <div class="form-row">
                                             <div class="col-8">
 
-                                                <input type="text" [(ngModel)]="words2[in].value" name="Value{{in}}" class="form-control" #name="ngModel" required placeholder="Answer" />
+                                                <input type="text" (input)="answer[in]=$event.target.value" name="word2{{in}}" class="form-control" required placeholder="Answer" [(ngModel)]="word2.Options" />
                                                 <!--    <input type="text" [(ngModel)]="obj.multipleAnswer" name="Value{{in}}" class="form-control" #name="ngModel" required placeholder="Answer" />
 -->
                                             </div>
@@ -220,8 +220,8 @@
                         <tbody>
                             <tr *ngFor="let item of dataarray">
 
-                                <td>{{item.question}}</td>
-                                <td>{{item.type}}</td>
+                                <td>{{item.Message}}</td>
+                                <td>{{item.quectiontype}}</td>
                                 <td>
                                     <a class="btn btn-primary btn-block" href="NewQuiz/#Quection 1">Edit</a></td>
                             </tr>
@@ -259,7 +259,6 @@
 
                             <button class="btn btn-block btn-primary" (click)="PublishData()">Publish </button>{{result}}
                         </div>
-
 
                     </div>
                     <div *ngFor="let alert of alerts" class="block m-3">
