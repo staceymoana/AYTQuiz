@@ -35,7 +35,7 @@ reset() {
     this.SavedQuizes();
   }
 
-
+//get all saved quizes
   SavedQuizes(){
     let headers = new Headers({'Content-Type' : 'application/json'});
     let options = new RequestOptions({ headers: headers});
@@ -58,6 +58,7 @@ this.hi=data;
  );
 
   }
+  //Publish saved quizes
   PublishQuiz(QuizID){
     console.log(QuizID);
      this.qid=QuizID;
