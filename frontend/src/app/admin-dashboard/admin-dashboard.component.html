@@ -156,7 +156,9 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body scroll">
-
+                    <div *ngFor="let alert of alerts" class="block m-3">
+                        <ngb-alert [type]="alert.type" (close)="close(alert)">{{alert.message}}</ngb-alert>
+                    </div>
                     <div *ngFor="let obj of hi">
                         <div *ngIf="{ QuizKey: obj.SortKey} as variable" class="alert" style="background-color: #f8f8f8;" role="alert">
                             <div class="form-inline">
@@ -167,6 +169,7 @@
 
 
                                 </div>
+
                                 <div class="col-4">
 
 
@@ -177,6 +180,7 @@
 
 
                                 </div>
+
                             </div>
                         </div>
                     </div>
