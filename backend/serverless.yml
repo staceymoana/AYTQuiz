@@ -74,7 +74,22 @@ functions:
       ATTRIBUTE_AGE: Age
       ATTRIBUTE_GENDER: Gender
       EVENT_INSERT: INSERT
-      CONDITION_EXPRESSION: PartitionKey = :partitionKey AND SortKey = :sortKey      
+      CONDITION_EXPRESSION: PartitionKey = :partitionKey AND SortKey = :sortKey
+  getQuizDetailsPxt:
+    handler: lib/participant.getQuizDetailsPxt
+    events:
+      - http:
+          path: participant/{quizID}/getQuizDetailsPxt
+          method: get
+          cors: true
+          request: 
+            parameters:
+              paths:
+                quizID: true
+    environment:
+      REQUEST_QUIZID: quizID
+      PROJECTION_EXPRESSION: Content, Title, Description, SortKey
+      INDEX: SortKey-index
   validateLogin:
     handler: lib/admin.validateLogin
     events:
@@ -592,6 +607,8 @@ resources:
             Projection:
               NonKeyAttributes:
                 - Content
+                - Title
+                - Description
               ProjectionType: INCLUDE
             ProvisionedThroughput:
               ReadCapacityUnits: 5

@@ -14,6 +14,7 @@ DB_QUERY_RECORD = os.environ['DB_QUERY_RECORD']
 
 #load EVENT constants
 EVENT_BODY = os.environ['EVENT_BODY']
+EVENT_PATHPARAMETERS = os.environ['EVENT_PATHPARAMETERS']
 
 #load RESPONSE constants
 RESPONSE_STATUSCODE = os.environ['RESPONSE_STATUSCODE']
@@ -32,6 +33,32 @@ STATUSCODE_500 = os.environ['STATUSCODE_500']
 db = boto3.resource(DB)
 tblQuizApplication = db.Table(DB_TABLE_QUIZAPPLICATION)
 tblRespondents = db.Table(DB_TABLE_RESPONDENTS)
+
+def getQuizDetailsPxt(event, context):
+
+	#load function constants
+	REQUEST_QUIZID = os.environ['REQUEST_QUIZID']
+	INDEX = os.environ['INDEX']
+	PROJECTION_EXPRESSION = os.environ['PROJECTION_EXPRESSION']
+
+	quizID = event[EVENT_PATHPARAMETERS][REQUEST_QUIZID]
+
+	results = tblQuizApplication.query(
+		IndexName = INDEX,
+		ProjectionExpression = PROJECTION_EXPRESSION,
+		KeyConditionExpression = Key('SortKey').eq(quizID)
+	)
+
+	response = {
+		RESPONSE_STATUSCODE: STATUSCODE_200,
+		RESPONSE_BODY: json.dumps(results[DB_QUERY_RECORD][0]),
+		RESPONSE_HEADERS: {
+            ACCESS_CONTROL_ALLOW_ORIGIN: '*',
+            ACCESS_CONTROL_ALLOW_CREDENTIALS: True
+        }
+	}
+
+	return response
 
 def submitQuizAttempt(event, context):
 

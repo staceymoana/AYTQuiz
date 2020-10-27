@@ -278,7 +278,7 @@ def publishQuiz(event, context):
 		item[ATTRIBUTE_QUESTIONID] = QUESTION_FILTER + str(uuid.uuid4()).replace("-", "")
 
 	#add url as new attribute to the quiz, need to add actual logic here to produce URL
-	accessLink = ""	
+	accessLink = "localhost:4200/participant/{}".format(quizID)	
 
 	try:
 		#this should have a retry in case it fails (atomicity)
