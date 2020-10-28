@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-
 import { LoginComponent } from './login/login.component';
 import { CreateasurveyComponent } from './createasurvey/createasurvey.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { QuizViewComponent } from './quiz-view/quiz-view.component';
@@ -18,6 +18,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminCreateQuizComponent } from './admin-create-quiz/admin-create-quiz.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     QuizViewComponent,
     NewQuizComponent,
     AdminDashboardComponent,
+    AdminCreateQuizComponent,
     
 
 
@@ -39,11 +41,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     FormsModule,
 HttpClientModule,
     AppRoutingModule,
-
     NgbModule,
-
     ReactiveFormsModule,
-
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
     [BrowserModule, NgxPaginationModule],
     FormlyBootstrapModule

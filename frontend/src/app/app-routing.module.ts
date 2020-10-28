@@ -8,6 +8,8 @@ import { CreateasurveyComponent } from './createasurvey/createasurvey.component'
 import { QuizViewComponent } from './quiz-view/quiz-view.component';
 import { NewQuizComponent } from './new-quiz/new-quiz.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+
+import { AdminCreateQuizComponent } from './admin-create-quiz/admin-create-quiz.component';
 const routes: Routes = [
 
   {path:"",pathMatch:"full",redirectTo:"login"},
@@ -20,6 +22,7 @@ const routes: Routes = [
   {path:"dashboard",component:AdminDashboardComponent},
   {path:"quiz-view",component:QuizViewComponent},
   {path:"NewQuiz",component:NewQuizComponent},
+  {path:"CreateQuiz",component:AdminCreateQuizComponent},
 
 
 ];
