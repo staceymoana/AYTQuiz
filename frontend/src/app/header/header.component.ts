@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Http, Response, RequestOptions, Headers} from '@angular/http';
+import { ActivatedRoute } from '@angular/router';
+import { AdminService } from '../admin.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  
 
-  ngOnInit(): void {
+  constructor(private  http: Http,private route: ActivatedRoute,private Adminservice:AdminService) { }
+
+   username = this.Adminservice.getUsername();
+
+  ngOnInit(): void {console.log('oops',this.username )
   }
 
 }

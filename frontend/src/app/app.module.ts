@@ -20,6 +20,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminCreateQuizComponent } from './admin-create-quiz/admin-create-quiz.component';
 
+import { QuizDashboardComponent } from './quiz-dashboard/quiz-dashboard.component';
+import { QuizLeaderboardComponent } from './quiz-leaderboard/quiz-leaderboard.component';
+import { QuizReportComponent } from './quiz-report/quiz-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,9 +34,9 @@ import { AdminCreateQuizComponent } from './admin-create-quiz/admin-create-quiz.
     NewQuizComponent,
     AdminDashboardComponent,
     AdminCreateQuizComponent,
-    
+    QuizDashboardComponent,
 
-
+    QuizLeaderboardComponent,QuizReportComponent
  
   ],
   imports: [

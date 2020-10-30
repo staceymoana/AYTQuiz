@@ -62,13 +62,13 @@
                     <div class="card-body qdesc">
 
                         <form>
-                            <div class="card-body q1" id="Quection {{i+1}} ">
+                            <div class="card-body q1" id="Question {{i+1}} ">
                                 <img class="img-fluid mx-auto d-block" src="../assets/logo.svg">
-                                <h4 class="card-title text-center mt-3">Quection {{i+1}} </h4>
+                                <h4 class="card-title text-center mt-3">Question {{i+1}} </h4>
                                 <div class="form-group">
 
 
-                                    <input type="text" name="Message{{i}}" placeholder="Quection" class="form-control" [(ngModel)]="obj.Message">
+                                    <input type="text" name="question{{i}}" placeholder="Question" class="form-control" [(ngModel)]="obj.question">
 
 
 
@@ -79,11 +79,11 @@
                                     <div class="text-center">
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="qtypem{{i}}" id="qtype" value="Multiple" [(ngModel)]="obj.quectiontype">
+                                            <input class="form-check-input" type="radio" name="qtypem{{i}}" id="qtype" value="Multiple" [(ngModel)]="obj.type">
                                             <label class="form-check-label" for="inlineRadio2">Multiple</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="qtypem{{i}}" id="qtype" value="Likert Scale" [(ngModel)]="obj.quectiontype">
+                                            <input class="form-check-input" type="radio" name="qtypem{{i}}" id="qtype" value="Likert Scale" [(ngModel)]="obj.type">
                                             <label class="form-check-label" for="inlineRadio3">Likert Scale</label>
                                         </div>
                                     </div>
@@ -148,13 +148,14 @@
 
                                 </div>
                                 <form #formRef="ngForm">
-                                    <div *ngFor="let word2 of words2; let in=index">
+                                    <div *ngFor="let word2 of words2; let in=index;">
                                         <div class="form-row">
                                             <div class="col-8">
 
-                                                <input type="text" (input)="answer[in]=$event.target.value" name="word2{{in}}" class="form-control" required placeholder="Answer" [(ngModel)]="word2.Options" />
-                                                <!--    <input type="text" [(ngModel)]="obj.multipleAnswer" name="Value{{in}}" class="form-control" #name="ngModel" required placeholder="Answer" />
--->
+                                                <input type="text" name="word2{{i}}{{in}} " class="form-control" required placeholder="Answer" [id]="'answers'+i+''+in" [(ngModel)]="word2.value" />
+                                                <!--      {{i}} {{in}} <input type="text" (input)="word2[in]" name="word2{{in}}" class="form-control" required placeholder="Answer" [(ngModel)]="word2.value" />
+                                         
+-->{{in+10}}
                                             </div>
                                             <div class="col">
                                                 <div class="form-check">
@@ -183,13 +184,18 @@
 
                                 </form>
 
-                                <br />
-                                <!--     {{home | json}} {{words2 | json}}
-                          -->
 
                                 <br />
+                                <!--##################################################################################-->
+
+
+
+                                <!--     {{home | json}} {{words2 | json}}
+                          -->
+                                {{result}}
+                                <br />
                                 <div class="d-flex justify-content-center mt-3">
-                                    <button class="btn btn-primary btn-block" (click)="Addquection()">Add Quection </button>
+                                    <button class="btn btn-primary btn-block" (click)="Addquection()">Add Question </button>
                                     <button *ngIf="i!=0" class="plusbtn" (click)="removeForm(i)"><i class="fa fa-minus text-lg-center text-primary plusfont"></i> </button>
                                 </div>
 
@@ -206,12 +212,12 @@
             <div class="card card-signin my-5 shadow">
                 <div class="card-body qdesc">
 
-                    <h4 class="card-title text-center mt-3">Quections</h4>
+                    <h4 class="card-title text-center mt-3">Questions</h4>
 
                     <table class="table table-bordered" style=" border: 1px solid #f36f2d;">
                         <thead class="bg-primary text-light">
                             <tr>
-                                <th scope="col">Quection</th>
+                                <th scope="col">Question</th>
                                 <th scope="col ">Type</th>
                                 <th scope="col ">Edit</th>
 
@@ -220,8 +226,8 @@
                         <tbody>
                             <tr *ngFor="let item of dataarray">
 
-                                <td>{{item.Message}}</td>
-                                <td>{{item.quectiontype}}</td>
+                                <td>{{item.question}}</td>
+                                <td>{{item.type}}</td>
                                 <td>
                                     <a class="btn btn-primary btn-block" href="NewQuiz/#Quection 1">Edit</a></td>
                             </tr>
@@ -236,6 +242,20 @@
 
                     </form>
 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <div class="form-group text-md-center">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">

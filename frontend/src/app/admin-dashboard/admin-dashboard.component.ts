@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
+import { ActivatedRoute } from '@angular/router';
+import { Quiz } from '../quiz';
+import { QuizService } from '../quiz.service';import { AdminService } from '../admin.service';
 interface Alert {
   type: string;
   message: string;
@@ -16,25 +19,48 @@ const ALERTS: Alert[] = [];
 })
 export class AdminDashboardComponent implements OnInit {
 SavedQuizesArray=[];
+
+
 hi;
 close(alert: Alert) {
   this.alerts.splice(this.alerts.indexOf(alert), 1);
   //location.reload();
-  this.SavedQuizes();
+ // this.SavedQuizes();
 }
 
 reset() {
   this.alerts = Array.from(ALERTS);
 }
-  constructor(private  http: Http) { }
-  alerts: Alert[];
-  private GetQuizes_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/getQuizzes?isPublished=false';
-  private PublishQuiz_URL;
-  private qid;
-  ngOnInit(): void {
-    this.SavedQuizes();
+  constructor(private  http: Http,private route: ActivatedRoute,  private quizService: QuizService,private Adminservice:AdminService) { }
+
+  username = this.Adminservice.getUsername();
+
+  publishedQuizzes: Quiz[];
+  unpublishedQuizzes: Quiz[];
+  getPublishedQuizzes(): void {  	
+
+    this.quizService.getQuizzes(this.username, "True")
+      .subscribe(quizzes => this.publishedQuizzes = quizzes)
+  }
+  getunpublishedQuizzes(): void {  	
+
+    this.quizService.getQuizzes(this.username, "False")
+      .subscribe(quizzes => this.unpublishedQuizzes = quizzes)
   }
 
+
+
+
+
+  alerts: Alert[];
+
+  ngOnInit(): void {
+ //   this.SavedQuizes();
+
+ this.getPublishedQuizzes();
+ this.getunpublishedQuizzes();
+  }
+/*
 //get all saved quizes
   SavedQuizes(){
     let headers = new Headers({'Content-Type' : 'application/json'});
@@ -118,4 +144,8 @@ error => {
 
 );
   }
+
+*/
+
+
 }

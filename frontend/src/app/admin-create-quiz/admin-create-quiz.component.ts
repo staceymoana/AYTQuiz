@@ -55,15 +55,20 @@ if (abstractControl instanceof FormGroup) {
   addQuestionbtn():void{
     (<FormArray>this.quizForm.get('questions')).push(this.addQuectionFormGroup());
     console.log('this form',this.quizForm)
-    console.log('this answer',this.quizForm.get('questions.options'))
+    console.log('this answer1',this.quizForm.get('questions.options'))
+
     console.log('this answer',this.quizForm.get('questions'))
-    console.log('this answer',this.quizForm.get('questions').get('options'))
-    console.log('this answer',this.quizForm.get('questions'))
+  
     
   }
+  
+  
+  
   addAnswerbtn():void{
-   // (<FormArray>this.quizForm.get('options')).push(this.addAnswerFormGroup());
-    console.log('this form',this.quizForm.get('questions').get('options'))
+    (<FormArray>this.quizForm.get('questions')).push(this.addAnswerFormGroup());
+
+   
+
   }
 
   removeQuestionbtn(removeQuizId:number):void{

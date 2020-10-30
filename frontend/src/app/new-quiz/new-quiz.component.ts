@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
-import {home} from '../model/quizmodel';
-import {Qanswer} from '../model/quizmodel';
+import {home} from '../model/quizmodel';//quiz model 
+import {Qanswer} from '../model/answer';
 import {NewQuiz} from '../model/quizmodel';
+import {NewFormField} from '../model/quizmodel';
 import { HttpClient } from '@angular/common/http';
 import { jsonpFactory } from '@angular/http/src/http_module';
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
-import { FormGroup } from '@angular/forms';
+import { FormGroup,FormControl } from '@angular/forms';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import { DatabaseService } from '../services/db.service';
 declare const myFun:any;
 declare const  addquection:any;
 declare const  q1plus:any;
+declare var x:any;
 interface Alert {
   type: string;
   message: string;
@@ -29,15 +31,25 @@ const ALERTS: Alert[] = [];
 })
 export class NewQuizComponent implements OnInit {
   constructor(private  http: Http,_auth:DatabaseService) {}
-  alerts: Alert[];
-result:string;
-home=new home();
 
+  alerts: Alert[];
+result:any;
+
+
+home=new home();
 Qanswer=new Qanswer();
+
+NewFormField=new NewFormField();
+
 NewQuiz=new NewQuiz();
-dataarray=[];
+dataarray=[];//quection array
+addans=[];// answer form
+
+
 answerArray=[];
 words2 = [];
+
+
 quizarr=[];
 items=[];
 qid;
@@ -60,33 +72,65 @@ reset() {
             addQuiz()
           {
           //  addquection();
-          this.quizarr.push(this.NewQuiz);
+         // this.quizarr.push(this.NewQuiz);
           this.dataarray.push(this.home);
-          this.answerArray.push(this.Qanswer);
-          this.words2.push({value: '',IsCorrect:'true'});
+
+ 
+  //this.words2.push({value: '',IsCorrect:'false'});
+       // this.words2.push({value: '', IsCorrect:'true'});
 
 
         //  console.log("Quiz Name: "+this.model.Title)
       //   console.log("Quiz Description: "+this.model.description)
-         debugger
+         //debugger
         //this.CreateQuiz(this.model.Title,this.model.description) ;
        //  this.CreateQuiz('Title','description');
      //    console.log("Quiz sdsdsdsd: ")
 
           }
 answer:any[]=[]
-          Addquection(){
-            let i=0
+
+
+        
+Addquection(){
+ // this.NewFormField=new NewFormField();
+ // this.addans.push(this.NewFormField);
+
+
+          
 this.home=new home();
+
+this.Qanswer=new Qanswer();
+
+
+
+//this.dataarray.push(this.home,this.words2);
+
+
+this.home.options=this.words2;
 this.dataarray.push(this.home);
 
-console.log(this.dataarray);
-console.log(this.words2);
-this.words2.map((a,i)=>{
-  a.value=this.answer[i]
-  i++
-})
-            //q1plus();
+
+
+
+console.log('dataarray',this.dataarray);
+
+for (let index = 0; index < this.words2.length; index++) {
+
+ // console.log('key',(<HTMLInputElement>document.getElementById("word201")).value);
+//document.getElementsByName
+
+  //(<HTMLInputElement>document.getElementById("unitPrice")).value;
+}
+
+console.log('length',this.words2.length);
+//console.log("answer array",this.words2);
+
+//console.log("home array",this.home);
+//this.result=JSON.stringify({'':this.words2});
+//this.result=this.words2;
+this.result=JSON.stringify({'content':this.dataarray});
+
           }
 
 
@@ -97,6 +141,11 @@ this.words2.map((a,i)=>{
   ngOnInit(): void {
 
    this.Qanswer=new Qanswer();
+ 
+
+
+
+
    this.NewQuiz=new NewQuiz();
    this.model.id=1;
 
@@ -142,21 +191,14 @@ this.words2.map((a,i)=>{
 
 
 
-
-   console.log('data array',this.dataarray);
-  console.log('Answer array',this.answerArray);
+  //console.log('Answer array',this.answerArray);
 
   }
 removeForm(index){
 this.dataarray.splice(index,1);
 console.log("remove index: "+index);
   }
-  addAnswer(){
-    this.Qanswer=new Qanswer();
-    this.answerArray.push(this.Qanswer);
-    //console.log(this.dataarray);
-   // console.log(this.answerArray);
-  }
+
 
   removeFAnwer(index){
     this.words2.splice(index,1);
@@ -172,6 +214,10 @@ console.log("remove index: "+index);
     this.words2.push({value: '',IsCorrect:'false'});
 
   }
+/*##################################################################*/
+
+
+/*##################################################################*/
 
   PublishData(){
  /*
@@ -199,41 +245,15 @@ this.http.post(url,
 
    let headers = new Headers({'Content-Type' : 'application/json'});
    let options = new RequestOptions({ headers: headers});
-   let Ans={ "options": [
-     {
-         "value": "2",
-         "isCorrect": true
-     },
-     {
-         "value": "3",
-         "isCorrect": false
-     }
- ]};
-   this.result=JSON.stringify({'content':this.dataarray});
 
+   console.log('reera',this.home);
 
-   console.log('reera',this.result);
+   //console.log('data arry',this.dataarray);
    //debugger;
-   this.http.post(this.SaveQuiz, { 
+   this.http.post(this.SaveQuiz,{ 
      title: this.model.Title,
      "description": this.model.description,
-     "content": [
-         {
-             "question": "What is 1+1?",
-             "type": "Single-choice",
-             "options": [
-                 {
-                     "value": "2",
-                     "isCorrect": true
-                 },
-                 {
-                     "value": "3",
-                     "isCorrect": false
-                 }
-             ]
-         }
-     
-     ]       
+     "content": this.dataarray
    },options)
    
    .subscribe(

@@ -1,14 +1,16 @@
 export class home
 {
 id:any;
-question:any;
-multipleAnswer:[];
+question:string;
+questionType: string;
+options:any[];
 }
 
 export class Qanswer
 {
 id:any;
 multipleAnswer:any;
+
 
 
 }
@@ -20,4 +22,10 @@ export class NewQuiz{
    
   }
 
- 
+  export class NewFormField{
+      id:any;
+     Title: any;
+    
+  
+   
+  }

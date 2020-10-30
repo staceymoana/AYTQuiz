@@ -533,9 +533,9 @@ module.exports = content.locals || {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\DEV\BAP\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
-__webpack_require__(/*! F:\DEV\BAP\node_modules\font-awesome\css\font-awesome.min.css */"./node_modules/font-awesome/css/font-awesome.min.css");
-module.exports = __webpack_require__(/*! F:\DEV\BAP\src\styles.scss */"./src/styles.scss");
+__webpack_require__(/*! F:\DEV\GIT\AYTQuiz\frontend\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
+__webpack_require__(/*! F:\DEV\GIT\AYTQuiz\frontend\node_modules\font-awesome\css\font-awesome.min.css */"./node_modules/font-awesome/css/font-awesome.min.css");
+module.exports = __webpack_require__(/*! F:\DEV\GIT\AYTQuiz\frontend\src\styles.scss */"./src/styles.scss");
 
 
 /***/ })

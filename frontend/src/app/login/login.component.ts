@@ -6,6 +6,8 @@ import {Observable} from "rxjs";
 import {NgForm} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
+import { AdminService } from '../admin.service';
+import { ApiService } from '../api.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,19 +19,19 @@ export class LoginComponent implements OnInit {
   public new_password: string;
   public authendicated=200;
   public displayError=false;
-  constructor(private http: Http, private routers:Router) { }
+  constructor(private http: Http, private routers:Router,private Adminservice:AdminService,private Apiservice:ApiService) { }
   //constructor(private _auth:AuthService) {}
   ngOnInit() {}
 
 
-  private API_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/validateLogin';
+ 
   loginvalidation(UserName,Password) {
 
   let headers = new Headers({'Content-Type' : 'application/json'});
     let options = new RequestOptions({ headers: headers});
 
     //debugger;
-    this.http.post(this.API_URL, { username: UserName, password: Password},options)
+    this.http.post(this.Apiservice.getLoginAPI(), { username: UserName, password: Password},options)
 
 .subscribe(
   data => {
@@ -38,12 +40,23 @@ export class LoginComponent implements OnInit {
     
   //  console.log('success', data.status)
   this.displayError=false;
-  this.routers.navigate(['/dashboard'])},
+  this.routers.navigate(['/dashboard']),
+  
+  
+  
+  this.Adminservice.storeUsername(UserName)
+
+},
+
+
+
   error => {
     if (error.status==401) {
       this.displayError=true;
     }
-    else{}
+    else{
+
+    }
    // console.log('oops', )
 
 }
