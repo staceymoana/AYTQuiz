@@ -11,16 +11,16 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { QuizDashboardComponent } from './quiz-dashboard/quiz-dashboard.component';
 import { QuizLeaderboardComponent } from './quiz-leaderboard/quiz-leaderboard.component';
 import { QuizReportComponent } from './quiz-report/quiz-report.component';
-import { AdminCreateQuizComponent } from './admin-create-quiz/admin-create-quiz.component';
+
 const routes: Routes = [
 
   {path:"",pathMatch:"full",redirectTo:"login"}, 
   {path:"login",component:LoginComponent},
   {path:"createasurvey",component:CreateasurveyComponent},
  // {path:"dashboard",component:AdminDashboardComponent},
-  {path:"quiz-view",component:QuizViewComponent},
+  {path:"quiz-view",component:NewQuizComponent},
   {path:"NewQuiz",component:NewQuizComponent},
-  {path:"CreateQuiz",component:AdminCreateQuizComponent},
+  {path:"CreateQuiz",component:NewQuizComponent},
   { path: 'dashboard', component: AdminDashboardComponent },
   { path: ':quizID/dashboard', component: QuizDashboardComponent },
   { path: ':quizID/leaderboard', component: QuizLeaderboardComponent },

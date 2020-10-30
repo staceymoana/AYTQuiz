@@ -18,11 +18,13 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { AdminCreateQuizComponent } from './admin-create-quiz/admin-create-quiz.component';
 
+import { OneQuetionComponent } from './new-quiz/one-quetion/one-quetion.component';
+import { OneOptionComponent } from './new-quiz/one-quetion/one-option/one-option.component';
 import { QuizDashboardComponent } from './quiz-dashboard/quiz-dashboard.component';
 import { QuizLeaderboardComponent } from './quiz-leaderboard/quiz-leaderboard.component';
 import { QuizReportComponent } from './quiz-report/quiz-report.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,9 +35,10 @@ import { QuizReportComponent } from './quiz-report/quiz-report.component';
     QuizViewComponent,
     NewQuizComponent,
     AdminDashboardComponent,
-    AdminCreateQuizComponent,
-    QuizDashboardComponent,
 
+    QuizDashboardComponent,
+    OneQuetionComponent,
+    OneOptionComponent,
     QuizLeaderboardComponent,QuizReportComponent
  
   ],
