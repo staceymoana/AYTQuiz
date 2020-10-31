@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { jsonpFactory } from '@angular/http/src/http_module';
 import { Observable } from 'rxjs';
 import {DatabaseService} from "../services/db.service";
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 export class Participant {

@@ -17,7 +17,7 @@ const routes: Routes = [
 
   {path:"",pathMatch:"full",redirectTo:"login"}, 
   {path:"login",component:LoginComponent},
-  {path: "take-quiz", component:TakeQuizComponent},
+  {path: "participant/:quizID", component:TakeQuizComponent},
  // {path:"dashboard",component:AdminDashboardComponent},
   {path:"quiz-view",component:NewQuizComponent},
   {path:"NewQuiz",component:NewQuizComponent},

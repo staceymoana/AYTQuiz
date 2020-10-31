@@ -18,7 +18,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-
+import { TakeQuizComponent } from './take-quiz/take-quiz.component';
 import { OneQuetionComponent } from './new-quiz/one-quetion/one-quetion.component';
 import { OneOptionComponent } from './new-quiz/one-quetion/one-option/one-option.component';
 import { QuizDashboardComponent } from './quiz-dashboard/quiz-dashboard.component';
@@ -36,7 +36,7 @@ import { EditQuizComponent } from './edit-quiz/edit-quiz.component';
     QuizViewComponent,
     NewQuizComponent,
     AdminDashboardComponent,
-
+    TakeQuizComponent,
     QuizDashboardComponent,
     OneQuetionComponent,
     OneOptionComponent,
