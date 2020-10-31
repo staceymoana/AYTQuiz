@@ -11,12 +11,13 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { QuizDashboardComponent } from './quiz-dashboard/quiz-dashboard.component';
 import { QuizLeaderboardComponent } from './quiz-leaderboard/quiz-leaderboard.component';
 import { QuizReportComponent } from './quiz-report/quiz-report.component';
+import { TakeQuizComponent } from './take-quiz/take-quiz.component';
 
 const routes: Routes = [
 
   {path:"",pathMatch:"full",redirectTo:"login"}, 
   {path:"login",component:LoginComponent},
-  {path:"createasurvey",component:CreateasurveyComponent},
+  {path: "take-quiz", component:TakeQuizComponent},
  // {path:"dashboard",component:AdminDashboardComponent},
   {path:"quiz-view",component:NewQuizComponent},
   {path:"NewQuiz",component:NewQuizComponent},
