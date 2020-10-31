@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
+import Swal from 'sweetalert2';
 
 interface Alert {
   type: string;
   message: string;
 }
+
 const ALERTS: Alert[] = [];
 @Component({
   selector: 'app-new-quiz',
@@ -14,14 +16,15 @@ const ALERTS: Alert[] = [];
 export class NewQuizComponent implements OnInit {
   alerts: Alert[];
   constructor(private  http: Http) { }
-
+  qid;
   queArr : any = [{
     id : this.randomString(8),
     indexNumber : 0
   }];
 
   buttonActive :any = true;
-  
+  private PublishQuiz_URL;
+  private UpdateQuiz_URL;
   title : any = '';
   description : any = '';
   content : any = [];
@@ -41,7 +44,8 @@ export class NewQuizComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    
+
+ 
   }
 
 
@@ -51,6 +55,8 @@ export class NewQuizComponent implements OnInit {
       id : this.randomString(8),
       indexNumber : this.queArr.length + 1,
     })
+    
+    this.UpdateQuiz();
   }
 
   getValue(){
@@ -98,7 +104,6 @@ export class NewQuizComponent implements OnInit {
 }
   private AddQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/createQuiz';
 
-
   CreateQuiz(Title,Description) {
     //console.log({ title: Title, description: Description},"ssss");
    // console.log("Quiz Name: "+Title)
@@ -113,7 +118,9 @@ export class NewQuizComponent implements OnInit {
      //this.qid =  data.quizID;
      console.log(this.allData);
      console.log('success', data)
-     //console.log('success body', data.quizID)
+     this.qid=data.quizID;
+
+    //console.log('success quid', data.quizID)
    },
    error => {
 
@@ -132,7 +139,123 @@ export class NewQuizComponent implements OnInit {
       this.CreateQuiz(this.title,this.description);
     }
 
-    PublishData(){}
-    SaveQuestion(){}
+    PublishQuiz(){
+      //console.log(QuizID);
+      
+       this.PublishQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/publishQuiz';
+      let headers = new Headers({'Content-Type' : 'application/json'});
+      let options = new RequestOptions({ headers: headers});
+  
+      //debugger;
+      this.http.post(this.PublishQuiz_URL,options)
+  
+  .subscribe(
+    data => {
+      
+      const ALERTS: Alert[] = [{
+        type: 'success',
+        message: 'The Quiz Published Succesfuly',
+      }
+      ];
+      this.alerts = Array.from(ALERTS);
+      
+      error => {
+        if (error.status==401) {
+        //  this.displayError=true;
+        const ALERTS: Alert[] = [{
+     
+          type: 'danger',
+          message: 'There is an error',
+        }
+        ];
+        this.alerts = Array.from(ALERTS);
+        
+        //console.log('success', error.status)
+        }
+        else{}
+         console.log('oops', )
+         const ALERTS: Alert[] = [{
+     
+          type: 'danger',
+          message: 'There is an error',
+        }
+        ];
+        this.alerts = Array.from(ALERTS);
+        
+        }},
+  error => {
+    const ALERTS: Alert[] = [{
+  
+      type: 'danger',
+      message: 'Please update Quiz Details',
+    }
+    ];
+    this.alerts = Array.from(ALERTS);
+  
+  
+  }
+  
+  
+  );}
+
+
+  SaveQuestion(){
+    if (!this.allData.content.length) {
+      //console.log('empty',this.allData.content)    
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please Add more Questions!',
+        footer: ''
+      });
+
+    
+    } else {
+      console.log('saving data',this.allData);
+    this.UpdateQuiz();
+    }
+   
+  }
+
+    UpdateQuiz(){
+      console.log('updated data',this.allData);
+      this.UpdateQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/updateQuiz';
+      let headers = new Headers({'Content-Type' : 'application/json'});
+      const body = this.allData;
+
+     // const body = ;
+
+
+      let options = new RequestOptions({ headers: headers});
+         
+        this.http.post(this.UpdateQuiz_URL, body, { headers }).subscribe(data => {
+           
+          Swal.fire(
+            'Good job!',
+            'Your quizzes successfully saved!',
+            'success'
+          ); 
+        });}
+
+
+
+
+        test(){
+      
+          
+          // if (!this.allData.content.length) {
+          //   console.log('empty',this.allData.content)    
+          //   Swal.fire({
+          //     icon: 'error',
+          //     title: 'Oops...',
+          //     text: 'Please Add more Questions!',
+          //     footer: ''
+          //   });
+
+          
+          // } else {
+          
+          // }
+        }
 
 }

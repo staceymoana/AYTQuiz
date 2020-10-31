@@ -41,6 +41,7 @@
         "popper.js": "^1.16.1",
         "rxjs": "~6.5.5",
         "rxjs-compat": "^6.6.3",
+        "sweetalert2": "^10.9.0",
         "tslib": "^2.0.3",
         "zone.js": "~0.10.3"
     },

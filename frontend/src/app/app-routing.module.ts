@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { from } from 'rxjs';
 import { LoginComponent } from './login/login.component';
 import { CreateasurveyComponent } from './createasurvey/createasurvey.component';
-
+import { EditQuizComponent } from './edit-quiz/edit-quiz.component';
 import { QuizViewComponent } from './quiz-view/quiz-view.component';
 import { NewQuizComponent } from './new-quiz/new-quiz.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -25,7 +25,8 @@ const routes: Routes = [
   { path: ':quizID/dashboard', component: QuizDashboardComponent },
   { path: ':quizID/leaderboard', component: QuizLeaderboardComponent },
   { path: ':quizID/report', component: QuizReportComponent },
-
+  
+  { path: ':quizID/editQuiz', component: EditQuizComponent }
 ];
 
 @NgModule({

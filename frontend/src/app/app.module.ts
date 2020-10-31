@@ -24,6 +24,7 @@ import { OneOptionComponent } from './new-quiz/one-quetion/one-option/one-option
 import { QuizDashboardComponent } from './quiz-dashboard/quiz-dashboard.component';
 import { QuizLeaderboardComponent } from './quiz-leaderboard/quiz-leaderboard.component';
 import { QuizReportComponent } from './quiz-report/quiz-report.component';
+import { EditQuizComponent } from './edit-quiz/edit-quiz.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { QuizReportComponent } from './quiz-report/quiz-report.component';
     QuizDashboardComponent,
     OneQuetionComponent,
     OneOptionComponent,
-    QuizLeaderboardComponent,QuizReportComponent
+    QuizLeaderboardComponent,QuizReportComponent, EditQuizComponent
  
   ],
   imports: [
