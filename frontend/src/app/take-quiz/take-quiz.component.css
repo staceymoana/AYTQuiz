@@ -1,0 +1,18 @@
+#quiz,
+#report {
+  display: none;
+  margin: 5vh 5vw;
+}
+
+#quizDetails {
+  margin: 5vh 5vw;
+}
+
+#question {
+  margin: 5vh 5vw;
+}
+
+.table {
+  margin: auto;
+  width: 80% !important;
+}
