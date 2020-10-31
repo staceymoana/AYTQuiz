@@ -56,7 +56,7 @@ export class NewQuizComponent implements OnInit {
       indexNumber : this.queArr.length + 1,
     })
     
-    this.UpdateQuiz();
+
   }
 
   getValue(){
@@ -152,12 +152,11 @@ export class NewQuizComponent implements OnInit {
   .subscribe(
     data => {
       
-      const ALERTS: Alert[] = [{
-        type: 'success',
-        message: 'The Quiz Published Succesfuly',
-      }
-      ];
-      this.alerts = Array.from(ALERTS);
+      Swal.fire(
+        'Good job!',
+        'Your quizzes successfully saved!',
+        'success'
+      ); 
       
       error => {
         if (error.status==401) {
@@ -184,13 +183,12 @@ export class NewQuizComponent implements OnInit {
         
         }},
   error => {
-    const ALERTS: Alert[] = [{
-  
-      type: 'danger',
-      message: 'Please update Quiz Details',
-    }
-    ];
-    this.alerts = Array.from(ALERTS);
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Please Add more Questions!',
+      footer: ''
+    });
   
   
   }
