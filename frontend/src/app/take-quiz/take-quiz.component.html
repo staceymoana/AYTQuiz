@@ -60,7 +60,7 @@
             <p class="text-center">{{ item.Description }}</p>
         </div>
 
-        <form [formGroup]="quizForm" (ngSubmit)="submitQuiz()" id="formQA">
+        <form [formGroup]="quizForm" (ngSubmit)="checkForAnswer();" id="formQA">
             <div class="form-check text-center question_{{ i }}" id="question" *ngFor="let item of contentData; let i = index" [attr.data-index]="i">
                 <h4>{{ item.question }}</h4>
                 <div class="answerDiv" *ngFor="let obj of item.options; let j = index" [attr.data-index]="j">

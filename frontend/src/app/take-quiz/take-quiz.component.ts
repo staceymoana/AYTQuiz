@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 import {DatabaseService} from "../services/db.service";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { BrowserModule } from '@angular/platform-browser';
+import { forEach } from 'ngx-json-schema';
 export class Participant {
   public firstName: string;
   public lastName: string;
@@ -82,14 +84,9 @@ export class TakeQuizComponent implements OnInit {
     })
   }
 
-  submitQuiz() {
-    var submitQuizAPI = 'https://pw3y4jh5q1.execute-api.us-east-1.amazonaws.com/dev/participant/submitQuizAttempt'
+  createQuizJSON() {
     var d = document;
-    var quiz = d.getElementById("quiz");
-    var report = d.getElementById("report");
-    quiz.style.display = "none";
-    report.style.display = "block";
-
+    
     //JSON object to build for 'attemptData' to send to API
     var fullJSON = [];
     
@@ -110,14 +107,24 @@ export class TakeQuizComponent implements OnInit {
           var chosenValue = allCheckBoxes[j].value;
           var answerJSON = {"value": chosenValue}
           jsonData.answers.push(answerJSON); 
-        }               
+        }             
       }
       //Add question + answer JSON object to main JSON object
       fullJSON.push(jsonData);
     }
     //Assign to newParticipant
     this.newParticipant.attemptData = fullJSON;
+  }
 
+
+  submitQuiz() {
+    var d = document;
+    var quiz = d.getElementById("quiz");
+    var report = d.getElementById("report");
+    quiz.style.display = "none";
+    report.style.display = "block";
+    var submitQuizAPI = 'https://pw3y4jh5q1.execute-api.us-east-1.amazonaws.com/dev/participant/submitQuizAttempt';
+    
     //Send data through API
     this.http.post(submitQuizAPI, {
       firstName: this.newParticipant.firstName,
@@ -134,6 +141,47 @@ export class TakeQuizComponent implements OnInit {
         console.log('oops', error);
     }
     );
+  }
+
+  checkForAnswer() {
+    this.createQuizJSON();
+    var isQuizSubmitted = false;
+
+    for (var i = 0; i < this.newParticipant.attemptData.length; i++) {
+      console.log('in for loop');
+      if(this.newParticipant.attemptData[i].answers.length<1) {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: 'Question ' + i + ' is missing an answer. Are you sure you want to commit?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, submit it!'
+        }).then((result) => {
+          console.log('in result');
+          if (result.isConfirmed) {
+            Swal.fire(              
+              'Submitted!',
+              'Your file has been submitted.',
+              'success'
+            );
+            console.log('in confirmed');
+            console.log('submitted');
+            this.submitQuiz();
+            isQuizSubmitted = true;
+          } 
+        })
+      }
+      else {
+        this.submitQuiz();
+      } 
+    }
+     
+    // if (isQuizSubmitted == false) {
+    //   consolelog('in isQuizSubmitted if');
+    //   this.submitQuiz();
+    // }
   }
 
   getSelectedValue(value: any) {
