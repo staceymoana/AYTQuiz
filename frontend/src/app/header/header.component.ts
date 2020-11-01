@@ -12,12 +12,14 @@ import Swal from 'sweetalert2';
 export class HeaderComponent implements OnInit {
 
   
-
+   username;
   constructor(private  http: Http,private route: ActivatedRoute,private Adminservice:AdminService,private routers:Router) { }
 
-   username = this.Adminservice.getUsername();
+   
 
   ngOnInit(): void {
+     this.username = this.Adminservice.getUsername();
+
     console.log('oops',this.username )
 
     if (this.username==null||this.username=='') {
@@ -41,7 +43,9 @@ export class HeaderComponent implements OnInit {
           'Session disconnected.',
           'success',
           
-        ),this.username=null;
+        ),
+        
+        this.username=this.Adminservice.loggedOut();
         location.reload();
       }
     })

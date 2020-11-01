@@ -55,10 +55,10 @@ export class LoginComponent implements OnInit {
       this.displayError=true;
     }
     else{
-
+      this.displayError=true;
     }
-   // console.log('oops', )
-
+  
+    this.displayError=true;
 }
 );
 
