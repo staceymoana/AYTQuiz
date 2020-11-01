@@ -71,7 +71,7 @@ export class QuizViewComponent implements OnInit {
       this.title=this.allData.Title;
       this.description=this.allData.Description;
     for (let index = 0; index < this.allData.Content.length; index++) {
-        this.addQuetionInput();
+        this.addSavedQuetionInput(index);
      //   this.quetion
     }
     })
@@ -80,8 +80,17 @@ export class QuizViewComponent implements OnInit {
 
 }
   
+addSavedQuetionInput(indexNumbers){
+  this.queArr.push({
+    id : this.randomString(8),
+    indexNumber : indexNumbers,
+  })
 
-  
+
+}
+
+getValue(){}
+
     addQuetionInput(){
       this.queArr.push({
         id : this.randomString(8),
@@ -91,35 +100,7 @@ export class QuizViewComponent implements OnInit {
   
     }
   
-    getValue(){
-  
-      if((this.title.trim()) && (this.description.trim())){
-        this.buttonActive = false;
-      }else{
-        this.buttonActive = true;
-      }
-  
-      this.allData.title = this.title;
-      this.allData.description = this.description;
-      this.allData.content = this.content;
-      //console.log(this.allData);
-    
-  
-  
-    }
-  
-    countChangedHandler(data){
-  
-      this.allQueData[data.i] = data;
-      let content = []
-      this.allQueData.forEach(function (value) {
-        if (value.isShow == true) {
-          content.push({ question: value.question, type: value.type, options: value.options })
-        }
-      });
-      this.content = content;
-      this.getValue();
-    }
+   
   
     randomString(length) {
       var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ'.split('');

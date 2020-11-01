@@ -21,7 +21,7 @@ export class NewQuizComponent implements OnInit {
     id : this.randomString(8),
     indexNumber : 0
   }];
-
+  buttonHide :any = false;
   buttonActive :any = true;
   private PublishQuiz_URL;
   private UpdateQuiz_URL;
@@ -56,7 +56,7 @@ export class NewQuizComponent implements OnInit {
       indexNumber : this.queArr.length + 1,
     })
     
-
+this.buttonHide= true;
   }
 
   getValue(){
@@ -136,6 +136,7 @@ export class NewQuizComponent implements OnInit {
 
     }
     addQuiz(){
+      this.getValue();
       this.CreateQuiz(this.title,this.description);
     }
 
