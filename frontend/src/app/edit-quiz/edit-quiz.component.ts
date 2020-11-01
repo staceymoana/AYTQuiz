@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { Quiz } from '../quiz';
 import { QuizService } from '../quiz.service';
 import { AdminService } from '../admin.service';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-edit-quiz',
   templateUrl: './edit-quiz.component.html',
@@ -18,7 +19,7 @@ export class EditQuizComponent implements OnInit {
     private Adminservice:AdminService,
     private Apiservice:ApiService){ }
 
-
+ar=[];
 
     
 quizid; 
@@ -46,12 +47,17 @@ QuizDetails: Quiz[];
   getQuizDetails(): void {  	
 
     this.quizService.getQuizDetails(this.username, this.quizid)
-      .subscribe(quizzes => {this.allQueData = quizzes}
-        
-        
-        );
+    .subscribe(data => {
 
-  };
+      this.allQueData=data;
+  console.log(this.allQueData,'allw');
+
   
-  
+  console.log(data,'sss');
+
+  });
+
+ 
+  console.log(this.ar,'fixed');
+}
 }

@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:"login",component:LoginComponent},
   {path: "participant/:quizID", component:TakeQuizComponent},
  // {path:"dashboard",component:AdminDashboardComponent},
-  {path:"quiz-view",component:NewQuizComponent},
+  {path:"quiz-view",component:QuizViewComponent},
   {path:"NewQuiz",component:NewQuizComponent},
   {path:"CreateQuiz",component:NewQuizComponent},
   { path: 'dashboard', component: AdminDashboardComponent },
