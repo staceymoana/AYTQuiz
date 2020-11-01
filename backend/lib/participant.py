@@ -112,18 +112,28 @@ def submitQuizAttempt(event, context):
 	#validate
 	for counter, item in enumerate(attemptData):		
 		pxtAnswers = item[ATTRIBUTE_ANSWERS]
-		correctAnswers = content[counter][ATTRIBUTE_OPTIONS]
 
-		for pxtAnswer in pxtAnswers:
-			if any(correctAnswer[ATTRIBUTE_VALUE] == pxtAnswer[ATTRIBUTE_VALUE] for correctAnswer in correctAnswers):
-				pxtAnswer[ATTRIBUTE_ISCORRECT] = True
-			else:
-				pxtAnswer[ATTRIBUTE_ISCORRECT] = False
-
-		if any(pxtAnswer[ATTRIBUTE_ISCORRECT] == False for pxtAnswer in pxtAnswers):
+		# handles empty answers
+		if not pxtAnswers:
 			item[ATTRIBUTE_ISCORRECT] = False
+
 		else:
-			item[ATTRIBUTE_ISCORRECT] = True
+			correctAnswers = content[counter][ATTRIBUTE_OPTIONS]
+
+			for pxtAnswer in pxtAnswers:
+				if any(correctAnswer[ATTRIBUTE_VALUE] == pxtAnswer[ATTRIBUTE_VALUE] for correctAnswer in correctAnswers):
+					pxtAnswer[ATTRIBUTE_ISCORRECT] = True
+				else:
+					pxtAnswer[ATTRIBUTE_ISCORRECT] = False
+
+			pxtCorAnswerCount = sum([1 for item in pxtAnswers if item[ATTRIBUTE_ISCORRECT] == True])
+
+			if any(pxtAnswer[ATTRIBUTE_ISCORRECT] == False for pxtAnswer in pxtAnswers):
+				item[ATTRIBUTE_ISCORRECT] = False
+			elif len(correctAnswers) != pxtCorAnswerCount:
+				item[ATTRIBUTE_ISCORRECT] = False
+			else:
+				item[ATTRIBUTE_ISCORRECT] = True
 
 		item[ATTRIBUTE_QUESTIONID] = content[counter][ATTRIBUTE_QUESTIONID]
 
