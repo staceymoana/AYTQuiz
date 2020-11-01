@@ -134,7 +134,11 @@ export class TakeQuizComponent implements OnInit {
       quizID: this.newParticipant.quizID,
       attemptData: this.newParticipant.attemptData}).subscribe(
       data => {
-        this.pxtQuizResponse.push(data.json());
+        if (this.pxtQuizResponse.length == 1) {
+          this.pxtQuizResponse[0] = data.json();
+        } else {
+          this.pxtQuizResponse.push(data.json());
+        }
         console.log(this.newParticipant);
       },
       error => {
@@ -145,43 +149,56 @@ export class TakeQuizComponent implements OnInit {
 
   checkForAnswer() {
     this.createQuizJSON();
-    var isQuizSubmitted = false;
-
+    var valid = false;
     for (var i = 0; i < this.newParticipant.attemptData.length; i++) {
       console.log('in for loop');
-      if(this.newParticipant.attemptData[i].answers.length<1) {
-        Swal.fire({
-          title: 'Are you sure?',
-          text: 'Question ' + i + ' is missing an answer. Are you sure you want to commit?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, submit it!'
-        }).then((result) => {
-          console.log('in result');
-          if (result.isConfirmed) {
-            Swal.fire(              
-              'Submitted!',
-              'Your file has been submitted.',
-              'success'
-            );
-            console.log('in confirmed');
-            console.log('submitted');
-            this.submitQuiz();
-            isQuizSubmitted = true;
-          } 
-        })
-      }
-      else {
-        this.submitQuiz();
-      } 
+        if(this.newParticipant.attemptData[i].answers.length < 1) {
+          // Swal.fire({
+          //   title: 'Are you sure?',
+          //   text: 'Question ' + i + ' is missing an answer. Are you sure you want to commit?',
+          //   icon: 'warning',
+          //   showCancelButton: true,
+          //   confirmButtonColor: '#3085d6',
+          //   cancelButtonColor: '#d33',
+          //   confirmButtonText: 'Yes, submit it!'
+          // }).then((result) => {
+          //   console.log('in result');
+          //   if (result.isConfirmed) {
+          //     Swal.fire(              
+          //       'Submitted!',
+          //       'Your file has been submitted.',
+          //       'success'
+          //     );
+          //     console.log('in confirmed');
+          //     console.log('submitted');
+          //     this.submitQuiz();
+          //     isQuizSubmitted = true;
+          //   } 
+          // })
+          debugger;
+          if (!valid) {
+            var num = i += 1;
+            //alert('Question ' + num + ' is missing an answer.');
+            Swal.fire({
+              title: 'Sorry!',
+              text: 'Question ' + num + ' is missing an answer.',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'OK'
+            }).then((result) => {
+            })
+          } else {
+            valid = true;
+          }
+        }
+    }     
+    if (valid) {
+      //debugger;
+      console.log('in isQuizSubmitted if');
+      this.submitQuiz();
     }
-     
-    // if (isQuizSubmitted == false) {
-    //   consolelog('in isQuizSubmitted if');
-    //   this.submitQuiz();
-    // }
   }
 
   getSelectedValue(value: any) {
