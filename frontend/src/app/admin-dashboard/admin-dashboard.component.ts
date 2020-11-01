@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { Quiz } from '../quiz';
-import { QuizService } from '../quiz.service';import { AdminService } from '../admin.service';
+import { QuizService } from '../quiz.service';
+import { AdminService } from '../admin.service';
+import { ApiService } from '../api.service';import Swal from 'sweetalert2';
 interface Alert {
   type: string;
   message: string;
@@ -19,7 +21,7 @@ const ALERTS: Alert[] = [];
 })
 export class AdminDashboardComponent implements OnInit {
 SavedQuizesArray=[];
-
+qid;
 
 hi;
 close(alert: Alert) {
@@ -31,7 +33,12 @@ close(alert: Alert) {
 reset() {
   this.alerts = Array.from(ALERTS);
 }
-  constructor(private  http: Http,private route: ActivatedRoute,  private quizService: QuizService,private Adminservice:AdminService) { }
+  constructor(private  http: Http,private route: ActivatedRoute,
+    
+    private quizService: QuizService,
+    private Adminservice:AdminService,
+    private Apiservice:ApiService
+    ) { }
 
   username = this.Adminservice.getUsername();
 
@@ -60,83 +67,54 @@ reset() {
  this.getPublishedQuizzes();
  this.getunpublishedQuizzes();
   }
-/*
-//get all saved quizes
-  SavedQuizes(){
-    let headers = new Headers({'Content-Type' : 'application/json'});
-    let options = new RequestOptions({ headers: headers});
-    this.http.get(this.GetQuizes_URL,options).map((res: Response) => res.json())
 
- .subscribe(
-  data => {
-this.hi=data;
- this.SavedQuizesArray.push(data);
-  // console.log('success', data);
-//   console.log('success array', this.SavedQuizesArray);
-  // console.log('success hi', this.hi);
-    //console.log('success body', data.quizID)
-  },
-  error => {
-
-    console.log('oops', error)
-
- }
- );
-
-  }
   //Publish saved quizes
   PublishQuiz(QuizID){
     console.log(QuizID);
      this.qid=QuizID;
-     this.PublishQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/publishQuiz';
+   //  this.PublishQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/publishQuiz';
+
     let headers = new Headers({'Content-Type' : 'application/json'});
     let options = new RequestOptions({ headers: headers});
 
     //debugger;
-    this.http.post(this.PublishQuiz_URL,options)
+    this.http.post(this.Apiservice.getPublishQuizAPI(this.username,this.qid),options)
 
 .subscribe(
   data => {
     
-    const ALERTS: Alert[] = [{
-      type: 'success',
-      message: 'The Quiz Published Succesfuly',
-    }
-    ];
-    this.alerts = Array.from(ALERTS);
-    
+    Swal.fire(
+      'Good job!',
+      'Your quizzes successfully Published!',
+      'success'
+    ); 
+    this.getPublishedQuizzes();
+    this.getunpublishedQuizzes();
     error => {
       if (error.status==401) {
-      //  this.displayError=true;
-      const ALERTS: Alert[] = [{
-   
-        type: 'danger',
-        message: 'There is an error',
-      }
-      ];
-      this.alerts = Array.from(ALERTS);
-      
-      //console.log('success', error.status)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Please Update Quiz Details!',
+          footer: ''
+        });
       }
       else{}
-       console.log('oops', )
-       const ALERTS: Alert[] = [{
-   
-        type: 'danger',
-        message: 'There is an error',
-      }
-      ];
-      this.alerts = Array.from(ALERTS);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please Update Quiz Details!',
+        footer: ''
+      });
       
       }},
 error => {
-  const ALERTS: Alert[] = [{
-
-    type: 'danger',
-    message: 'Please update Quiz Details',
-  }
-  ];
-  this.alerts = Array.from(ALERTS);
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Please Update Quiz Details!',
+    footer: ''
+  });
 
 
 }
@@ -145,7 +123,7 @@ error => {
 );
   }
 
-*/
+
 
 
 }

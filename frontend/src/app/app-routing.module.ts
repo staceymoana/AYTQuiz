@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: ':quizID/leaderboard', component: QuizLeaderboardComponent },
   { path: ':quizID/report', component: QuizReportComponent },
   
-  { path: ':quizID/editQuiz', component: EditQuizComponent }
+  { path: 'editQuiz/:quizID', component: EditQuizComponent }
 ];
 
 @NgModule({
