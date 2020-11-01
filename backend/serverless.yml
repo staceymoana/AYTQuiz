@@ -1,4 +1,4 @@
-service: QuizApplication-dev
+service: QuizApplication
 
 provider:
   name: aws
@@ -16,10 +16,10 @@ provider:
         - dynamodb:GetRecords
         - dynamodb:GetShardIterator
         - dynamodb:ListStreams
-      Resource: 
+      Resource:
         - arn:aws:dynamodb:us-east-1:*:table/${self:custom.tblQuizApplication}-${self:provider.stage}
         - arn:aws:dynamodb:us-east-1:*:table/${self:custom.tblQuizApplication}-${self:provider.stage}/index/SortKey-index
-        - arn:aws:dynamodb:us-east-1:*:table/${self:custom.tblRespondents}-${self:provider.stage}        
+        - arn:aws:dynamodb:us-east-1:*:table/${self:custom.tblRespondents}-${self:provider.stage}
         - arn:aws:dynamodb:us-east-1:*:table/${self:custom.tblRespondents}-${self:provider.stage}/index/QuizAge-Score-index
         - arn:aws:dynamodb:us-east-1:*:table/${self:custom.tblRespondents}-${self:provider.stage}/index/QuizGender-Score-index
         - arn:aws:dynamodb:us-east-1:*:table/${self:custom.tblRespondents}-${self:provider.stage}/index/QuizFirstName-Score-index
@@ -59,22 +59,22 @@ custom:
   tblRespondents: Respondents
 
 functions:
-  handleRespondentStream:
-    handler: lib/aggregate.handleRespondentStream
-    events:
-      - stream: arn:aws:dynamodb:us-east-1:617721543543:table/Respondents-dev/stream/2020-10-27T01:57:19.266
-    environment:
-      ATTRIBUTE_RECORDS: Records
-      ATTRIBUTE_EVENTNAME: eventName
-      ATTRIBUTE_DYNAMODB: dynamodb
-      ATTRIBUTE_NEWIMAGE: NewImage
-      ATTRIBUTE_QUIZOWNER: QuizOwner
-      ATTRIBUTE_PARTITIONKEY: PartitionKey
-      ATTRIBUTE_SCORE: Score
-      ATTRIBUTE_AGE: Age
-      ATTRIBUTE_GENDER: Gender
-      EVENT_INSERT: INSERT
-      CONDITION_EXPRESSION: PartitionKey = :partitionKey AND SortKey = :sortKey
+  # handleRespondentStream:
+  #   handler: lib/aggregate.handleRespondentStream
+  #   events:
+  #     - stream: arn:aws:dynamodb:us-east-1:617721543543:table/Respondents-dev/stream/2020-10-27T01:57:19.266
+  #   environment:
+  #     ATTRIBUTE_RECORDS: Records
+  #     ATTRIBUTE_EVENTNAME: eventName
+  #     ATTRIBUTE_DYNAMODB: dynamodb
+  #     ATTRIBUTE_NEWIMAGE: NewImage
+  #     ATTRIBUTE_QUIZOWNER: QuizOwner
+  #     ATTRIBUTE_PARTITIONKEY: PartitionKey
+  #     ATTRIBUTE_SCORE: Score
+  #     ATTRIBUTE_AGE: Age
+  #     ATTRIBUTE_GENDER: Gender
+  #     EVENT_INSERT: INSERT
+  #     CONDITION_EXPRESSION: PartitionKey = :partitionKey AND SortKey = :sortKey
   getQuizDetailsPxt:
     handler: lib/participant.getQuizDetailsPxt
     events:
@@ -82,7 +82,7 @@ functions:
           path: participant/{quizID}/getQuizDetailsPxt
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 quizID: true
@@ -111,7 +111,7 @@ functions:
           path: admin/{username}/getQuizzes
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -121,7 +121,7 @@ functions:
       REQUEST_USERNAME: username
       REQUEST_ISPUBLISHED: isPublished
       PROJECTION_EXPRESSION: SortKey, Title
-      QUIZ_FILTER: QUIZ      
+      QUIZ_FILTER: QUIZ
   getQuizRespondents:
     handler: lib/leaderboard.getQuizRespondents
     events:
@@ -129,7 +129,7 @@ functions:
           path: admin/{username}/{quizID}/getQuizRespondents
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -148,7 +148,7 @@ functions:
           path: admin/{username}/createQuiz
           method: post
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -165,7 +165,7 @@ functions:
           path: admin/{username}/{quizID}/updateQuiz
           method: post
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -185,7 +185,7 @@ functions:
           path: admin/{username}/{quizID}/getQuizDetails
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -204,10 +204,10 @@ functions:
           path: adminQ/{quizID}/{questionID}/getQuestionDetails
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
-                quizID: true      
+                quizID: true
                 questionID: true
               querystrings:
                 reportFilter: true
@@ -218,7 +218,7 @@ functions:
           path: admin/{username}/{quizID}/getQuizQuestions
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -236,7 +236,7 @@ functions:
           path: admin/{username}/{quizID}/publishQuiz
           method: post
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -273,7 +273,7 @@ functions:
       ATTRIBUTE_ANSWERS: answers
       ATTRIBUTE_VALUE: value
       ATTRIBUTE_QUESTIONID: questionID
-      ATTRIBUTE_PARTITIONKEY: PartitionKey      
+      ATTRIBUTE_PARTITIONKEY: PartitionKey
       RESPONSE_SCORE: score
       RESPONDENT_FILTER: RESPONDENT
       STATUS_FILTER: Completed
@@ -284,7 +284,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByAge
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -304,7 +304,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByGender
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -324,7 +324,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByFirstName
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -344,7 +344,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByLastName
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -364,7 +364,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByAgeGender
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -386,7 +386,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByAgeFirstName
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -408,7 +408,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByAgeLastName
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -430,7 +430,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByGenderFirstName
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -452,7 +452,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByGenderLastName
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -474,7 +474,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByFirstNameLastName
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -496,7 +496,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByAgeGenderFirstName
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -520,7 +520,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByAgeGenderLastName
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -544,7 +544,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByAgeFirstNameLastName
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -568,7 +568,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByGenderFirstNameLastName
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -592,7 +592,7 @@ functions:
           path: admin/{username}/{quizID}/getLeaderboardByAgeGenderFirstNLastN
           method: get
           cors: true
-          request: 
+          request:
             parameters:
               paths:
                 username: true
@@ -617,12 +617,12 @@ resources:
     QuizApplicationTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        #table structure and architecture        
+        #table structure and architecture
         AttributeDefinitions:
           - AttributeName: PartitionKey
             AttributeType: S
           - AttributeName: SortKey
-            AttributeType: S          
+            AttributeType: S
         KeySchema:
           - AttributeName: PartitionKey
             KeyType: HASH
@@ -638,7 +638,7 @@ resources:
           - IndexName: SortKey-index
             KeySchema:
               - AttributeName: SortKey
-                KeyType: HASH              
+                KeyType: HASH
             Projection:
               NonKeyAttributes:
                 - Content
@@ -651,7 +651,7 @@ resources:
     RespondentsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        #table structure and architecture        
+        #table structure and architecture
         AttributeDefinitions:
           - AttributeName: PartitionKey
             AttributeType: S
@@ -925,4 +925,4 @@ resources:
               ProjectionType: INCLUDE
             ProvisionedThroughput:
               ReadCapacityUnits: 5
-              WriteCapacityUnits: 5          
+              WriteCapacityUnits: 5
