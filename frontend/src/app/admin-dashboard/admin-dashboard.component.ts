@@ -4,7 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Quiz } from '../quiz';
 import { QuizService } from '../quiz.service';
 import { AdminService } from '../admin.service';
-import { ApiService } from '../api.service';import Swal from 'sweetalert2';
+import { ApiService } from '../api.service';
+import Swal from 'sweetalert2';
 interface Alert {
   type: string;
   message: string;

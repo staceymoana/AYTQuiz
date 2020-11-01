@@ -25,7 +25,14 @@ export class QuizService {
     );
 
   }
+  getQuizDetails(username, QuizId): Observable<Quiz[]> {  	
 
+    return this.http.get<Quiz[]>(`${this.Apiservice.getQuizzesAPI()}/${username}/${QuizId}/getQuizDetails`).pipe(
+      tap(_ => this.log(`fetched quiz for ${QuizId}`)),
+      catchError(this.handleError<Quiz[]>('getQuiz', []))
+    );
+
+  }
   //private methods
   private log(message: string) {
     console.log(message);
