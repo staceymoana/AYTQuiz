@@ -44,6 +44,15 @@ export class QuizService {
 
   }
 
+  getQuizDetailsAdmin(username, quizId): Observable<Quiz> {    
+
+    return this.http.get<Quiz>(`${this.Apiservice.getQuizzesAPI()}/${username}/${quizId}/getQuizDetails?reportFilter=none`).pipe(
+      tap(_ => this.log(`fetched ${quizId} details for ${username}`)),
+      catchError(this.handleError<Quiz>('getQuizDetailsAdmin'))
+    );
+
+  }
+
   getQuizQuestions(quizID,username): Observable<Question[]> {    
 
     return this.http.get<Question[]>(`${this.Apiservice.getQuizQuestionPI()}/${username}/${quizID}/getQuizQuestions`).pipe(

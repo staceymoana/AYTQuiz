@@ -7,8 +7,11 @@
                 <img src="" alt="">
                 <div class="card-body">
                     <div class="">
-                        <h1 class="text-center mt-5">Quiz Title Here</h1>
+                        <h1 class="text-center mt-5">{{quizDetails.Title}}</h1>
+                        <h3 class="text-center mt-5">{{quizDetails.Description}}</h3>
                         <div>
+
+                          <div *ngIf="quizDetails.IsDemographicSelected == false">
 
                             <div *ngIf="drpValue == 'dashboard'">
                                 <select class="custom-select" (change)="loadQuizComponent($event.target.value)">
@@ -31,6 +34,24 @@
                               <option selected value="/{{quizID}}/report">Reports</option>
                             </select>
                             </div>
+
+                        </div>
+
+                        <div *ngIf="quizDetails.IsDemographicSelected == true">
+
+                            <div *ngIf="drpValue == 'dashboard'">
+                                <select class="custom-select" (change)="loadQuizComponent($event.target.value)">
+                              <option selected>--</option>
+                              <option value="/{{quizID}}/leaderboard">Leaderboard</option>
+                            </select>
+                            </div>
+
+                            <div *ngIf="drpValue == 'leaderboard'">
+                                <select class="custom-select" (change)="loadQuizComponent($event.target.value)">
+                              <option selected value="/{{quizID}}/leaderboard">Leaderboard</option>
+                            </select>
+                            </div>
+
                         </div>
 
                     </div>

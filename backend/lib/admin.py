@@ -185,7 +185,8 @@ def updateQuiz(event, context):
 	quizID = event[EVENT_PATHPARAMETERS][REQUEST_QUIZID]
 	title = requestBody[REQUEST_TITLE]
 	description = requestBody[REQUEST_DESCRIPTION]
-	content = requestBody[REQUEST_CONTENT]	
+	content = requestBody[REQUEST_CONTENT]
+	isDemographicSelected = requestBody['isDemographicSelected']	
 	
 	try:        
 		tbl.update_item(
@@ -196,6 +197,7 @@ def updateQuiz(event, context):
 					':title': title,
 					':description': description,
 					':content': content,
+					':isDemographicSelected': isDemographicSelected,
 					':partitionKey': username,
 					':sortKey': quizID
 				}        
