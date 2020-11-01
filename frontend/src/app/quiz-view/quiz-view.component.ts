@@ -60,7 +60,7 @@ export class QuizViewComponent implements OnInit {
     ngOnInit(): void {
   
        
-        this.quizService.getQuizDetails(this.username, this.quizid)
+        this.quizService.getQuizDetails(this.username, this.quizid, "none")
         .subscribe(data => {
     
           this.allData=data;
@@ -71,8 +71,8 @@ export class QuizViewComponent implements OnInit {
       this.title=this.allData.Title;
       this.description=this.allData.Description;
     for (let index = 0; index < this.allData.Content.length; index++) {
-        const element = this.allData.Content[index];
-        console.log(element,'ssssssssssssss')
+        this.addQuetionInput();
+     //   this.quetion
     }
     })
   

@@ -5,11 +5,25 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiService {
-  private API_login = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/validateLogin';
-  private API_getQuizzes = "https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin";
-  private API_PublishQuiz = "https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin";
+  private API_login = 'https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/admin/validateLogin';
+  private API_getQuizzes = "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/admin";
+  private API_PublishQuiz = "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/admin";
+  private getQuizQuestionsURL = "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/admin"
+  private getQuizDetailsURL = "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/admin"
+  private getQuestionDetailsURL = "https://3tkxmc5luk.execute-api.us-east-1.amazonaws.com/dev/adminQ"
+
+
+
   constructor() { }
- 
+  getQuizQuestionPI() {
+    return this.getQuizQuestionsURL;
+  }
+  getQuizDetailsAPI() {
+    return this.getQuizDetailsURL;
+  }
+  getQuestionDetailsAPI() {
+    return this.getQuestionDetailsURL;
+  }
   getLoginAPI() {
     return this.API_login;
   }

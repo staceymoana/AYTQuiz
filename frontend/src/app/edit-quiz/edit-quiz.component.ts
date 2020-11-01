@@ -46,7 +46,7 @@ QuizDetails: Quiz[];
   addQuiz(){};
   getQuizDetails(): void {  	
 
-    this.quizService.getQuizDetails(this.username, this.quizid)
+    this.quizService.getQuizDetails(this.username, this.quizid,"none")
     .subscribe(data => {
 
       this.allQueData=data;

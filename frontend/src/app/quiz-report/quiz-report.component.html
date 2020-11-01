@@ -9,32 +9,39 @@
 
 
         <div class="col-lg-8 mx-auto">
-            <select (change)="loadReport($event.target.value)">
-				<option>Age</option> 
-				<option>Gender</option>
-			  </select>
+            <select (change)="changeDemographic($event.target.value)">
+                <option [value]="'age'">Age</option> 
+                <option [value]="'gender'">Gender</option>
+              </select>
 
-            <select (change)="loadReport($event.target.value)">
-				<option>Overall</option>
-				<option>Overall2</option>  
-			  </select>
+            <select (change)="changeQuestion($event.target.value)">
+                <option value="overall">Overall</option>
+                <option *ngFor="let question of questions; let i = index" [value]="question.questionID">Question {{i + 1}}</option>
+              </select>
 
             <div>
-                <!--
-			  
-				  <canvas baseChart 
-					  [datasets]="barChartData"
-					  [labels]="barChartLabels"
-					  [options]="barChartOptions"
-					  [legend]="barChartLegend"
-					  [chartType]="barChartType"></canvas>
-			  
-			  -->
+
+                <ul *ngIf="reports">
+                    <!-- <li *ngIf="reports.PercentTotal != 'none'">Total {{reports.PercentTotal}}</li> -->
+                    <li *ngIf="reports.PercentMale != 'none'">Male {{reports.PercentMale}}</li>
+                    <li *ngIf="reports.PercentFemale != 'none'">Female {{reports.PercentFemale}}</li>
+                    <li *ngIf="reports.PercentOther != 'none'">Other {{reports.PercentOther}}</li>
+                    <li *ngIf="reports.Percent10Under != 'none'">10 and under {{reports.Percent10Under}}</li>
+                    <li *ngIf="reports.Percent1120 != 'none'">11-20 {{reports.Percent1120}}</li>
+                    <li *ngIf="reports.Percent2130 != 'none'">21-30 {{reports.Percent2130}}</li>
+                    <li *ngIf="reports.Percent3140 != 'none'">31-40 {{reports.Percent3140}}</li>
+                    <li *ngIf="reports.Percent4150 != 'none'">41-50 {{reports.Percent4150}}</li>
+                    <li *ngIf="reports.Percent5160 != 'none'">51-60 {{reports.Percent5160}}</li>
+                    <li *ngIf="reports.Percent61Over != 'none'">61 and above {{reports.Percent61Over}}</li>
+                </ul>
+
+
             </div>
         </div>
         <div class="col-lg-8 mx-auto">
             <div class="chart-container">
-                <canvas id="myChart"></canvas>
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
+
             </div>
         </div>
         <hr>
