@@ -78,9 +78,6 @@ export class TakeQuizComponent implements OnInit {
     for (let i in this.detailsResponse[0].Content) {
       this.contentData.push(this.detailsResponse[0].Content[i])
     }
-    //testing
-    //console.log(this.detailsResponse[0])
-    //console.log(this.data)
     })
   }
 
@@ -150,7 +147,6 @@ export class TakeQuizComponent implements OnInit {
     this.createQuizJSON();
     for (var i = 0; i < this.newParticipant.attemptData.length; i++) {
       var valid = false;
-      console.log('in for loop');
       if(this.newParticipant.attemptData[i].answers.length == 0) {
         if (!valid) {
           var num = i += 1;
@@ -165,17 +161,12 @@ export class TakeQuizComponent implements OnInit {
             confirmButtonText: 'OK'
           }).then((result) => {
           })
-        } else {
-          console.log('first if');
-          valid = true;
         }
       } else {
-        console.log('second if');
         valid = true;
       }
     }
     if (valid) {
-      console.log('in isQuizSubmitted if');
       this.submitQuiz();
     }
   }
