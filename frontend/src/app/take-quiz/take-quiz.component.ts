@@ -148,35 +148,36 @@ export class TakeQuizComponent implements OnInit {
 
   checkForAnswer() {
     this.createQuizJSON();
-    var valid = false;
     for (var i = 0; i < this.newParticipant.attemptData.length; i++) {
+      var valid = false;
       console.log('in for loop');
-        if(this.newParticipant.attemptData[i].answers.length < 1) {
-          if (!valid) {
-            var num = i += 1;
-            //alert('Question ' + num + ' is missing an answer.');
-            Swal.fire({
-              title: 'Sorry!',
-              text: 'Question ' + num + ' is missing an answer.',
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#EC580E',
-              cancelButtonColor: '#EC580E',
-              confirmButtonText: 'OK'
-            }).then((result) => {
-            })
-          } else {
-            valid = true;
-          }
+      if(this.newParticipant.attemptData[i].answers.length == 0) {
+        if (!valid) {
+          var num = i += 1;
+          //alert('Question ' + num + ' is missing an answer.');
+          Swal.fire({
+            title: 'Sorry!',
+            text: 'Question ' + num + ' is missing an answer.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#EC580E',
+            cancelButtonColor: '#EC580E',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+          })
         } else {
-          this.submitQuiz();
+          console.log('first if');
+          valid = true;
         }
-    }     
+      } else {
+        console.log('second if');
+        valid = true;
+      }
+    }
     if (valid) {
       console.log('in isQuizSubmitted if');
       this.submitQuiz();
     }
-
   }
 
   getSelectedValue(value: any) {
