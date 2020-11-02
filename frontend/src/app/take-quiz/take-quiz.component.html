@@ -24,25 +24,24 @@
                                 <p *ngIf="lastName.errors.required">Last name is required</p>
                             </div>
                         </div>
+                        <!-- <div class="demographics" *ngIf(checkForDemographics(getURLQuizID())> -->
+                        <div class="demographics"> 
+                            <div class="form-group">
+                                <input type="number" name="age" placeholder="Age" min="10" class="form-control" [(ngModel)]="newParticipant.age" #age="ngModel" [ngClass]="{ 'is-invalid': age.touched && age.invalid }" required />
 
-                        <div class="form-group">
-                            <input type="number" name="age" placeholder="Age" min="10" class="form-control" [(ngModel)]="newParticipant.age" #age="ngModel" [ngClass]="{ 'is-invalid': age.touched && age.invalid }" required />
+                                <div class="invalid-feedback" *ngIf="age.touched && age.invalid">
+                                    <p *ngIf="age.errors.required">Age is required</p>
+                                </div>
+                            </div>
 
-                            <div class="invalid-feedback" *ngIf="age.touched && age.invalid">
-                                <p *ngIf="age.errors.required">Age is required</p>
+                            <div class="form-group">
+                                <select class="form-control" id="power" (ngModelChange)="getSelectedValue($event)" #gender="ngModel" [ngModel]="selectedValue" [ngModelOptions]="{ standalone: true }" [ngClass]="{ 'is-invalid': gender.touched && gender.value == '1'}" required>
+                                    <option *ngFor="let option of options" [value]="option.value">
+                                    {{ option.label }}
+                                    </option>
+                                </select>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <select class="form-control" id="power" required (ngModelChange)="getSelectedValue($event)" #gender="ngModel" [ngModel]="selectedValue" [ngClass]="{
-                  'is-invalid': gender.touched && gender.value == '1'
-                }" [ngModelOptions]="{ standalone: true }">
-                <option *ngFor="let option of options" [value]="option.value">
-                  {{ option.label }}
-                </option>
-              </select>
-                        </div>
-
                         <button (click)="getQuizDetails(getURLQuizID())" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!detailsForm.form.valid">
               Continue
             </button>
@@ -55,25 +54,21 @@
     <div class="quiz" id="quiz">
         <img class="img-fluid mx-auto d-block m-5" src="../assets/logo.svg" />
 
-        <div class="" id="quizDetails" *ngFor="let item of detailsResponse">
-            <h1 class="text-center mt-3 font-weight-bold">{{ item.Title }}</h1>
-            <p class="text-center">{{ item.Description }}</p>
-        </div>
-
-        <form [formGroup]="quizForm" (ngSubmit)="submitQuiz()" id="formQA">
-            <div class="form-check text-center question_{{ i }}" id="question" *ngFor="let item of contentData; let i = index" [attr.data-index]="i">
-                <h4>{{ item.question }}</h4>
-                <div class="answerDiv" *ngFor="let obj of item.options; let j = index" [attr.data-index]="j">
-                    <input class="form-check-input option_{{ j }}" type="checkbox" id="option" value="{{ obj.value }}" />
-                    <label class="form-check-label text-dark" id="value{{ j }}">{{
-            obj.value
-          }}</label>
+        <div class="" id="quizDetails" *ngFor="let quiz of detailsResponse">
+            <h1 class="text-center mt-3 font-weight-bold">{{ quiz.Title }}</h1>
+            <p class="text-center">{{ quiz.Description }}</p>
+            
+            <form [formGroup]="quizForm" (ngSubmit)="checkForAnswer();" id="formQA">
+                <div class="form-check text-center question_{{ i }}" id="question" *ngFor="let item of detailsResponse[0].Content; let i = index" [attr.data-index]="i">
+                    <h4>{{ item.question }}</h4>
+                    <div class="singleAnswerDiv" *ngFor="let option of item.options; let j = index" [attr.data-index]="j"> 
+                        <input *ngIf="item.type == 'Multi-choice'" class="form-check-input option_{{ j }} mr-1" type="checkbox" id="option" value="{{ option.value }}"/> 
+                        <input *ngIf="item.type == 'Single-choice'" name="radio_{{ i }} " class="form-check-input option_{{ j }} " type="radio" id="option" value="{{ option.value }}"/> {{ option.value }}
+                    </div>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-lg btn-primary btn-block">
-        Submit
-      </button>
-        </form>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+            </form>
+        </div>
     </div>
 
     <div class="" id="report">
