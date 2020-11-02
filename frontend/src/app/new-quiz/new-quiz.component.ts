@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import Swal from 'sweetalert2';
-
+import { ApiService } from '../api.service';import { AdminService } from '../admin.service';
 interface Alert {
   type: string;
   message: string;
@@ -15,9 +15,13 @@ const ALERTS: Alert[] = [];
 })
 export class NewQuizComponent implements OnInit {
   isDemographic=true;
+  displayAlert=false;
+  dontpublish=false;
+  doesQuestionHaveAnswer=false;
   isDemographicSelected;
   alerts: Alert[];
-  constructor(private  http: Http) { }
+  constructor(private  http: Http,private Apiservice:ApiService,private Adminservice:AdminService) { }
+  username = this.Adminservice.getUsername();
   qid;
   queArr : any = [{
     id : this.randomString(8),
@@ -75,6 +79,7 @@ export class NewQuizComponent implements OnInit {
     this.allData.content = this.content;
     this.allData.isDemographicSelected=this.isDemographic;
     console.log(this.allData);
+    
     this.buttonHide= true;
 
 
@@ -145,61 +150,64 @@ export class NewQuizComponent implements OnInit {
     }
 
     PublishQuiz(){
-      //console.log(QuizID);
+  this.UpdateQuiz();
+      if (!this.dontpublish) {
       
-       this.PublishQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/publishQuiz';
-      let headers = new Headers({'Content-Type' : 'application/json'});
-      let options = new RequestOptions({ headers: headers});
-  
-      //debugger;
-      this.http.post(this.PublishQuiz_URL,options)
-  
-  .subscribe(
-    data => {
-      
-      Swal.fire(
-        'Good job!',
-        'Your quizzes successfully published!',
-        'success'
-      ); 
-      
-      error => {
-        if (error.status==401) {
-        //  this.displayError=true;
-        const ALERTS: Alert[] = [{
-     
-          type: 'danger',
-          message: 'There is an error',
-        }
-        ];
-        this.alerts = Array.from(ALERTS);
+   
+        let headers = new Headers({'Content-Type' : 'application/json'});
+        let options = new RequestOptions({ headers: headers});
+    
+        //debugger;
+        this.http.post(this.Apiservice.getPublishQuizAPI(this.username,this.qid),options)
+    
+    .subscribe(
+      data => {
         
-        //console.log('success', error.status)
-        }
-        else{}
-         console.log('oops', )
-         const ALERTS: Alert[] = [{
-     
-          type: 'danger',
-          message: 'There is an error',
-        }
-        ];
-        this.alerts = Array.from(ALERTS);
+        Swal.fire(
+          'Good job!',
+          'Your quizzes successfully published!',
+          'success'
+        ); 
         
-        }},
-  error => {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Please Add more Questions!',
-      footer: ''
-    });
-  
-  
-  }
-  
-  
-  );}
+        error => {
+          if (error.status==401) {
+          //  this.displayError=true;
+          const ALERTS: Alert[] = [{
+       
+            type: 'danger',
+            message: 'There is an error',
+          }
+          ];
+          this.alerts = Array.from(ALERTS);
+          
+          //console.log('success', error.status)
+          }
+          else{}
+           console.log('oops', )
+           const ALERTS: Alert[] = [{
+       
+            type: 'danger',
+            message: 'There is an error',
+          }
+          ];
+          this.alerts = Array.from(ALERTS);
+          
+          }},
+    error => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please Add more Questions!',
+        footer: ''
+      });
+    
+    
+    }
+    
+    
+    ); 
+      } 
+    }
 
   onisDemographicSelectedChanged(isDemographicSelected:boolean){
     this.allData.isDemographicSelected=isDemographicSelected;
@@ -225,31 +233,105 @@ export class NewQuizComponent implements OnInit {
   }
 
     UpdateQuiz(){
-      console.log('updated data',this.allData);
-      this.UpdateQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/updateQuiz';
-      let headers = new Headers({'Content-Type' : 'application/json'});
-      const body = this.allData;
 
-     // const body = ;
+      this.displayAlert = false
+      for (let index = 0; index < this.allData.content.length; index++) {
+        this.doesQuestionHaveAnswer = false
+        for (let answersloop = 0; answersloop < this.allData.content[index].options.length; answersloop++) {
+          if (this.allData.content[index].options[answersloop].isCorrect==true) {
+            this.doesQuestionHaveAnswer = true
+            break;
+          }
+        }
 
+        if(!this.doesQuestionHaveAnswer){
+          this.displayAlert = true
+          break;
+        }
+      }
 
-      let options = new RequestOptions({ headers: headers});
-         
-        this.http.post(this.UpdateQuiz_URL, body, { headers }).subscribe(data => {
+      if(this.displayAlert){
+        Swal.fire(
+          'Error',
+          'Please ensure that all questions have at least one answer',
+          'question'
+        )
+        this.dontpublish=true;
+      }
+      else{
+
+        console.log('updated data',this.allData);
+        this.UpdateQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/updateQuiz';
+        let headers = new Headers({'Content-Type' : 'application/json'});
+        const body = this.allData;
+  
+       // const body = ;
+  
+  
+        let options = new RequestOptions({ headers: headers});
            
-          Swal.fire(
-            'Good job!',
-            'Your quizzes successfully saved!',
-            'success'
-          ); 
-        });}
+          this.http.post(this.UpdateQuiz_URL, body, { headers }).subscribe(data => {
+             
+            Swal.fire(
+              'Good job!',
+              'Your quizzes successfully saved!',
+              'success'
+            ); 
+          });
+      }
+
+
+}
 
 
 
 
         test(){
-      
-          console.log(this.isDemographic)
+          console.log('optionsssss',this.allData.content.options);
+
+          // for(){
+          //   for(){
+          //     if(ans is correct){                
+          //       break;
+          //     }
+          //   }
+
+
+          // }
+
+          this.displayAlert = false
+          for (let index = 0; index < this.allData.content.length; index++) {
+            this.doesQuestionHaveAnswer = false
+            for (let answersloop = 0; answersloop < this.allData.content[index].options.length; answersloop++) {
+              if (this.allData.content[index].options[answersloop].isCorrect==true) {
+                this.doesQuestionHaveAnswer = true
+                break;
+              }
+            }
+
+            if(!this.doesQuestionHaveAnswer){
+              this.displayAlert = true
+              break;
+            }
+          }
+
+          if(this.displayAlert){
+            Swal.fire(
+              'Error',
+              'That thing is still around?',
+              'question'
+            )
+          }
+          else{
+            Swal.fire(
+              'Save',
+              'That thing is still around?',
+              'question'
+            )
+          }
+
+          // console.log('options',this.allData.content[0].options[0].isCorrect);
+          // console.log(this.isDemographic)
           // if (!this.allData.content.length) {
           //   console.log('empty',this.allData.content)    
           //   Swal.fire({
