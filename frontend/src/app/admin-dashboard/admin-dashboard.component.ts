@@ -81,7 +81,7 @@ reset() {
 
     let headers = new Headers({'Content-Type' : 'application/json'});
     let options = new RequestOptions({ headers: headers});
-
+console.log(this.Apiservice.getPublishQuizAPI(this.username,this.qid));
     //debugger;
     this.http.post(this.Apiservice.getPublishQuizAPI(this.username,this.qid),options)
 
@@ -127,7 +127,18 @@ error => {
 
 );
   }
-
+  accesslinkbtn(link){
+    Swal.fire({
+      title: '<strong>Generic Link</strong>',
+     
+      html:
+      '<a href='+link+'>'+link+'</a> ' ,
+       
+      
+      
+  
+    })
+  }
 
 
 

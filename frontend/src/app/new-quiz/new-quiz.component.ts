@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import Swal from 'sweetalert2';
-import { ApiService } from '../api.service';import { AdminService } from '../admin.service';
+import { ApiService } from '../api.service';import { AdminService } from '../admin.service';import { Router } from '@angular/router';
 interface Alert {
   type: string;
   message: string;
@@ -20,7 +20,7 @@ export class NewQuizComponent implements OnInit {
   doesQuestionHaveAnswer=false;
   isDemographicSelected;
   alerts: Alert[];
-  constructor(private  http: Http,private Apiservice:ApiService,private Adminservice:AdminService) { }
+  constructor(private  http: Http,private Apiservice:ApiService,private Adminservice:AdminService, private routers:Router) { }
   username = this.Adminservice.getUsername();
   qid;
   queArr : any = [{
@@ -29,6 +29,7 @@ export class NewQuizComponent implements OnInit {
   }];
   buttonHide :any = false;
   buttonActive :any = true;
+  publishActive:any=true;
   private PublishQuiz_URL;
   private UpdateQuiz_URL;
   title : any = '';
@@ -148,62 +149,69 @@ export class NewQuizComponent implements OnInit {
     }
 
     PublishQuiz(){
-  this.UpdateQuiz();
+  //this.UpdateQuiz();
+
+  let headers = new Headers({'Content-Type' : 'application/json'});
+  let options = new RequestOptions({ headers: headers});
+  console.log(this.Apiservice.getPublishQuizAPI(this.username,this.qid));
+
+  //debugger;
+  this.http.post(this.Apiservice.getPublishQuizAPI(this.username,this.qid),options)
+
+.subscribe(
+data => {
+  
+  Swal.fire(
+    'Good job!',
+    'Your quizzes successfully published!',
+    'success'
+  ); 
+  this.routers.navigate(['/dashboard']),
+  
+  error => {
+    if (error.status==401) {
+    //  this.displayError=true;
+    const ALERTS: Alert[] = [{
+ 
+      type: 'danger',
+      message: 'There is an error',
+    }
+    ];
+    this.alerts = Array.from(ALERTS);
+    
+    //console.log('success', error.status)
+    }
+    else{}
+     console.log('oops', )
+     const ALERTS: Alert[] = [{
+ 
+      type: 'danger',
+      message: 'There is an error',
+    }
+    ];
+    this.alerts = Array.from(ALERTS);
+    
+    }},
+error => {
+Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Please Add more Questions!',
+  footer: ''
+});
+
+
+}
+
+
+); 
+
+
+
+
       if (!this.dontpublish) {
       
    
-        let headers = new Headers({'Content-Type' : 'application/json'});
-        let options = new RequestOptions({ headers: headers});
-    
-        //debugger;
-        this.http.post(this.Apiservice.getPublishQuizAPI(this.username,this.qid),options)
-    
-    .subscribe(
-      data => {
-        
-        Swal.fire(
-          'Good job!',
-          'Your quizzes successfully published!',
-          'success'
-        ); 
-        
-        error => {
-          if (error.status==401) {
-          //  this.displayError=true;
-          const ALERTS: Alert[] = [{
-       
-            type: 'danger',
-            message: 'There is an error',
-          }
-          ];
-          this.alerts = Array.from(ALERTS);
-          
-          //console.log('success', error.status)
-          }
-          else{}
-           console.log('oops', )
-           const ALERTS: Alert[] = [{
-       
-            type: 'danger',
-            message: 'There is an error',
-          }
-          ];
-          this.alerts = Array.from(ALERTS);
-          
-          }},
-    error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please Add more Questions!',
-        footer: ''
-      });
-    
-    
-    }
-    
-    
-    ); 
       } 
     }
 
@@ -255,6 +263,7 @@ export class NewQuizComponent implements OnInit {
           'question'
         )
         this.dontpublish=true;
+        
       }
       else{
 
@@ -274,7 +283,7 @@ export class NewQuizComponent implements OnInit {
               'Good job!',
               'Your quizzes successfully saved!',
               'success'
-            ); 
+            ); this.publishActive = false;
           });
       }
 

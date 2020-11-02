@@ -90,7 +90,7 @@
             <div class="col-sm-6 col-md-6 col-lg-6">
 
 
-                <button class="btn btn-block btn-primary" (click)="PublishQuiz()">Publish </button>
+                <button [disabled]="publishActive" class="btn btn-block btn-primary" (click)="PublishQuiz()">Publish </button>
             </div>
 
         </div>

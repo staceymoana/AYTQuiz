@@ -63,7 +63,7 @@
                     <h4>{{ item.question }}</h4>
                     <div class="singleAnswerDiv" *ngFor="let option of item.options; let j = index" [attr.data-index]="j">
                         <input *ngIf="item.type == 'Multi-choice'" class="form-check-input option_{{ j }} mr-1" type="checkbox" id="option" value="{{ option.value }}" />
-                        <input *ngIf="item.type == 'Single-choice'" name="radio_{{ i }} " class="form-check-input option_{{ j }} " type="radio" id="option" value="{{ option.value }}" /> {{ option.value }}
+                        <input *ngIf="item.type == 'Single'" name="radio_{{ i }} " class="form-check-input option_{{ j }} " type="radio" id="option" value="{{ option.value }}" /> {{ option.value }}
                     </div>
                 </div>
                 <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>

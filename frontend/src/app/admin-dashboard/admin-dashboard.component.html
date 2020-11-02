@@ -35,6 +35,7 @@
 
 
                                     <a class="btn btn-primary btn-block" routerLink="/{{quiz.SortKey}}/dashboard">View Report</a>
+                                    <a class="btn btn-primary btn-block" (click)="accesslinkbtn(quiz.AccessLink)">Get Access Link</a>
 
 
                                 </div>
@@ -74,8 +75,9 @@
 
                                 <div class="col-4 ">
 
-
-                                    <button class="btn btn-primary btn-block " routerLink="/editQuiz/{{quiz.SortKey}}"><span class="text ">Continue</span></button>
+                                    <!-- <button class="btn btn-primary btn-block " routerLink="/editQuiz/{{quiz.SortKey}}"><span class="text ">Continue</span></button>
+                                -->
+                                    <button class="btn btn-primary btn-block"><span class="text ">Continue</span></button>
                                     <button class="btn btn-primary btn-block " (click)="PublishQuiz(variable.QuizKey) "> <span class="text ">Publish</span></button>
 
 

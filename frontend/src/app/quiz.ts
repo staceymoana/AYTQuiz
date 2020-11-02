@@ -3,5 +3,6 @@ export interface Quiz {
   SortKey: string,
   Title: string,
   Description: string,
-  IsDemographicSelected: boolean
+  IsDemographicSelected: boolean,
+  AccessLink: string
 }
