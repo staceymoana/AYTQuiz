@@ -143,7 +143,7 @@ export class QuizReportComponent implements OnInit {
     if (this.reports.Percent61Over != "none")
       this.chartData.push(this.reports.Percent61Over)
 
-    this.barChartData = [{data: this.chartData, backgroundColor: ["orange", "gray", "orange", "gray", "orange", "gray", "orange", "gray", "orange", "gray"], hoverBackgroundColor: ["orange", "gray", "orange", "gray", "orange", "gray", "orange", "gray", "orange", "gray"]}]
+    this.barChartData = [{data: this.chartData, backgroundColor: ["#f36f2d", "#adb5bd", "#f36f2d", "#adb5bd", "#f36f2d", "#adb5bd", "#f36f2d", "#adb5bd", "#f36f2d", "#adb5bd"], hoverBackgroundColor: ["#f36f2d", "#adb5bd", "#f36f2d", "#adb5bd", "#f36f2d", "#adb5bd", "#f36f2d", "#adb5bd", "#f36f2d", "#adb5bd"]}]
   }
 
 }

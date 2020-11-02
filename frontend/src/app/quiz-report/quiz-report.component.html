@@ -10,15 +10,19 @@
         <!-- filter dropdown -->
         <div class="col mx-auto">
             <div class="card-header mx-auto my-auto">
-                <div class="form-inline">
-                    <select (change)="changeDemographic($event.target.value)">
+
+
+                <div class="col-lg-8 mx-auto">
+                    <div class="input-group mb-2">
+                        <select class="form-control" (change)="changeDemographic($event.target.value)">
                         <option [value]="'age'">Age</option> 
                         <option [value]="'gender'">Gender</option>
                     </select>
-                    <select (change)="changeQuestion($event.target.value)">
+                        <select class="form-control" (change)="changeQuestion($event.target.value)">
                         <option value="overall">Overall</option>
                         <option *ngFor="let question of questions; let i = index" [value]="question.questionID">Question {{i + 1}}</option>
                     </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,7 +80,7 @@
                     <tr *ngIf="reports.Percent61Over != 'none'">
                         <th scope="row">61 and above</th>
                         <td>{{reports.Percent61Over}} %</td>
-                    </tr>                    
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -109,7 +113,8 @@
 
 
             </div>
-        </div> --><!-- <li *ngIf="reports.PercentTotal != 'none'">Total {{reports.PercentTotal}}</li> -->
+        </div> -->
+        <!-- <li *ngIf="reports.PercentTotal != 'none'">Total {{reports.PercentTotal}}</li> -->
         <div class="col-lg-8 mx-auto">
             <div class="chart-container">
                 <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType"></canvas>

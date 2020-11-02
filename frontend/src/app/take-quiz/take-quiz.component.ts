@@ -33,10 +33,11 @@ export class TakeQuizComponent implements OnInit {
   public detailsResponse = [];
   public pxtQuizResponse = [];
   private URLQuizID;
- 
+  // private detailsAPI = 'https://pw3y4jh5q1.execute-api.us-east-1.amazonaws.com/dev/participant/'
   public contentData = [];
   public detailsForm: FormGroup;
   public quizForm: FormGroup;
+  public demoNeeded: boolean = false;
   totalRecords:string
   page:Number=1
   results:string
@@ -64,20 +65,19 @@ export class TakeQuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkForDemographics();
   }
   
-
-  checkForDemographics(quizID) {
-    
+  
+  checkForDemographics() {
+    var quizID = this.getURLQuizID();
     var quizJSON = [];
-    var isNeeded = false;
     this.http.get(this.Apiservice.getTakeQuizAPI(quizID)).subscribe(data => {
       quizJSON.push(data.json())
-      if(quizJSON[0].isDemographicsRequired) {
-        isNeeded = true;
+      if(quizJSON[0].IsDemographicSelected) {
+        this.demoNeeded = true;
       }
     })
-    return isNeeded;
   }
 
   getQuizDetails(quizID) {
@@ -195,7 +195,6 @@ export class TakeQuizComponent implements OnInit {
     var pageURL = window.location.href;
     this.URLQuizID = pageURL.split('participant/')[1];
 
-    console.log(this.URLQuizID)
     return this.URLQuizID;
   }​
 }
