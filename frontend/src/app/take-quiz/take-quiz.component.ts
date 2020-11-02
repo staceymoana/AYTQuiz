@@ -37,6 +37,7 @@ export class TakeQuizComponent implements OnInit {
   public contentData = [];
   public detailsForm: FormGroup;
   public quizForm: FormGroup;
+  public demoNeeded: boolean = false;
   totalRecords:string
   page:Number=1
   results:string
@@ -63,19 +64,19 @@ export class TakeQuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkForDemographics();
   }
   
 
-  checkForDemographics(quizID) {
+  checkForDemographics() {
+    var quizID = this.getURLQuizID();
     var quizJSON = [];
-    var isNeeded = false;
     this.http.get(this.detailsAPI + quizID + "/getQuizDetailsPxt").subscribe(data => {
       quizJSON.push(data.json())
-      if(quizJSON[0].isDemographicsRequired) {
-        isNeeded = true;
+      if(quizJSON[0].IsDemographicSelected) {
+        this.demoNeeded = true;
       }
     })
-    return isNeeded;
   }
 
   getQuizDetails(quizID) {

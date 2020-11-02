@@ -24,8 +24,8 @@
                                 <p *ngIf="lastName.errors.required">Last name is required</p>
                             </div>
                         </div>
-                        <!-- <div class="demographics" *ngIf(checkForDemographics(getURLQuizID())> -->
-                        <div class="demographics"> 
+                        <div class="demographics" *ngIf="demoNeeded">
+                        <!-- <div class="demographics">  -->
                             <div class="form-group">
                                 <input type="number" name="age" placeholder="Age" min="10" class="form-control" [(ngModel)]="newParticipant.age" #age="ngModel" [ngClass]="{ 'is-invalid': age.touched && age.invalid }" required />
 
