@@ -1,34 +1,34 @@
 #quiz,
 #report {
-  display: none;
-  margin: 5vh 5vw;
+    display: none;
+    margin: 5vh 5vw;
 }
 
 #quizDetails {
-  margin: 5vh 5vw;
+    margin: 5vh 5vw;
 }
 
 #question {
-  margin: 5vh 5vw;
+    margin: 5vh 5vw;
 }
 
 .table {
-  margin: auto;
-  width: 80% !important;
+    margin: auto;
+    width: 80% !important;
 }
 
 input[type="radio"],
 input[type="checkbox"] {
-  box-sizing: border-box;
-  appearance: none;
-  background: white;
-  outline: 2px solid #333;
-  border: 3px solid white;
-  width: 16px;
-  height: 16px;
+    box-sizing: border-box;
+    appearance: none;
+    background: white;
+    outline: 2px solid #333;
+    border: 3px solid white;
+    width: 16px;
+    height: 16px;
 }
 
 input[type="radio"]:checked,
 input[type="checkbox"]:checked {
-  background: #ec580e;
+    background: #ec580e;
 }

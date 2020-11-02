@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 import { BrowserModule } from '@angular/platform-browser';
 import { forEach } from 'ngx-json-schema';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import { ApiService } from '../api.service';
 export class Participant {
   public firstName: string;
   public lastName: string;
@@ -33,7 +33,7 @@ export class TakeQuizComponent implements OnInit {
   public detailsResponse = [];
   public pxtQuizResponse = [];
   private URLQuizID;
-  private detailsAPI = 'https://pw3y4jh5q1.execute-api.us-east-1.amazonaws.com/dev/participant/'
+  // private detailsAPI = 'https://pw3y4jh5q1.execute-api.us-east-1.amazonaws.com/dev/participant/'
   public contentData = [];
   public detailsForm: FormGroup;
   public quizForm: FormGroup;
@@ -52,7 +52,8 @@ export class TakeQuizComponent implements OnInit {
   selectedValue = '1';
   newParticipant = new Participant();
   
-  constructor(private http: Http, private routers:Router, public fb: FormBuilder) { 
+  constructor(private http: Http, private routers:Router, public fb: FormBuilder,
+    private Apiservice:ApiService) { 
     this.quizForm = this.fb.group({
       firstName: '',
       lastName: '',
@@ -71,7 +72,7 @@ export class TakeQuizComponent implements OnInit {
   checkForDemographics() {
     var quizID = this.getURLQuizID();
     var quizJSON = [];
-    this.http.get(this.detailsAPI + quizID + "/getQuizDetailsPxt").subscribe(data => {
+    this.http.get(this.Apiservice.getTakeQuizAPI(quizID)).subscribe(data => {
       quizJSON.push(data.json())
       if(quizJSON[0].IsDemographicSelected) {
         this.demoNeeded = true;
@@ -89,7 +90,7 @@ export class TakeQuizComponent implements OnInit {
     quiz.style.display = "block";      
 
     //Get quiz data from db
-    this.http.get(this.detailsAPI + quizID + "/getQuizDetailsPxt").subscribe(data => {
+    this.http.get(this.Apiservice.getTakeQuizAPI(this.newParticipant.quizID)).subscribe(data => {
     this.detailsResponse.push(data.json())
     for (let i in this.detailsResponse[0].Content) {
       this.contentData.push(this.detailsResponse[0].Content[i])
@@ -135,10 +136,10 @@ export class TakeQuizComponent implements OnInit {
     var report = d.getElementById("report");
     quiz.style.display = "none";
     report.style.display = "block";
-    var submitQuizAPI = 'https://pw3y4jh5q1.execute-api.us-east-1.amazonaws.com/dev/participant/submitQuizAttempt';
+    // var submitQuizAPI = 'https://pw3y4jh5q1.execute-api.us-east-1.amazonaws.com/dev/participant/submitQuizAttempt';
     
     //Send data through API
-    this.http.post(submitQuizAPI, {
+    this.http.post(this.Apiservice.getsubmitQuizAPI(), {
       firstName: this.newParticipant.firstName,
       lastName: this.newParticipant.lastName,
       age: this.newParticipant.age,
