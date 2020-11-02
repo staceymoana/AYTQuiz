@@ -88,7 +88,7 @@ functions:
                 quizID: true
     environment:
       REQUEST_QUIZID: quizID
-      PROJECTION_EXPRESSION: Content, Title, Description, SortKey
+      PROJECTION_EXPRESSION: Content, Title, Description, SortKey, IsDemographicSelected
       INDEX: SortKey-index
   validateLogin:
     handler: lib/admin.validateLogin
@@ -644,6 +644,7 @@ resources:
                 - Content
                 - Title
                 - Description
+                - IsDemographicSelected
               ProjectionType: INCLUDE
             ProvisionedThroughput:
               ReadCapacityUnits: 5
