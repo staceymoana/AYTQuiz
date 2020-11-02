@@ -7,8 +7,81 @@
         </div>
         <!-- Card Body -->
 
+        <!-- filter dropdown -->
+        <div class="col mx-auto">
+            <div class="card-header mx-auto my-auto">
+                <div class="form-inline">
+                    <select (change)="changeDemographic($event.target.value)">
+                        <option [value]="'age'">Age</option> 
+                        <option [value]="'gender'">Gender</option>
+                    </select>
+                    <select (change)="changeQuestion($event.target.value)">
+                        <option value="overall">Overall</option>
+                        <option *ngFor="let question of questions; let i = index" [value]="question.questionID">Question {{i + 1}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
-        <div class="col-lg-8 mx-auto">
+        <div class="col-lg-8 mx-auto" *ngIf="reports">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <h5>Demographic</h5>
+                        </th>
+                        <th scope="col">
+                            <h5>Percentage</h5>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="reports.PercentMale != 'none'">
+                        <th scope="row">Male</th>
+                        <td>{{reports.PercentMale}} %</td>
+                    </tr>
+                    <tr *ngIf="reports.PercentFemale != 'none'">
+                        <th scope="row">Female</th>
+                        <td>{{reports.PercentFemale}} %</td>
+                    </tr>
+                    <tr *ngIf="reports.PercentOther != 'none'">
+                        <th scope="row">Other</th>
+                        <td>{{reports.PercentOther}} %</td>
+                    </tr>
+                    <tr *ngIf="reports.Percent10Under != 'none'">
+                        <th scope="row">10 and under</th>
+                        <td>{{reports.Percent10Under}} %</td>
+                    </tr>
+                    <tr *ngIf="reports.Percent1120 != 'none'">
+                        <th scope="row">11-20</th>
+                        <td>{{reports.Percent1120}} %</td>
+                    </tr>
+                    <tr *ngIf="reports.Percent2130 != 'none'">
+                        <th scope="row">21-30</th>
+                        <td>{{reports.Percent2130}} %</td>
+                    </tr>
+                    <tr *ngIf="reports.Percent3140 != 'none'">
+                        <th scope="row">31-40</th>
+                        <td>{{reports.Percent3140}} %</td>
+                    </tr>
+                    <tr *ngIf="reports.Percent4150 != 'none'">
+                        <th scope="row">41-50</th>
+                        <td>{{reports.Percent4150}} %</td>
+                    </tr>
+                    <tr *ngIf="reports.Percent5160 != 'none'">
+                        <th scope="row">51-60</th>
+                        <td>{{reports.Percent5160}} %</td>
+                    </tr>
+                    <tr *ngIf="reports.Percent61Over != 'none'">
+                        <th scope="row">61 and above</th>
+                        <td>{{reports.Percent61Over}} %</td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </div>
+
+        <!-- <div class="col-lg-8 mx-auto">
             <select (change)="changeDemographic($event.target.value)">
                 <option [value]="'age'">Age</option> 
                 <option [value]="'gender'">Gender</option>
@@ -21,8 +94,7 @@
 
             <div>
 
-                <ul *ngIf="reports">
-                    <!-- <li *ngIf="reports.PercentTotal != 'none'">Total {{reports.PercentTotal}}</li> -->
+                <ul *ngIf="reports">                    
                     <li *ngIf="reports.PercentMale != 'none'">Male {{reports.PercentMale}}</li>
                     <li *ngIf="reports.PercentFemale != 'none'">Female {{reports.PercentFemale}}</li>
                     <li *ngIf="reports.PercentOther != 'none'">Other {{reports.PercentOther}}</li>
@@ -37,7 +109,7 @@
 
 
             </div>
-        </div>
+        </div> --><!-- <li *ngIf="reports.PercentTotal != 'none'">Total {{reports.PercentTotal}}</li> -->
         <div class="col-lg-8 mx-auto">
             <div class="chart-container">
                 <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
