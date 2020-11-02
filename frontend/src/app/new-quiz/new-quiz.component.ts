@@ -159,7 +159,7 @@ export class NewQuizComponent implements OnInit {
       
       Swal.fire(
         'Good job!',
-        'Your quizzes successfully saved!',
+        'Your quizzes successfully published!',
         'success'
       ); 
       

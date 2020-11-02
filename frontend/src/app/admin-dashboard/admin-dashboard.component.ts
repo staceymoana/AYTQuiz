@@ -22,6 +22,7 @@ const ALERTS: Alert[] = [];
 })
 export class AdminDashboardComponent implements OnInit {
 SavedQuizesArray=[];
+ publishedQuizzesCount;
 qid;
 
 hi;
@@ -49,11 +50,14 @@ reset() {
 
     this.quizService.getQuizzes(this.username, "True")
       .subscribe(quizzes => this.publishedQuizzes = quizzes)
+      // console.log('publish quizzes',this.publishedQuizzesCount)
+       
   }
   getunpublishedQuizzes(): void {  	
 
     this.quizService.getQuizzes(this.username, "False")
       .subscribe(quizzes => this.unpublishedQuizzes = quizzes)
+      
   }
 
 
