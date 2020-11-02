@@ -67,7 +67,7 @@ export class TakeQuizComponent implements OnInit {
     this.checkForDemographics();
   }
   
-
+  
   checkForDemographics() {
     var quizID = this.getURLQuizID();
     var quizJSON = [];
