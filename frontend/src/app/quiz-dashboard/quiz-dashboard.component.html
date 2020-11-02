@@ -11,7 +11,7 @@
                         <h3 class="text-center mt-5">{{quizDetails.Description}}</h3>
                         <div>
 
-                          <div *ngIf="quizDetails.IsDemographicSelected == false">
+                          <div *ngIf="quizDetails.IsDemographicSelected == true">
 
                             <div *ngIf="drpValue == 'dashboard'">
                                 <select class="custom-select" (change)="loadQuizComponent($event.target.value)">
@@ -37,7 +37,7 @@
 
                         </div>
 
-                        <div *ngIf="quizDetails.IsDemographicSelected == true">
+                        <div *ngIf="quizDetails.IsDemographicSelected == false">
 
                             <div *ngIf="drpValue == 'dashboard'">
                                 <select class="custom-select" (change)="loadQuizComponent($event.target.value)">
