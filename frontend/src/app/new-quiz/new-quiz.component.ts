@@ -111,15 +111,13 @@ export class NewQuizComponent implements OnInit {
     }
     return str;
 }
-  private AddQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/createQuiz';
+ 
 
   CreateQuiz(Title,Description) {
-    //console.log({ title: Title, description: Description},"ssss");
-   // console.log("Quiz Name: "+Title)
-   // console.log("Quiz Description: "+Description)
+ 
      let headers = new Headers({'Content-Type' : 'application/json'});
      let options = new RequestOptions({ headers: headers});
-     this.http.post(this.AddQuiz_URL, { title: Title, description: Description},options).map((res: Response) => res.json())
+     this.http.post(this.Apiservice.getAddQuizAPI(), { title: Title, description: Description},options).map((res: Response) => res.json())
 
   .subscribe(
    data => {
@@ -261,7 +259,7 @@ export class NewQuizComponent implements OnInit {
       else{
 
         console.log('updated data',this.allData);
-        this.UpdateQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/updateQuiz';
+     //   this.UpdateQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/updateQuiz';
         let headers = new Headers({'Content-Type' : 'application/json'});
         const body = this.allData;
   
@@ -270,7 +268,7 @@ export class NewQuizComponent implements OnInit {
   
         let options = new RequestOptions({ headers: headers});
            
-          this.http.post(this.UpdateQuiz_URL, body, { headers }).subscribe(data => {
+          this.http.post(this.Apiservice.getUpdateQuizAPI(this.username,this.qid), body, { headers }).subscribe(data => {
              
             Swal.fire(
               'Good job!',
@@ -289,16 +287,7 @@ export class NewQuizComponent implements OnInit {
         test(){
           console.log('optionsssss',this.allData.content.options);
 
-          // for(){
-          //   for(){
-          //     if(ans is correct){                
-          //       break;
-          //     }
-          //   }
-
-
-          // }
-
+      
           this.displayAlert = false
           for (let index = 0; index < this.allData.content.length; index++) {
             this.doesQuestionHaveAnswer = false
@@ -330,21 +319,7 @@ export class NewQuizComponent implements OnInit {
             )
           }
 
-          // console.log('options',this.allData.content[0].options[0].isCorrect);
-          // console.log(this.isDemographic)
-          // if (!this.allData.content.length) {
-          //   console.log('empty',this.allData.content)    
-          //   Swal.fire({
-          //     icon: 'error',
-          //     title: 'Oops...',
-          //     text: 'Please Add more Questions!',
-          //     footer: ''
-          //   });
-
-          
-          // } else {
-          
-          // }
+       
         }
 
 }

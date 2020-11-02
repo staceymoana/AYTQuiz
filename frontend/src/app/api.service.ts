@@ -11,11 +11,22 @@ export class ApiService {
   private getQuizQuestionsURL = "https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin"
   private getQuizDetailsURL = "https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin"
   private getQuestionDetailsURL = "https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/adminQ"
-
+  private getAddQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/createQuiz';
+  private getUpdateQuiz_URL= "https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin"
 //nfmrn7h7kk
 //3tkxmc5luk
 
   constructor() { }
+
+
+  getUpdateQuizAPI(username,qid) {
+  
+      return (`${this.getUpdateQuiz_URL}/${username}/${qid}/updateQuiz`);
+    }
+  getAddQuizAPI() {
+    return this.getAddQuiz_URL;
+  }
+
   getQuizQuestionPI() {
     return this.getQuizQuestionsURL;
   }
