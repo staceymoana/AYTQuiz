@@ -25,7 +25,7 @@ import { QuizDashboardComponent } from './quiz-dashboard/quiz-dashboard.componen
 import { QuizLeaderboardComponent } from './quiz-leaderboard/quiz-leaderboard.component';
 import { QuizReportComponent } from './quiz-report/quiz-report.component';
 import { EditQuizComponent } from './edit-quiz/edit-quiz.component';
-
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +52,8 @@ HttpClientModule,
     ReactiveFormsModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
     [BrowserModule, NgxPaginationModule],
-    FormlyBootstrapModule
+    FormlyBootstrapModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

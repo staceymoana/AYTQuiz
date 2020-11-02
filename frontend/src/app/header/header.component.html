@@ -7,7 +7,9 @@
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 </head>
 
 <body>
@@ -22,19 +24,16 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link " routerLink="{{username}}/dashboard">Dashboard</a>
+                    <a class="nav-link " routerLink="/dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " routerLink="/NewQuiz">Create A Quiz</a>
+                    <a class="nav-link " routerLink="/NewQuiz">Create Quiz</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link " routerLink="/quiz-view">Quiz View</a>
-                </li>
             </ul>
             <ul class="navbar-nav ml-auto nav-flex-icons">
                 <li class="nav-item">
-                    <a class="nav-link " routerLink="/login"> <i class="fa fa-user"></i> {{username}} Login </a>
+                    <a class="nav-link " (click)="logout()"> <i class="fa fa-user"></i> {{username}} | Logout </a>
                 </li>
 
             </ul>

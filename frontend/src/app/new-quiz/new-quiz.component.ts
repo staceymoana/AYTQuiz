@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import Swal from 'sweetalert2';
-
+import { ApiService } from '../api.service';import { AdminService } from '../admin.service';import { Router } from '@angular/router';
 interface Alert {
   type: string;
   message: string;
@@ -14,15 +14,22 @@ const ALERTS: Alert[] = [];
   styleUrls: ['./new-quiz.component.css']
 })
 export class NewQuizComponent implements OnInit {
+  isDemographic=true;
+  displayAlert=false;
+  dontpublish=false;
+  doesQuestionHaveAnswer=false;
+  isDemographicSelected;
   alerts: Alert[];
-  constructor(private  http: Http) { }
+  constructor(private  http: Http,private Apiservice:ApiService,private Adminservice:AdminService, private routers:Router) { }
+  username = this.Adminservice.getUsername();
   qid;
   queArr : any = [{
     id : this.randomString(8),
     indexNumber : 0
   }];
-
+  buttonHide :any = false;
   buttonActive :any = true;
+  publishActive:any=true;
   private PublishQuiz_URL;
   private UpdateQuiz_URL;
   title : any = '';
@@ -33,6 +40,7 @@ export class NewQuizComponent implements OnInit {
   allData: any = {
     title : '',
     description : '',
+    isDemographicSelected : '',
     content : [],
   };
   close(alert: Alert) {
@@ -70,8 +78,10 @@ export class NewQuizComponent implements OnInit {
     this.allData.title = this.title;
     this.allData.description = this.description;
     this.allData.content = this.content;
-    //console.log(this.allData);
-  
+    this.allData.isDemographicSelected=this.isDemographic;
+    console.log(this.allData);
+    
+    this.buttonHide= true;
 
 
   }
@@ -102,15 +112,13 @@ export class NewQuizComponent implements OnInit {
     }
     return str;
 }
-  private AddQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/createQuiz';
+ 
 
   CreateQuiz(Title,Description) {
-    //console.log({ title: Title, description: Description},"ssss");
-   // console.log("Quiz Name: "+Title)
-   // console.log("Quiz Description: "+Description)
+ 
      let headers = new Headers({'Content-Type' : 'application/json'});
      let options = new RequestOptions({ headers: headers});
-     this.http.post(this.AddQuiz_URL, { title: Title, description: Description},options).map((res: Response) => res.json())
+     this.http.post(this.Apiservice.getAddQuizAPI(), { title: Title, description: Description},options).map((res: Response) => res.json())
 
   .subscribe(
    data => {
@@ -136,67 +144,82 @@ export class NewQuizComponent implements OnInit {
 
     }
     addQuiz(){
+      this.getValue();
       this.CreateQuiz(this.title,this.description);
     }
 
     PublishQuiz(){
-      //console.log(QuizID);
-      
-       this.PublishQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/publishQuiz';
-      let headers = new Headers({'Content-Type' : 'application/json'});
-      let options = new RequestOptions({ headers: headers});
+  //this.UpdateQuiz();
+
+  let headers = new Headers({'Content-Type' : 'application/json'});
+  let options = new RequestOptions({ headers: headers});
+  console.log(this.Apiservice.getPublishQuizAPI(this.username,this.qid));
+
+  //debugger;
+  this.http.post(this.Apiservice.getPublishQuizAPI(this.username,this.qid),options)
+
+.subscribe(
+data => {
   
-      //debugger;
-      this.http.post(this.PublishQuiz_URL,options)
+  Swal.fire(
+    'Good job!',
+    'Your quizzes successfully published!',
+    'success'
+  ); 
+  this.routers.navigate(['/dashboard']),
   
-  .subscribe(
-    data => {
-      
-      Swal.fire(
-        'Good job!',
-        'Your quizzes successfully saved!',
-        'success'
-      ); 
-      
-      error => {
-        if (error.status==401) {
-        //  this.displayError=true;
-        const ALERTS: Alert[] = [{
-     
-          type: 'danger',
-          message: 'There is an error',
-        }
-        ];
-        this.alerts = Array.from(ALERTS);
-        
-        //console.log('success', error.status)
-        }
-        else{}
-         console.log('oops', )
-         const ALERTS: Alert[] = [{
-     
-          type: 'danger',
-          message: 'There is an error',
-        }
-        ];
-        this.alerts = Array.from(ALERTS);
-        
-        }},
   error => {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Please Add more Questions!',
-      footer: ''
-    });
-  
-  
+    if (error.status==401) {
+    //  this.displayError=true;
+    const ALERTS: Alert[] = [{
+ 
+      type: 'danger',
+      message: 'There is an error',
+    }
+    ];
+    this.alerts = Array.from(ALERTS);
+    
+    //console.log('success', error.status)
+    }
+    else{}
+     console.log('oops', )
+     const ALERTS: Alert[] = [{
+ 
+      type: 'danger',
+      message: 'There is an error',
+    }
+    ];
+    this.alerts = Array.from(ALERTS);
+    
+    }},
+error => {
+Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Please Add more Questions!',
+  footer: ''
+});
+
+
+}
+
+
+); 
+
+
+
+
+      if (!this.dontpublish) {
+      
+   
+      } 
+    }
+
+  onisDemographicSelectedChanged(isDemographicSelected:boolean){
+    this.allData.isDemographicSelected=isDemographicSelected;
+
+    console.log('isDemographicSelected.checkedor not',isDemographicSelected)
   }
-  
-  
-  );}
-
-
   SaveQuestion(){
     if (!this.allData.content.length) {
       //console.log('empty',this.allData.content)    
@@ -216,44 +239,96 @@ export class NewQuizComponent implements OnInit {
   }
 
     UpdateQuiz(){
-      console.log('updated data',this.allData);
-      this.UpdateQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/updateQuiz';
-      let headers = new Headers({'Content-Type' : 'application/json'});
-      const body = this.allData;
 
-     // const body = ;
+      this.displayAlert = false
+      for (let index = 0; index < this.allData.content.length; index++) {
+        this.doesQuestionHaveAnswer = false
+        for (let answersloop = 0; answersloop < this.allData.content[index].options.length; answersloop++) {
+          if (this.allData.content[index].options[answersloop].isCorrect==true) {
+            this.doesQuestionHaveAnswer = true
+            break;
+          }
+        }
 
+        if(!this.doesQuestionHaveAnswer){
+          this.displayAlert = true
+          break;
+        }
+      }
 
-      let options = new RequestOptions({ headers: headers});
-         
-        this.http.post(this.UpdateQuiz_URL, body, { headers }).subscribe(data => {
+      if(this.displayAlert){
+        Swal.fire(
+          'Error',
+          'Please ensure that all questions have at least one answer',
+          'question'
+        )
+        this.dontpublish=true;
+        
+      }
+      else{
+
+        console.log('updated data',this.allData);
+     //   this.UpdateQuiz_URL = 'https://nfmrn7h7kk.execute-api.us-east-1.amazonaws.com/dev/admin/admJoshua/'+this.qid+'/updateQuiz';
+        let headers = new Headers({'Content-Type' : 'application/json'});
+        const body = this.allData;
+  
+       // const body = ;
+  
+  
+        let options = new RequestOptions({ headers: headers});
            
-          Swal.fire(
-            'Good job!',
-            'Your quizzes successfully saved!',
-            'success'
-          ); 
-        });}
+          this.http.post(this.Apiservice.getUpdateQuizAPI(this.username,this.qid), body, { headers }).subscribe(data => {
+             
+            Swal.fire(
+              'Good job!',
+              'Your quizzes successfully saved!',
+              'success'
+            ); this.publishActive = false;
+          });
+      }
+
+
+}
 
 
 
 
         test(){
-      
-          
-          // if (!this.allData.content.length) {
-          //   console.log('empty',this.allData.content)    
-          //   Swal.fire({
-          //     icon: 'error',
-          //     title: 'Oops...',
-          //     text: 'Please Add more Questions!',
-          //     footer: ''
-          //   });
+          console.log('optionsssss',this.allData.content.options);
 
-          
-          // } else {
-          
-          // }
+      
+          this.displayAlert = false
+          for (let index = 0; index < this.allData.content.length; index++) {
+            this.doesQuestionHaveAnswer = false
+            for (let answersloop = 0; answersloop < this.allData.content[index].options.length; answersloop++) {
+              if (this.allData.content[index].options[answersloop].isCorrect==true) {
+                this.doesQuestionHaveAnswer = true
+                break;
+              }
+            }
+
+            if(!this.doesQuestionHaveAnswer){
+              this.displayAlert = true
+              break;
+            }
+          }
+
+          if(this.displayAlert){
+            Swal.fire(
+              'Error',
+              'That thing is still around?',
+              'question'
+            )
+          }
+          else{
+            Swal.fire(
+              'Save',
+              'That thing is still around?',
+              'question'
+            )
+          }
+
+       
         }
 
 }

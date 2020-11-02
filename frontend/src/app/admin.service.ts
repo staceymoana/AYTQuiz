@@ -8,12 +8,23 @@ export class AdminService {
 
   constructor() { }
 
-  username = ""
+  username;
 
   storeUsername(username){
+    localStorage.setItem('loggedUser',username);
       this.username = username
   }
   getUsername(){
-    return this.username;
+
+   // return this.username;
+return localStorage.getItem('loggedUser');
+}
+
+loggedOut()
+{
+  localStorage.setItem('loggedUser','');
+  return  this.username = "";
+
+
 }
 }

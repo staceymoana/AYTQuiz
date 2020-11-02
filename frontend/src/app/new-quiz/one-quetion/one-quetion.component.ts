@@ -18,7 +18,7 @@ export class OneQuetionComponent implements OnInit {
   isShow: any = true;
 
   quetion: any = '';
-  type: any = 'Multi-choice';
+  type: any = 'Single';
   optionsArr: any = [];
 
   ngOnInit(): void {

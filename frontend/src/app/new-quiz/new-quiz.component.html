@@ -9,20 +9,24 @@
                     <p class="text-muted"> </p>
                     <form #CreateQuiz1="ngForm" #f="ngForm">
                         <div class="form-group">
-                            <input (keyup)="getValue()" [(ngModel)]="title" name="title" type="text" placeholder="Name" class="form-control" required>
+                            <input [(ngModel)]="title" name="title" type="text" placeholder="Name" class="form-control" required>
                             <div class="invalid-feedback">
                                 <p>Quiz Name is required</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <h4 class="card-title text-center mt-3">Quiz Description </h4>
-                            <textarea (keyup)="getValue()" [(ngModel)]="description" name="description" placeholder="Description" rows="3" class="form-control" required></textarea>
+                            <textarea [(ngModel)]="description" name="description" placeholder="Description" rows="3" class="form-control" required></textarea>
                             <div class="invalid-feedback">
                                 <p>Description is required</p>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
-                            <button [disabled]="buttonActive" class="btn btn-lg btn-primary text-uppercase btn-block" (click)="addQuiz()">Add Quiz
+                            <button [hidden]="buttonHide" class="btn btn-lg btn-primary text-uppercase btn-block" (click)="addQuiz()">Add Quiz
+                            </button>
+                            <!-- <button (click)="test()">test</button> -->
+                            <button [disabled]="buttonActive" style="    border-color: rgb(109 117 141 / 0%);
+                            color: #ffffff00;">
                             </button>
                         </div>
                     </form>
@@ -47,7 +51,7 @@
                             <tr>
                                 <th scope="col">Question</th>
                                 <th scope="col ">Type</th>
-                                <th scope="col ">Edit</th>
+                                <!-- <th scope="col ">Edit</th> -->
 
                             </tr>
                         </thead>
@@ -57,27 +61,27 @@
                                 <td>{{item.question}}</td>
                                 <td>{{item.type}}</td>
                                 <td>
-                                    <a class="btn btn-primary btn-block" href="NewQuiz/#Quection 1">Edit</a></td>
+                                    <!-- <a class="btn btn-primary btn-block" href="NewQuiz/#Quection 1">Edit</a></td> -->
                             </tr>
 
                         </tbody>
                     </table>
 
                 
-                    <!-- <div class="form-group text-md-center">
+ <div class="form-group text-md-center">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">Ask For Demograghic?</label>
+                            <input class="form-check-input" type="checkbox" id="isDemographicSelected" [(ngModel)]="isDemographic"  (change)="onisDemographicSelectedChanged(isDemographic)" >
+                            <label class="form-check-label" for="isDemographicSelected">Ask For Demograghic?</label>
                         </div>
-                        <div class="form-check form-check-inline">
+                        <!-- <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
                             <label class="form-check-label" for="inlineCheckbox2">Generic Link</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
                             <label class="form-check-label" for="inlineCheckbox3">Unique Link</label>
-                        </div>
-                    </div> -->
+                        </div> -->
+                    </div>
                     <div class="row mt-4">
                         <div class="col-sm-6 col-md-6 col-lg-6 ">
                             <button class="btn btn-block btn-primary" (click)="SaveQuestion()">Save </button>
@@ -86,7 +90,7 @@
             <div class="col-sm-6 col-md-6 col-lg-6">
 
 
-                <button class="btn btn-block btn-primary" (click)="PublishQuiz()">Publish </button>
+                <button [disabled]="publishActive" class="btn btn-block btn-primary" (click)="PublishQuiz()">Publish </button>
             </div>
 
         </div>

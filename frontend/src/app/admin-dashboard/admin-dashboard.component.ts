@@ -4,7 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Quiz } from '../quiz';
 import { QuizService } from '../quiz.service';
 import { AdminService } from '../admin.service';
-import { ApiService } from '../api.service';import Swal from 'sweetalert2';
+import { ApiService } from '../api.service';
+import Swal from 'sweetalert2';
 interface Alert {
   type: string;
   message: string;
@@ -21,6 +22,7 @@ const ALERTS: Alert[] = [];
 })
 export class AdminDashboardComponent implements OnInit {
 SavedQuizesArray=[];
+ publishedQuizzesCount;
 qid;
 
 hi;
@@ -48,11 +50,14 @@ reset() {
 
     this.quizService.getQuizzes(this.username, "True")
       .subscribe(quizzes => this.publishedQuizzes = quizzes)
+      // console.log('publish quizzes',this.publishedQuizzesCount)
+       
   }
   getunpublishedQuizzes(): void {  	
 
     this.quizService.getQuizzes(this.username, "False")
       .subscribe(quizzes => this.unpublishedQuizzes = quizzes)
+      
   }
 
 
@@ -76,7 +81,7 @@ reset() {
 
     let headers = new Headers({'Content-Type' : 'application/json'});
     let options = new RequestOptions({ headers: headers});
-
+console.log(this.Apiservice.getPublishQuizAPI(this.username,this.qid));
     //debugger;
     this.http.post(this.Apiservice.getPublishQuizAPI(this.username,this.qid),options)
 
@@ -122,7 +127,18 @@ error => {
 
 );
   }
-
+  accesslinkbtn(link){
+    Swal.fire({
+      title: '<strong>Generic Link</strong>',
+     
+      html:
+      '<a href='+link+'>'+link+'</a> ' ,
+       
+      
+      
+  
+    })
+  }
 
 
 

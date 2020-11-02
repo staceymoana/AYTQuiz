@@ -1,0 +1,14 @@
+<div *ngIf="isShow">
+    <div class="form-row">
+        <div class="col-8">
+            <input (keyup)="getValue()" [(ngModel)]="value" type="text" class="form-control" required placeholder="Answer" />
+        </div>
+        <div class="col">
+            <div class="form-check">
+                <input (change)="getValue()" [(ngModel)]="isCorrect" class="form-check-input" type="checkbox" value="option">
+                <button *ngIf="i != 0" (click)="removeOption()" class="plusbtn"><i class="fa fa-minus text-lg-center text-primary plusfont"></i></button>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
