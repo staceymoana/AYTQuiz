@@ -71,7 +71,7 @@ export class TakeQuizComponent implements OnInit {
     
     var quizJSON = [];
     var isNeeded = false;
-    this.http.get(this.Apiservice.getTakeQuizAPI(this.quizID)).subscribe(data => {
+    this.http.get(this.Apiservice.getTakeQuizAPI(quizID)).subscribe(data => {
       quizJSON.push(data.json())
       if(quizJSON[0].isDemographicsRequired) {
         isNeeded = true;
