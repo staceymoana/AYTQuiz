@@ -16,3 +16,19 @@
   margin: auto;
   width: 80% !important;
 }
+
+input[type="radio"],
+input[type="checkbox"] {
+  box-sizing: border-box;
+  appearance: none;
+  background: white;
+  outline: 2px solid #333;
+  border: 3px solid white;
+  width: 16px;
+  height: 16px;
+}
+
+input[type="radio"]:checked,
+input[type="checkbox"]:checked {
+  background: #ec580e;
+}

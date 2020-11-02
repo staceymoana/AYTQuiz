@@ -10,6 +10,8 @@ import { FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { BrowserModule } from '@angular/platform-browser';
 import { forEach } from 'ngx-json-schema';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 export class Participant {
   public firstName: string;
   public lastName: string;
@@ -47,6 +49,7 @@ export class TakeQuizComponent implements OnInit {
  
   ];
   selectedValue = '1';
+  newParticipant = new Participant();
   
   constructor(private http: Http, private routers:Router, public fb: FormBuilder) { 
     this.quizForm = this.fb.group({
@@ -61,7 +64,19 @@ export class TakeQuizComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  newParticipant = new Participant();
+  
+
+  checkForDemographics(quizID) {
+    var quizJSON = [];
+    var isNeeded = false;
+    this.http.get(this.detailsAPI + quizID + "/getQuizDetailsPxt").subscribe(data => {
+      quizJSON.push(data.json())
+      if(quizJSON[0].isDemographicsRequired) {
+        isNeeded = true;
+      }
+    })
+    return isNeeded;
+  }
 
   getQuizDetails(quizID) {
     this.newParticipant.quizID = quizID;
@@ -80,7 +95,7 @@ export class TakeQuizComponent implements OnInit {
     }
     })
   }
-
+  
   createQuizJSON() {
     var d = document;
     
@@ -95,13 +110,13 @@ export class TakeQuizComponent implements OnInit {
       var jsonData = {"question": questionValue, "answers": []};
       //Loop over all option divs in a question div
       for (var j = 0; j < questionElement.querySelectorAll('#option').length; j++) {
-        var allCheckBoxes = questionElement.querySelectorAll("input[type='checkbox']") as NodeListOf<HTMLInputElement>;
-        allCheckBoxes.forEach(checkBox => {
-          if(checkBox && checkBox.checked) checkBox.checked = true;
+        var allInputBoxes = questionElement.querySelectorAll("input[type='checkbox'], input[type='radio']") as NodeListOf<HTMLInputElement>;
+        allInputBoxes.forEach(inputBox => {
+          if(inputBox && inputBox.checked) inputBox.checked = true;
         });
         //If pxt selected a CB, add answers JSON object to question JSON object
-        if (allCheckBoxes[j].checked) {
-          var chosenValue = allCheckBoxes[j].value;
+        if (allInputBoxes[j].checked) {
+          var chosenValue = allInputBoxes[j].value;
           var answerJSON = {"value": chosenValue}
           jsonData.answers.push(answerJSON); 
         }             
@@ -112,7 +127,6 @@ export class TakeQuizComponent implements OnInit {
     //Assign to newParticipant
     this.newParticipant.attemptData = fullJSON;
   }
-
 
   submitQuiz() {
     var d = document;
