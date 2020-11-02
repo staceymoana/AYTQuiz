@@ -88,7 +88,7 @@ functions:
                 quizID: true
     environment:
       REQUEST_QUIZID: quizID
-      PROJECTION_EXPRESSION: Content, Title, Description, SortKey
+      PROJECTION_EXPRESSION: Content, Title, Description, SortKey, IsDemographicSelected
       INDEX: SortKey-index
   validateLogin:
     handler: lib/admin.validateLogin
@@ -176,7 +176,7 @@ functions:
       REQUEST_TITLE: title
       REQUEST_DESCRIPTION: description
       REQUEST_CONTENT: content
-      UPDATE_EXPRESSION: SET Title = :title, Description = :description, Content = :content
+      UPDATE_EXPRESSION: SET Title = :title, Description = :description, Content = :content, IsDemographicSelected = :isDemographicSelected
       CONDITION_EXPRESSION: PartitionKey = :partitionKey AND SortKey = :sortKey
   getQuizDetails:
     handler: lib/admin.getQuizDetails
@@ -195,7 +195,7 @@ functions:
     environment:
       REQUEST_USERNAME: username
       REQUEST_QUIZID: quizID
-      PROJECTION_EXPRESSION: SortKey, Title, Description, Content, TotalAttempt, TotalAttempt10Under, TotalAttempt1120, TotalAttempt2130, TotalAttempt3140, TotalAttempt4150, TotalAttempt5160, TotalAttempt61Over, TotalAttemptFemale, TotalAttemptMale, TotalAttemptOther, TotalScore, TotalScore10Under, TotalScore1120, TotalScore2130, TotalScore3140, TotalScore4150, TotalScore5160, TotalScore61Over, TotalScoreFemale, TotalScoreMale, TotalScoreOther
+      PROJECTION_EXPRESSION: SortKey, Title, Description, Content, IsDemographicSelected, TotalAttempt, TotalAttempt10Under, TotalAttempt1120, TotalAttempt2130, TotalAttempt3140, TotalAttempt4150, TotalAttempt5160, TotalAttempt61Over, TotalAttemptFemale, TotalAttemptMale, TotalAttemptOther, TotalScore, TotalScore10Under, TotalScore1120, TotalScore2130, TotalScore3140, TotalScore4150, TotalScore5160, TotalScore61Over, TotalScoreFemale, TotalScoreMale, TotalScoreOther
       ATTRIBUTE_TITLE: Title
   getQuestionDetails:
     handler: lib/admin.getQuestionDetails
@@ -644,6 +644,7 @@ resources:
                 - Content
                 - Title
                 - Description
+                - IsDemographicSelected
               ProjectionType: INCLUDE
             ProvisionedThroughput:
               ReadCapacityUnits: 5

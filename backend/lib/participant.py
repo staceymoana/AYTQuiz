@@ -144,8 +144,16 @@ def submitQuizAttempt(event, context):
 	#insert response record
 	firstName = requestBody[REQUEST_FIRSTNAME]
 	lastName = requestBody[REQUEST_LASTNAME]
-	age = requestBody[REQUEST_AGE] 
-	gender = requestBody[REQUEST_GENDER]
+
+	if REQUEST_AGE in requestBody:
+		age = requestBody[REQUEST_AGE]
+	else:
+		age = ""
+
+	if REQUEST_GENDER in requestBody:
+		gender = requestBody[REQUEST_GENDER]
+	else:
+		gender = ""	
 
 	quizAge = quizID + '#' + str(age).replace(" ", "")
 	quizGender = quizID + '#' + gender.lower().replace(" ", "")
