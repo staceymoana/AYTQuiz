@@ -14,6 +14,8 @@ const ALERTS: Alert[] = [];
   styleUrls: ['./new-quiz.component.css']
 })
 export class NewQuizComponent implements OnInit {
+  isDemographic=true;
+  isDemographicSelected;
   alerts: Alert[];
   constructor(private  http: Http) { }
   qid;
@@ -33,6 +35,7 @@ export class NewQuizComponent implements OnInit {
   allData: any = {
     title : '',
     description : '',
+    isDemographicSelected : '',
     content : [],
   };
   close(alert: Alert) {
@@ -56,7 +59,7 @@ export class NewQuizComponent implements OnInit {
       indexNumber : this.queArr.length + 1,
     })
     
-this.buttonHide= true;
+
   }
 
   getValue(){
@@ -70,8 +73,9 @@ this.buttonHide= true;
     this.allData.title = this.title;
     this.allData.description = this.description;
     this.allData.content = this.content;
-    //console.log(this.allData);
-  
+    this.allData.isDemographicSelected=this.isDemographic;
+    console.log(this.allData);
+    this.buttonHide= true;
 
 
   }
@@ -197,7 +201,11 @@ this.buttonHide= true;
   
   );}
 
+  onisDemographicSelectedChanged(isDemographicSelected:boolean){
+    this.allData.isDemographicSelected=isDemographicSelected;
 
+    console.log('isDemographicSelected.checkedor not',isDemographicSelected)
+  }
   SaveQuestion(){
     if (!this.allData.content.length) {
       //console.log('empty',this.allData.content)    
@@ -241,7 +249,7 @@ this.buttonHide= true;
 
         test(){
       
-          
+          console.log(this.isDemographic)
           // if (!this.allData.content.length) {
           //   console.log('empty',this.allData.content)    
           //   Swal.fire({

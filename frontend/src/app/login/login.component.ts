@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 import { ApiService } from '../api.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -36,7 +37,22 @@ export class LoginComponent implements OnInit {
 .subscribe(
   data => {
     
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
     
+    Toast.fire({
+      icon: 'success',
+      title: 'Signed in successfully'
+    })
     
   //  console.log('success', data.status)
   this.displayError=false;
