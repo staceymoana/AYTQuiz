@@ -79,9 +79,29 @@
                 <form [formGroup]="quizForm" (ngSubmit)="checkForAnswer();" id="formQA">
                     <div class="form-check text-center question_{{ i }}" id="question" *ngFor="let item of detailsResponse[0].Content; let i = index" [attr.data-index]="i">
                         <h4>{{ item.question }}</h4>
-                        <div class="singleAnswerDiv" *ngFor="let option of item.options; let j = index" [attr.data-index]="j">
-                            <input *ngIf="item.type == 'Multi-choice'" class="form-check-input option_{{ j }} mr-1" type="checkbox" id="option" value="{{ option.value }}" />
-                            <input *ngIf="item.type == 'Single'" name="radio_{{ i }} " class="form-check-input option_{{ j }} " type="radio" id="option" value="{{ option.value }}" /> {{ option.value }}
+
+                
+
+
+                        <div class="answerDiv" *ngFor="let option of item.options; let j = index" [attr.data-index]="j">
+
+                            <div class="row">
+
+                                <div class="col text-right">
+
+                            <input *ngIf="item.type == 'Multi-choice'" class="form-check-input option_{{ j }}" type="checkbox" id="option" value="{{ option.value }}" />
+                            <input *ngIf="item.type == 'Single'" name="radio_{{ i }} " class="form-check-input option_{{ j }}" type="radio" id="option" value="{{ option.value }}" /> 
+                            
+                            
+                                </div> <div class="col text-left">
+                                
+                                    {{ option.value }}
+
+                                </div>
+
+                                </div>
+                            
+                           
                         </div>
                     </div>
                     <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
