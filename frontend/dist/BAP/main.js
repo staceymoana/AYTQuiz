@@ -2373,7 +2373,7 @@ class NewQuizComponent {
     }
 }
 NewQuizComponent.ɵfac = function NewQuizComponent_Factory(t) { return new (t || NewQuizComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_api_service__WEBPACK_IMPORTED_MODULE_3__["ApiService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_admin_service__WEBPACK_IMPORTED_MODULE_4__["AdminService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"])); };
-NewQuizComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: NewQuizComponent, selectors: [["app-new-quiz"]], decls: 59, vars: 12, consts: [["ng-controller", "checkController", 1, "container"], [1, "row"], [1, "col-sm-12", "col-md-12", "col-lg-12", "mx-auto"], [1, "card", "card-signin", "my-5", "shadow"], ["id", "qinfo", 1, "card-body", "qdesc"], ["src", "../assets/logo.svg", 1, "img-fluid", "mx-auto", "d-block"], [1, "card-title", "text-center", "mt-3"], [1, "text-muted"], ["CreateQuiz1", "ngForm", "f", "ngForm"], [1, "form-group"], ["name", "title", "type", "text", "placeholder", "Name", "required", "", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "invalid-feedback"], ["name", "description", "placeholder", "Description", "rows", "3", "required", "", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "btn", "btn-lg", "btn-primary", "text-uppercase", "btn-block", 3, "hidden", "click"], [2, "border-color", "rgb(109 117 141 / 0%)", "color", "#ffffff00", 3, "disabled"], [3, "ngClass", "i", "queArr", "countChanged", 4, "ngFor", "ngForOf"], [1, "d-flex", "justify-content-center", "mt-3"], [1, "btn", "btn-primary", "btn-block", 3, "ngClass", "click"], [1, "card-body", "qdesc"], [1, "table", "table-bordered", 2, "border", "1px solid #f36f2d"], [1, "bg-primary", "text-light"], ["scope", "col"], ["scope", "col "], [4, "ngFor", "ngForOf"], [1, "form-group", "text-md-center"], [1, "form-check", "form-check-inline"], ["type", "checkbox", "id", "isDemographicSelected", 1, "form-check-input", 3, "ngModel", "ngModelChange", "change"], ["for", "isDemographicSelected", 1, "form-check-label"], [1, "row", "mt-4"], [1, "col-sm-6", "col-md-6", "col-lg-6"], [1, "btn", "btn-block", "btn-primary", 3, "click"], [1, "btn", "btn-block", "btn-primary", 3, "disabled", "click"], ["class", "block m-3", 4, "ngFor", "ngForOf"], [3, "ngClass", "i", "queArr", "countChanged"], [1, "block", "m-3"], [3, "type", "close"]], template: function NewQuizComponent_Template(rf, ctx) { if (rf & 1) {
+NewQuizComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: NewQuizComponent, selectors: [["app-new-quiz"]], decls: 59, vars: 12, consts: [["ng-controller", "checkController", 1, "container"], [1, "row"], [1, "col-sm-12", "col-md-12", "col-lg-12", "mx-auto"], [1, "card", "card-signin", "my-5", "shadow"], ["id", "qinfo", 1, "card-body", "qdesc"], ["src", "../assets/logo.svg", 1, "img-fluid", "mx-auto", "d-block"], [1, "card-title", "text-center", "mt-3"], [1, "text-muted"], ["CreateQuiz1", "ngForm", "f", "ngForm"], [1, "form-group"], ["name", "title", "type", "text", "placeholder", "Name", "required", "", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "invalid-feedback"], ["name", "description", "placeholder", "Description", "rows", "3", "required", "", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "btn", "btn-lg", "btn-primary", "btn-block", 3, "hidden", "click"], [2, "border-color", "rgb(109 117 141 / 0%)", "color", "#ffffff00", 3, "disabled"], [3, "ngClass", "i", "queArr", "countChanged", 4, "ngFor", "ngForOf"], [1, "d-flex", "justify-content-center", "mt-3"], [1, "btn", "btn-primary", "btn-block", 3, "ngClass", "click"], [1, "card-body", "qdesc"], [1, "table", "table-bordered", 2, "border", "1px solid #f36f2d"], [1, "bg-primary", "text-light"], ["scope", "col"], ["scope", "col "], [4, "ngFor", "ngForOf"], [1, "form-group", "text-md-center"], [1, "form-check", "form-check-inline"], ["type", "checkbox", "id", "isDemographicSelected", 1, "form-check-input", 2, "background-color", "#ec580e", 3, "ngModel", "ngModelChange", "change"], ["for", "isDemographicSelected", 1, "form-check-label"], [1, "row", "mt-4"], [1, "col-sm-6", "col-md-6", "col-lg-6"], [1, "btn", "btn-block", "btn-primary", 3, "click"], [1, "btn", "btn-block", "btn-primary", 3, "disabled", "click"], ["class", "block m-3", 4, "ngFor", "ngForOf"], [3, "ngClass", "i", "queArr", "countChanged"], [1, "block", "m-3"], [3, "type", "close"]], template: function NewQuizComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "app-header");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 1);
@@ -2452,7 +2452,7 @@ NewQuizComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineC
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function NewQuizComponent_Template_input_ngModelChange_48_listener($event) { return ctx.isDemographic = $event; })("change", function NewQuizComponent_Template_input_change_48_listener() { return ctx.onisDemographicSelectedChanged(ctx.isDemographic); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](49, "label", 27);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](50, "Ask For Demograghic?");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](50, "Ask for demograghics?");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -4446,42 +4446,48 @@ function TakeQuizComponent_div_18_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx_r5.newParticipant.gender)("checked", true);
 } }
-function TakeQuizComponent_div_24_div_6_div_3_input_1_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "input", 45);
+function TakeQuizComponent_div_24_div_6_div_3_input_3_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "input", 48);
 } if (rf & 2) {
     const ctx_r27 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     const j_r24 = ctx_r27.index;
     const option_r23 = ctx_r27.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassMapInterpolate1"]("form-check-input option_", j_r24, " mr-1");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassMapInterpolate1"]("form-check-input option_", j_r24, "");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("value", option_r23.value);
 } }
-function TakeQuizComponent_div_24_div_6_div_3_input_2_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "input", 46);
+function TakeQuizComponent_div_24_div_6_div_3_input_4_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "input", 49);
 } if (rf & 2) {
     const ctx_r28 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     const j_r24 = ctx_r28.index;
     const option_r23 = ctx_r28.$implicit;
     const i_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().index;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassMapInterpolate1"]("form-check-input option_", j_r24, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassMapInterpolate1"]("form-check-input option_", j_r24, "");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("name", "radio_", i_r21, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("value", option_r23.value);
 } }
 function TakeQuizComponent_div_24_div_6_div_3_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, TakeQuizComponent_div_24_div_6_div_3_input_1_Template, 1, 4, "input", 43);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, TakeQuizComponent_div_24_div_6_div_3_input_2_Template, 1, 5, "input", 44);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 43);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 44);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, TakeQuizComponent_div_24_div_6_div_3_input_3_Template, 1, 4, "input", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, TakeQuizComponent_div_24_div_6_div_3_input_4_Template, 1, 5, "input", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const option_r23 = ctx.$implicit;
     const j_r24 = ctx.index;
     const item_r20 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵattribute"]("data-index", j_r24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", item_r20.type == "Multi-choice");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", item_r20.type == "Single");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", option_r23.value, " ");
 } }
 function TakeQuizComponent_div_24_div_6_Template(rf, ctx) { if (rf & 1) {
@@ -4489,7 +4495,7 @@ function TakeQuizComponent_div_24_div_6_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h4");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, TakeQuizComponent_div_24_div_6_div_3_Template, 4, 4, "div", 41);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, TakeQuizComponent_div_24_div_6_div_3_Template, 7, 4, "div", 41);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const item_r20 = ctx.$implicit;
@@ -4535,7 +4541,7 @@ function TakeQuizComponent_div_28_div_6_tr_14_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "td", 36);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "td", 54);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "td", 57);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -4547,27 +4553,27 @@ function TakeQuizComponent_div_28_div_6_tr_14_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", questionResponse_r37.isCorrect, " ");
 } }
 function TakeQuizComponent_div_28_div_6_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 49);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 52);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h3", 36);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Your score:");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "h1", 50);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "h1", 53);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](5, "br");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "table", 51);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "table", 54);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "thead");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "th", 52);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "th", 55);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, " Question ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "th", 52);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "th", 55);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, " Correct ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "tbody");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, TakeQuizComponent_div_28_div_6_tr_14_Template, 5, 2, "tr", 53);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, TakeQuizComponent_div_28_div_6_tr_14_Template, 5, 2, "tr", 56);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -4579,7 +4585,7 @@ function TakeQuizComponent_div_28_div_6_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", item2_r35.attemptData);
 } }
 function TakeQuizComponent_div_28_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 50);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h1", 35);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -4587,7 +4593,7 @@ function TakeQuizComponent_div_28_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](5, "br");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, TakeQuizComponent_div_28_div_6_Template, 15, 2, "div", 48);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, TakeQuizComponent_div_28_div_6_Template, 15, 2, "div", 51);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const item_r33 = ctx.$implicit;
@@ -4753,7 +4759,7 @@ class TakeQuizComponent {
     }
 }
 TakeQuizComponent.ɵfac = function TakeQuizComponent_Factory(t) { return new (t || TakeQuizComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_http__WEBPACK_IMPORTED_MODULE_3__["Http"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_api_service__WEBPACK_IMPORTED_MODULE_6__["ApiService"])); };
-TakeQuizComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: TakeQuizComponent, selectors: [["app-createasurvey"]], features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([_services_db_service__WEBPACK_IMPORTED_MODULE_1__["DatabaseService"]])], decls: 31, vars: 14, consts: [[1, "container"], ["id", "details", 1, "row", "vh-100"], [1, "col-sm-9", "col-md-7", "col-lg-5", "mx-auto"], [1, "card", "card-signin", "my-5", "shadow"], [1, "card-body"], ["src", "../assets/logo.svg", 1, "img-fluid", "mx-auto", "d-block", "m-3"], [1, "card-title", "text-left"], [1, "detailsForm", 3, "ngSubmit"], ["detailsForm", "ngForm"], [1, "form-group"], ["type", "text", "name", "firstName", "placeholder", "First Name", "required", "", 1, "form-control", 3, "ngModel", "ngClass", "ngModelChange"], ["firstName", "ngModel"], ["class", "invalid-feedback", 4, "ngIf"], ["type", "text", "name", "lastName", "placeholder", "Last Name", "required", "", 1, "form-control", 3, "ngModel", "ngClass", "ngModelChange"], ["lastName", "ngModel"], ["class", "demographics", 4, "ngIf"], ["type", "submit", 1, "btn", "btn-lg", "btn-primary", "btn-block", 3, "disabled", "click"], ["id", "quiz", 1, "quiz"], ["src", "../assets/logo.svg", 1, "img-fluid", "mx-auto", "d-block", "m-5"], ["class", "", "id", "quizDetails", 4, "ngFor", "ngForOf"], ["id", "report", 1, ""], ["class", "", "id", "reportDetails", 4, "ngFor", "ngForOf"], [1, "text-center", "text-dark", "m-5"], [1, "invalid-feedback"], [4, "ngIf"], [1, "demographics"], ["type", "number", "name", "age", "placeholder", "Age", "min", "10", "required", "", 1, "form-control", 3, "ngModel", "ngClass", "ngModelChange"], ["age", "ngModel"], [1, "form-group", "d-flex", "justify-content-center"], [1, "form-check", "form-check-inline"], ["type", "radio", "name", "exampleRadios", "id", "gender", "value", "Female", "required", "", 1, "form-check-input", 3, "ngModel", "checked", "ngModelChange"], ["for", "gender", 1, "form-check-label"], ["type", "radio", "name", "exampleRadios", "id", "gender", "value", "Male", "required", "", 1, "form-check-input", 3, "ngModel", "checked", "ngModelChange"], ["type", "radio", "name", "exampleRadios", "id", "gender", "value", "Other", "required", "", 1, "form-check-input", 3, "ngModel", "checked", "ngModelChange"], ["id", "quizDetails", 1, ""], [1, "text-center", "mt-3", "font-weight-bold"], [1, "text-center"], ["id", "formQA", 3, "formGroup", "ngSubmit"], ["id", "question", 3, "class", 4, "ngFor", "ngForOf"], ["type", "submit", 1, "btn", "btn-lg", "btn-primary", "btn-block"], ["id", "question"], ["class", "singleAnswerDiv", 4, "ngFor", "ngForOf"], [1, "singleAnswerDiv"], ["type", "checkbox", "id", "option", 3, "class", "value", 4, "ngIf"], ["type", "radio", "id", "option", 3, "name", "class", "value", 4, "ngIf"], ["type", "checkbox", "id", "option", 3, "value"], ["type", "radio", "id", "option", 3, "name", "value"], ["id", "reportDetails", 1, ""], ["class", "results", 4, "ngFor", "ngForOf"], [1, "results"], [1, "text-center", "text-dark"], [1, "table"], ["scope", "col", 1, "text-center", 2, "width", "50%"], [4, "ngFor", "ngForOf"], [1, "text-center", "text-capitalize"]], template: function TakeQuizComponent_Template(rf, ctx) { if (rf & 1) {
+TakeQuizComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: TakeQuizComponent, selectors: [["app-createasurvey"]], features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([_services_db_service__WEBPACK_IMPORTED_MODULE_1__["DatabaseService"]])], decls: 31, vars: 14, consts: [[1, "container"], ["id", "details", 1, "row", "vh-100"], [1, "col-sm-9", "col-md-7", "col-lg-5", "mx-auto"], [1, "card", "card-signin", "my-5", "shadow"], [1, "card-body"], ["src", "../assets/logo.svg", 1, "img-fluid", "mx-auto", "d-block", "m-3"], [1, "card-title", "text-left"], [1, "detailsForm", 3, "ngSubmit"], ["detailsForm", "ngForm"], [1, "form-group"], ["type", "text", "name", "firstName", "placeholder", "First Name", "required", "", 1, "form-control", 3, "ngModel", "ngClass", "ngModelChange"], ["firstName", "ngModel"], ["class", "invalid-feedback", 4, "ngIf"], ["type", "text", "name", "lastName", "placeholder", "Last Name", "required", "", 1, "form-control", 3, "ngModel", "ngClass", "ngModelChange"], ["lastName", "ngModel"], ["class", "demographics", 4, "ngIf"], ["type", "submit", 1, "btn", "btn-lg", "btn-primary", "btn-block", 3, "disabled", "click"], ["id", "quiz", 1, "quiz"], ["src", "../assets/logo.svg", 1, "img-fluid", "mx-auto", "d-block", "m-5"], ["class", "", "id", "quizDetails", 4, "ngFor", "ngForOf"], ["id", "report", 1, ""], ["class", "", "id", "reportDetails", 4, "ngFor", "ngForOf"], [1, "text-center", "text-dark", "m-5"], [1, "invalid-feedback"], [4, "ngIf"], [1, "demographics"], ["type", "number", "name", "age", "placeholder", "Age", "min", "10", "required", "", 1, "form-control", 3, "ngModel", "ngClass", "ngModelChange"], ["age", "ngModel"], [1, "form-group", "d-flex", "justify-content-center"], [1, "form-check", "form-check-inline"], ["type", "radio", "name", "exampleRadios", "id", "gender", "value", "Female", "required", "", 1, "form-check-input", 3, "ngModel", "checked", "ngModelChange"], ["for", "gender", 1, "form-check-label"], ["type", "radio", "name", "exampleRadios", "id", "gender", "value", "Male", "required", "", 1, "form-check-input", 3, "ngModel", "checked", "ngModelChange"], ["type", "radio", "name", "exampleRadios", "id", "gender", "value", "Other", "required", "", 1, "form-check-input", 3, "ngModel", "checked", "ngModelChange"], ["id", "quizDetails", 1, ""], [1, "text-center", "mt-3", "font-weight-bold"], [1, "text-center"], ["id", "formQA", 3, "formGroup", "ngSubmit"], ["id", "question", 3, "class", 4, "ngFor", "ngForOf"], ["type", "submit", 1, "btn", "btn-lg", "btn-primary", "btn-block"], ["id", "question"], ["class", "answerDiv", 4, "ngFor", "ngForOf"], [1, "answerDiv"], [1, "row"], [1, "col", "text-right"], ["type", "checkbox", "id", "option", 3, "class", "value", 4, "ngIf"], ["type", "radio", "id", "option", 3, "name", "class", "value", 4, "ngIf"], [1, "col", "text-left"], ["type", "checkbox", "id", "option", 3, "value"], ["type", "radio", "id", "option", 3, "name", "value"], ["id", "reportDetails", 1, ""], ["class", "results", 4, "ngFor", "ngForOf"], [1, "results"], [1, "text-center", "text-dark"], [1, "table"], ["scope", "col", 1, "text-center", 2, "width", "50%"], [4, "ngFor", "ngForOf"], [1, "text-center", "text-capitalize"]], template: function TakeQuizComponent_Template(rf, ctx) { if (rf & 1) {
         const _r38 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
@@ -4824,7 +4830,7 @@ TakeQuizComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.detailsResponse);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.detailsResponse);
-    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["RequiredValidator"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgClass"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgIf"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NumberValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["RadioControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormGroupDirective"]], styles: ["#quiz[_ngcontent-%COMP%], #report[_ngcontent-%COMP%] {\r\n    display: none;\r\n    margin: 5vh 5vw;\r\n}\r\n\r\n#quizDetails[_ngcontent-%COMP%] {\r\n    margin: 5vh 5vw;\r\n}\r\n\r\n#question[_ngcontent-%COMP%] {\r\n    margin: 5vh 5vw;\r\n}\r\n\r\n.table[_ngcontent-%COMP%] {\r\n    margin: auto;\r\n    width: 80% !important;\r\n}\r\n\r\ninput[type=\"radio\"][_ngcontent-%COMP%], input[type=\"checkbox\"][_ngcontent-%COMP%] {\r\n    box-sizing: border-box;\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    background: white;\r\n    outline: 2px solid #333;\r\n    border: 3px solid white;\r\n    width: 16px;\r\n    height: 16px;\r\n}\r\n\r\ninput[type=\"radio\"][_ngcontent-%COMP%]:checked, input[type=\"checkbox\"][_ngcontent-%COMP%]:checked {\r\n    background: #ec580e;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFrZS1xdWl6L3Rha2UtcXVpei5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztJQUVJLGFBQWE7SUFDYixlQUFlO0FBQ25COztBQUVBO0lBQ0ksZUFBZTtBQUNuQjs7QUFFQTtJQUNJLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSxZQUFZO0lBQ1oscUJBQXFCO0FBQ3pCOztBQUVBOztJQUVJLHNCQUFzQjtJQUN0Qix3QkFBZ0I7T0FBaEIscUJBQWdCO1lBQWhCLGdCQUFnQjtJQUNoQixpQkFBaUI7SUFDakIsdUJBQXVCO0lBQ3ZCLHVCQUF1QjtJQUN2QixXQUFXO0lBQ1gsWUFBWTtBQUNoQjs7QUFFQTs7SUFFSSxtQkFBbUI7QUFDdkIiLCJmaWxlIjoic3JjL2FwcC90YWtlLXF1aXovdGFrZS1xdWl6LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjcXVpeixcclxuI3JlcG9ydCB7XHJcbiAgICBkaXNwbGF5OiBub25lO1xyXG4gICAgbWFyZ2luOiA1dmggNXZ3O1xyXG59XHJcblxyXG4jcXVpekRldGFpbHMge1xyXG4gICAgbWFyZ2luOiA1dmggNXZ3O1xyXG59XHJcblxyXG4jcXVlc3Rpb24ge1xyXG4gICAgbWFyZ2luOiA1dmggNXZ3O1xyXG59XHJcblxyXG4udGFibGUge1xyXG4gICAgbWFyZ2luOiBhdXRvO1xyXG4gICAgd2lkdGg6IDgwJSAhaW1wb3J0YW50O1xyXG59XHJcblxyXG5pbnB1dFt0eXBlPVwicmFkaW9cIl0sXHJcbmlucHV0W3R5cGU9XCJjaGVja2JveFwiXSB7XHJcbiAgICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gICAgYXBwZWFyYW5jZTogbm9uZTtcclxuICAgIGJhY2tncm91bmQ6IHdoaXRlO1xyXG4gICAgb3V0bGluZTogMnB4IHNvbGlkICMzMzM7XHJcbiAgICBib3JkZXI6IDNweCBzb2xpZCB3aGl0ZTtcclxuICAgIHdpZHRoOiAxNnB4O1xyXG4gICAgaGVpZ2h0OiAxNnB4O1xyXG59XHJcblxyXG5pbnB1dFt0eXBlPVwicmFkaW9cIl06Y2hlY2tlZCxcclxuaW5wdXRbdHlwZT1cImNoZWNrYm94XCJdOmNoZWNrZWQge1xyXG4gICAgYmFja2dyb3VuZDogI2VjNTgwZTtcclxufSJdfQ== */"] });
+    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["RequiredValidator"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgClass"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgIf"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NumberValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["RadioControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormGroupDirective"]], styles: ["#quiz[_ngcontent-%COMP%], #report[_ngcontent-%COMP%] {\r\n    display: none;\r\n    margin: 5vh 5vw;\r\n}\r\n\r\n#quizDetails[_ngcontent-%COMP%] {\r\n    margin: 5vh 5vw;\r\n}\r\n\r\n#question[_ngcontent-%COMP%] {\r\n    margin: 5vh 5vw;\r\n}\r\n\r\n.table[_ngcontent-%COMP%] {\r\n    margin: auto;\r\n    width: 80% !important;\r\n}\r\n\r\ninput[type=\"radio\"][_ngcontent-%COMP%], input[type=\"checkbox\"][_ngcontent-%COMP%] {\r\n    box-sizing: border-box;\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    background: white;\r\n    outline: 2px solid #adb5bd;\r\n    border: 3px solid white;\r\n    width: 16px;\r\n    height: 16px;\r\n}\r\n\r\ninput[type=\"radio\"][_ngcontent-%COMP%]:checked, input[type=\"checkbox\"][_ngcontent-%COMP%]:checked {\r\n    background: #ec580e;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFrZS1xdWl6L3Rha2UtcXVpei5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztJQUVJLGFBQWE7SUFDYixlQUFlO0FBQ25COztBQUVBO0lBQ0ksZUFBZTtBQUNuQjs7QUFFQTtJQUNJLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSxZQUFZO0lBQ1oscUJBQXFCO0FBQ3pCOztBQUVBOztJQUVJLHNCQUFzQjtJQUN0Qix3QkFBZ0I7T0FBaEIscUJBQWdCO1lBQWhCLGdCQUFnQjtJQUNoQixpQkFBaUI7SUFDakIsMEJBQTBCO0lBQzFCLHVCQUF1QjtJQUN2QixXQUFXO0lBQ1gsWUFBWTtBQUNoQjs7QUFFQTs7SUFFSSxtQkFBbUI7QUFDdkIiLCJmaWxlIjoic3JjL2FwcC90YWtlLXF1aXovdGFrZS1xdWl6LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjcXVpeixcclxuI3JlcG9ydCB7XHJcbiAgICBkaXNwbGF5OiBub25lO1xyXG4gICAgbWFyZ2luOiA1dmggNXZ3O1xyXG59XHJcblxyXG4jcXVpekRldGFpbHMge1xyXG4gICAgbWFyZ2luOiA1dmggNXZ3O1xyXG59XHJcblxyXG4jcXVlc3Rpb24ge1xyXG4gICAgbWFyZ2luOiA1dmggNXZ3O1xyXG59XHJcblxyXG4udGFibGUge1xyXG4gICAgbWFyZ2luOiBhdXRvO1xyXG4gICAgd2lkdGg6IDgwJSAhaW1wb3J0YW50O1xyXG59XHJcblxyXG5pbnB1dFt0eXBlPVwicmFkaW9cIl0sXHJcbmlucHV0W3R5cGU9XCJjaGVja2JveFwiXSB7XHJcbiAgICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gICAgYXBwZWFyYW5jZTogbm9uZTtcclxuICAgIGJhY2tncm91bmQ6IHdoaXRlO1xyXG4gICAgb3V0bGluZTogMnB4IHNvbGlkICNhZGI1YmQ7XHJcbiAgICBib3JkZXI6IDNweCBzb2xpZCB3aGl0ZTtcclxuICAgIHdpZHRoOiAxNnB4O1xyXG4gICAgaGVpZ2h0OiAxNnB4O1xyXG59XHJcblxyXG5pbnB1dFt0eXBlPVwicmFkaW9cIl06Y2hlY2tlZCxcclxuaW5wdXRbdHlwZT1cImNoZWNrYm94XCJdOmNoZWNrZWQge1xyXG4gICAgYmFja2dyb3VuZDogI2VjNTgwZTtcclxufSJdfQ== */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](TakeQuizComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
