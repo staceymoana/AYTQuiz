@@ -1,27 +1,24 @@
-# BAP
+# Quiz Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.
+This project was created as part of the requirements for completing the course Business Application Programming at EIT - Hawkes Bay.
 
-## Development server
+## Overview
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This application allows users to create, manage, and take quizzes. Each of these functions belong to a specific component. The Create Quiz component allows quizzes to be created with a set of questions. The Take Quiz component allows a quiz to be accessed and subsequently answered. The Quiz Reports component generates reports and aggregate data for a specific quiz.
 
-## Code scaffolding
+## Users
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This application has two main users: the administrator, and the participant. The administrator has the ability to view reports, create, and manage quizzes while the participant is able to answer quizzes.
 
-## Build
+## Technology
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+This application makes use of Angular for the frontend and Serverless/Amazon Web Services (Lambda, DynamoDB, S3, API Gateway) for the backend
 
-## Running unit tests
+## Frontend (Angular)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The frontend component was built using Angular. Apart from built-in libraries, Bootstrap, Chart.js, and Sweetalert2 were used. These three packages must first be installed before editing/running the component (see https://www.npmjs.com/ for more details).
 
-## Running end-to-end tests
+## Backend (Serverless/AWS)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+The backend component was written using Python. To deploy the changes, the AWS credentials must first be updated (see https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html for more details). After updating, run "sls deploy" on the backend folder to deploy the latest changes to AWS.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
