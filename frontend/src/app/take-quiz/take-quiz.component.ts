@@ -1,17 +1,12 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { jsonpFactory } from '@angular/http/src/http_module';
-import { Observable } from 'rxjs';
 import {DatabaseService} from "../services/db.service";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { BrowserModule } from '@angular/platform-browser';
-import { forEach } from 'ngx-json-schema';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ApiService } from '../api.service';
+
 export class Participant {
   public firstName: string;
   public lastName: string;
@@ -33,23 +28,10 @@ export class TakeQuizComponent implements OnInit {
   public detailsResponse = [];
   public pxtQuizResponse = [];
   private URLQuizID;
-  // private detailsAPI = 'https://pw3y4jh5q1.execute-api.us-east-1.amazonaws.com/dev/participant/'
   public contentData = [];
   public detailsForm: FormGroup;
   public quizForm: FormGroup;
   public demoNeeded: boolean = false;
-  totalRecords:string
-  page:Number=1
-  results:string
-  result:string;
-  options = [
-    { value: '1', label: 'Choose Gender' },
-    { value: 'Male', label: 'Male' },
-    { value: 'Female', label: 'Female' },
-    { value: 'Other', label: 'Other' },
- 
-  ];
-  selectedValue = '1';
   newParticipant = new Participant();
   
   constructor(private http: Http, private routers:Router, public fb: FormBuilder,
@@ -68,7 +50,7 @@ export class TakeQuizComponent implements OnInit {
     this.checkForDemographics();
   }
   
-  
+  // checks if admin wants demographics or not
   checkForDemographics() {
     var quizID = this.getURLQuizID();
     var quizJSON = [];
@@ -80,6 +62,7 @@ export class TakeQuizComponent implements OnInit {
     })
   }
 
+  // retrieves quiz data from db via api
   getQuizDetails(quizID) {
     this.newParticipant.quizID = quizID;
     var d = document;
@@ -98,6 +81,7 @@ export class TakeQuizComponent implements OnInit {
     })
   }
   
+  // create a json object from the pxt taken quiz
   createQuizJSON() {
     var d = document;
     
@@ -130,6 +114,7 @@ export class TakeQuizComponent implements OnInit {
     this.newParticipant.attemptData = fullJSON;
   }
 
+  // insert pxt taken quiz data into db via api
   submitQuiz() {
     var d = document;
     var quiz = d.getElementById("quiz");
@@ -159,6 +144,7 @@ export class TakeQuizComponent implements OnInit {
     );
   }
 
+  // checks the pxt has answered all questions when submitting
   checkForAnswer() {
     this.createQuizJSON();
     for (var i = 0; i < this.newParticipant.attemptData.length; i++) {
@@ -166,7 +152,6 @@ export class TakeQuizComponent implements OnInit {
       if(this.newParticipant.attemptData[i].answers.length == 0) {
         if (!valid) {
           var num = i += 1;
-          //alert('Question ' + num + ' is missing an answer.');
           Swal.fire({
             title: 'Sorry!',
             text: 'Question ' + num + ' is missing an answer.',
@@ -187,10 +172,7 @@ export class TakeQuizComponent implements OnInit {
     }
   }
 
-  getSelectedValue(value: any) {
-    this.newParticipant.gender=value;
-  }
-  
+  // gets quiz id from url 
   getURLQuizID() {
     var pageURL = window.location.href;
     this.URLQuizID = pageURL.split('participant/')[1];
