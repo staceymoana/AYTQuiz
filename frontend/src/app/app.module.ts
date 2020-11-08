@@ -4,9 +4,9 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+
 import { LoginComponent } from './login/login.component';
-import { CreateasurveyComponent } from './createasurvey/createasurvey.component';
+
 import { FormsModule} from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -30,9 +30,9 @@ import { ChartsModule } from 'ng2-charts';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
+
     LoginComponent,
-    CreateasurveyComponent,
+
     QuizViewComponent,
     NewQuizComponent,
     AdminDashboardComponent,
