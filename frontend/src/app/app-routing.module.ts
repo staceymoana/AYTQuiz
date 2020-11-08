@@ -3,7 +3,7 @@ import { HttpModule  } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 import { from } from 'rxjs';
 import { LoginComponent } from './login/login.component';
-import { CreateasurveyComponent } from './createasurvey/createasurvey.component';
+
 import { EditQuizComponent } from './edit-quiz/edit-quiz.component';
 import { QuizViewComponent } from './quiz-view/quiz-view.component';
 import { NewQuizComponent } from './new-quiz/new-quiz.component';

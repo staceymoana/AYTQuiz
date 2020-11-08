@@ -1,7 +1,6 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import { Router } from '@angular/router';
-import {DatabaseService} from "../services/db.service";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -20,7 +19,7 @@ export class Participant {
   selector: 'app-createasurvey',
   templateUrl: './take-quiz.component.html',
   styleUrls: ['./take-quiz.component.css'],
-  providers:[DatabaseService]
+ 
 })
 
 
